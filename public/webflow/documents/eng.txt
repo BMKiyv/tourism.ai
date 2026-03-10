@@ -1,0 +1,27 @@
+let aboutEng = document.querySelector("#about-eng");
+let activityEng = document.querySelector("#activity-eng");
+let menu1Eng = document.querySelector("#about-menu-eng");
+let menu2Eng = document.querySelector("#activity-menu-eng");  
+aboutEng.addEventListener("click", (e) => {
+  console.log(e.target);
+  menu2Eng.style.height = "0.5px";
+  if (!menu1Eng.style.height || menu1Eng.style.height === "0px") {
+    menu1Eng.style.height = "64px";
+    main.style.paddingTop = "5vw";
+  } else {
+    menu1Eng.style.height = "0px";
+    main.style.paddingTop = "2vw";
+  }
+});
+activityEng.addEventListener("click", (e) => {
+  menu1Eng.style.height = "0px";
+   console.log(e.target);
+  if (!menu2Eng.style.height || menu2Eng.style.height === "0.5px") {
+    menu2Eng.style.height = "9vw";
+    main.style.paddingTop = "11vw";
+    // console.log(menu2.style.height);
+  } else {
+    menu2Eng.style.height = "0.5px";
+    main.style.paddingTop = "2vw";
+  }
+});

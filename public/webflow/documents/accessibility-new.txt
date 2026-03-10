@@ -1,0 +1,236 @@
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    const menuButton = document.getElementById('aswMenuBtn');
+    const menu = document.getElementById('aswMenu');
+    const closeButton = document.getElementById('aswCloseBtn');
+    const resetButton = document.getElementById('aswResetBtn');
+    
+    // Перевіряємо, чи існують елементи, перед тим як додавати слухачі
+    if (!menuButton || !menu || !closeButton || !resetButton) {
+        console.error('Accessibility Widget Error: One or more essential elements are missing from the DOM.');
+        return;
+    }
+
+    const focusableElementsSelector = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+    let focusableElements = [];
+    let firstFocusableElement;
+    let lastFocusableElement;
+
+    function openMenu() {
+        menuButton.setAttribute('aria-expanded', 'true');
+        menu.hidden = false;
+
+        focusableElements = Array.from(menu.querySelectorAll(focusableElementsSelector));
+        firstFocusableElement = focusableElements[0];
+        lastFocusableElement = focusableElements[focusableElements.length - 1];
+
+        requestAnimationFrame(() => {
+            firstFocusableElement.focus();
+        });
+        
+        document.addEventListener('keydown', handleKeyPress);
+    }
+
+    function closeMenu() {
+        menuButton.setAttribute('aria-expanded', 'false');
+        menu.hidden = true;
+        
+        menuButton.focus();
+        
+        document.removeEventListener('keydown', handleKeyPress);
+    }
+
+    function toggleMenu() {
+        const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
+        if (isExpanded) {
+            closeMenu();
+        } else {
+            openMenu();
+        }
+    }
+    
+    function handleKeyPress(e) {
+        if (e.key === 'Escape') {
+            closeMenu();
+            return;
+        }
+
+        const isTabPressed = e.key === 'Tab';
+        if (!isTabPressed) {
+            return;
+        }
+
+        if (e.shiftKey) { // Shift + Tab
+            if (document.activeElement === firstFocusableElement) {
+                lastFocusableElement.focus();
+                e.preventDefault();
+            }
+        } else { // Tab
+            if (document.activeElement === lastFocusableElement) {
+                firstFocusableElement.focus();
+                e.preventDefault();
+            }
+        }
+    }
+
+    menuButton.addEventListener('click', toggleMenu);
+    closeButton.addEventListener('click', closeMenu);
+    resetButton.addEventListener('click', reset); // Тепер викликає глобальну функцію reset
+
+    // Локалізація та завантаження налаштувань
+    const customLocation = { pathname: window.location.pathname };
+    if (customLocation.pathname.slice(0, 3) !== "/en") {
+        let words = document.querySelectorAll(".asw-translate");
+        let ukrWords = [
+            "Меню доступності", "Збільшити розмір тексту", "Зменшити розмір тексту",
+            "Міжрядковий інтервал", "Міжлітерний інтервал", "Дислексія",
+            "Підсвічування заголовків", "Підсвічування посилань", "Жирний шрифт",
+            "Більший курсор", "Контрастність"
+        ];
+        words.forEach((word, i) => {
+            if (word && ukrWords[i]) {
+                word.innerHTML = ukrWords[i];
+            }
+        });
+    }
+    
+    // Запускаємо застосування збережених налаштувань після завантаження сторінки
+    onPageLoad();
+});
+
+
+// =================================================================================
+// РОЗДІЛ 2: ФУНКЦІЇ НАЛАШТУВАНЬ (ВАШ СТАРИЙ КОД)
+// Ці функції мають бути в глобальній області видимості, щоб працювати з `onclick`
+// =================================================================================
+
+function adjustFontSize(multiply = 0) {
+    const storedPercentage = parseFloat(localStorage.getItem('fontPercentage'));
+    if (multiply) {
+        if (storedPercentage) {
+            const newPercentage = storedPercentage + multiply;
+            localStorage.setItem('fontPercentage', newPercentage);
+        } else {
+            const newPercentage = 1 + multiply;
+            localStorage.setItem('fontPercentage', newPercentage);
+        }
+    }
+    document
+        .querySelectorAll("*:not(.material-icons)")
+        .forEach((el) => {
+            let orgFontSize = parseFloat(el.getAttribute('data-asw-orgFontSize'));
+            if (!orgFontSize) {
+                orgFontSize = parseFloat(window.getComputedStyle(el).getPropertyValue('font-size'));
+                el.setAttribute('data-asw-orgFontSize', orgFontSize);
+            }
+            let adjustedFontSize = orgFontSize * (parseFloat(localStorage.getItem('fontPercentage')) || 1);
+            el.style.fontSize = adjustedFontSize + 'px';
+        });
+}
+
+function adjustLetterSpacing(increment = 0) {
+    let isLetterSpacingEnabled = parseInt(localStorage.getItem('isLetterSpacingEnabled'));
+    if (increment !== 0) { // Toggle only when clicked, not on page load
+         isLetterSpacingEnabled = !isLetterSpacingEnabled;
+         localStorage.setItem('isLetterSpacingEnabled', isLetterSpacingEnabled ? 1 : 0);
+    }
+    
+    document.querySelectorAll("*:not(.material-icons)").forEach((el) => {
+        if (isLetterSpacingEnabled) {
+            let orgLetterSpacing = el.getAttribute('data-asw-orgLetterSpacing');
+            if (orgLetterSpacing === null) {
+                orgLetterSpacing = window.getComputedStyle(el).getPropertyValue('letter-spacing');
+                el.setAttribute('data-asw-orgLetterSpacing', orgLetterSpacing);
+            }
+            el.style.letterSpacing = '0.1em'; // Example value
+        } else {
+            let orgLetterSpacing = el.getAttribute('data-asw-orgLetterSpacing');
+            if (orgLetterSpacing !== null) {
+                el.style.letterSpacing = orgLetterSpacing;
+            }
+        }
+    });
+}
+
+function enableDyslexicFont(load = false) {
+    let isEnabled = parseInt(localStorage.getItem('isDyslexicFontEnabled'));
+    if (!load) {
+        isEnabled = !isEnabled;
+        localStorage.setItem('isDyslexicFontEnabled', isEnabled ? 1 : 0);
+    }
+    document.body.style.fontFamily = isEnabled ? 'OpenDyslexic' : '';
+}
+
+function enableBigCursor(load = false) {
+    let isEnabled = parseInt(localStorage.getItem('isBigCursorEnabled'));
+    if (!load) {
+        isEnabled = !isEnabled;
+        localStorage.setItem('isBigCursorEnabled', isEnabled ? 1 : 0);
+    }
+    document.body.classList.toggle('customCursor', isEnabled);
+}
+
+function enableHighlightLinks(load = false) {
+    let isEnabled = parseInt(localStorage.getItem('isHighlightLinks'));
+    if (!load) {
+        isEnabled = !isEnabled;
+        localStorage.setItem('isHighlightLinks', isEnabled ? 1 : 0);
+    }
+    document.querySelectorAll('a, button').forEach(el => el.classList.toggle('asw-highlight-link', isEnabled));
+}
+
+function enableHighlightHeadings(load = false) {
+    let isEnabled = parseInt(localStorage.getItem('isHighlightHeadings'));
+    if (!load) {
+        isEnabled = !isEnabled;
+        localStorage.setItem('isHighlightHeadings', isEnabled ? 1 : 0);
+    }
+    document.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach(el => el.classList.toggle('asw-highlight-heading', isEnabled));
+}
+
+function adjustLineHeight(increment = 0) {
+     let isEnabled = parseInt(localStorage.getItem('isLineHeightEnabled'));
+    if (increment !== 0) {
+        isEnabled = !isEnabled;
+        localStorage.setItem('isLineHeightEnabled', isEnabled ? 1 : 0);
+    }
+    document.body.style.lineHeight = isEnabled ? '1.8' : ''; // Example value
+}
+
+function adjustFontWeight(increment = 0) {
+    let isEnabled = parseInt(localStorage.getItem('isFontWeightEnabled'));
+    if (increment !== 0) {
+        isEnabled = !isEnabled;
+        localStorage.setItem('isFontWeightEnabled', isEnabled ? 1 : 0);
+    }
+    document.body.style.fontWeight = isEnabled ? '700' : ''; // Example: make all text bold
+}
+
+function adjustContrast(load = false) {
+    let isEnabled = parseInt(localStorage.getItem('isContrastEnabled'));
+    if (!load) {
+        isEnabled = !isEnabled;
+        localStorage.setItem('isContrastEnabled', isEnabled ? 1 : 0);
+    }
+    document.body.classList.toggle('asw-contrast', isEnabled);
+}
+
+function onPageLoad() {
+    // Застосовуємо налаштування зі localStorage при завантаженні сторінки
+    adjustFontSize();
+    adjustLetterSpacing(0); // 0 means load state, don't toggle
+    enableDyslexicFont(true);
+    enableBigCursor(true);
+    enableHighlightLinks(true);
+    enableHighlightHeadings(true);
+    adjustLineHeight(0); // 0 means load state, don't toggle
+    adjustFontWeight(0); // 0 means load state, don't toggle
+    adjustContrast(true);
+}
+
+function reset() {
+    localStorage.clear();
+    // Перезавантажуємо сторінку, щоб скинути всі стилі, які були застосовані напряму
+    window.location.reload();
+}

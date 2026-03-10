@@ -7,7 +7,7 @@ export default async function HomePage() {
   
   const { docs: blogs } = await payload.find({
     collection: 'blogs',
-    limit: 6,
+    limit: 4,
     sort: '-date',
   })
 
@@ -18,54 +18,161 @@ export default async function HomePage() {
   })
 
   return (
-    <div className="container mx-auto px-4 py-12">
-      <section className="mb-16">
-        <h1 className="text-4xl font-oswald uppercase mb-8 border-l-4 border-[#2d5ca6] pl-4 font-bold text-gray-900 tracking-tight">Останні новини</h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {blogs.map((blog) => (
-            <article key={blog.id} className="group border border-gray-100 rounded-2xl overflow-hidden hover:shadow-xl transition-all bg-white flex flex-col">
-              <div className="p-8 flex flex-col h-full">
-                <time className="text-xs font-bold text-blue-500 uppercase tracking-widest mb-3 block">{blog.date ? new Date(blog.date).toLocaleDateString('uk-UA') : ''}</time>
-                <h2 className="text-xl font-oswald uppercase mb-4 line-clamp-2 font-bold text-gray-900 group-hover:text-[#2d5ca6] transition-colors">{blog.name}</h2>
-                <p className="text-gray-600 line-clamp-3 mb-6 text-sm leading-relaxed flex-grow">{blog.anounce}</p>
-                <Link href={`/news/${blog.slug}`} className="text-[#2d5ca6] font-bold hover:underline flex items-center gap-1 mt-auto group/link">
-                  Читати далі <span className="group-hover/link:translate-x-1 transition-transform">→</span>
-                </Link>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="bg-gradient-to-br from-[#f0f7ff] to-white p-10 rounded-[2.5rem] border border-blue-50 shadow-inner">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-6">
-          <div className="space-y-1">
-            <h2 className="text-4xl font-oswald uppercase font-black text-gray-900">Останні накази</h2>
-            <p className="text-gray-500 font-medium">Офіційні документи Державного агентства розвитку туризму</p>
-          </div>
-          <Link href="/orders" className="text-[#2d5ca6] hover:bg-blue-50 px-6 py-3 rounded-2xl shadow-sm border border-blue-100 transition-colors font-bold whitespace-nowrap bg-white">Всі накази →</Link>
-        </div>
-        <div className="space-y-4">
-          {orders.map((order) => (
-            <div key={order.id} className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl flex flex-col md:flex-row justify-between items-start md:items-center shadow-sm border border-white transition-all hover:shadow-md hover:bg-white group">
-              <div className="mb-4 md:mb-0">
-                <div className="flex items-center gap-3 mb-3">
-                   <span className="text-[10px] font-black text-[#2d5ca6] uppercase tracking-widest bg-blue-100 px-2.5 py-1 rounded-full">Документ</span>
-                   <span className="text-sm font-bold text-gray-400">№ {order.number}</span>
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 leading-tight mb-2 group-hover:text-[#2d5ca6] transition-colors">{order.name}</h3>
-                <div className="flex items-center gap-2 text-sm text-gray-400 font-medium">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                  {order.date ? new Date(order.date).toLocaleDateString('uk-UA') : ''}
-                </div>
-              </div>
-              <a href={order.url || '#'} target="_blank" rel="noopener noreferrer" className="bg-[#2d5ca6] text-white px-10 py-3.5 rounded-2xl hover:bg-[#1e4480] transition-all font-bold whitespace-nowrap shadow-lg shadow-blue-200/50 hover:shadow-blue-300/60 active:scale-95">
-                Завантажити PDF
-              </a>
+    <>
+      <div className="first-wrap">
+        <div className="first">
+          <div className="first-wideo">
+            <div className="div-block-19 first-text-wrap main-page"></div>
+            <div className="background-video w-background-video w-background-video-atom">
+              <video 
+                autoPlay 
+                loop 
+                muted 
+                playsInline 
+                style={{ backgroundImage: 'url("/webflow/videos/first_screen_background-poster-00001.jpg")' }}
+                data-wf-ignore="true"
+              >
+                <source src="/webflow/videos/first_screen_background-transcode.mp4" data-wf-ignore="true" />
+                <source src="/webflow/videos/first_screen_background-transcode.webm" data-wf-ignore="true" />
+              </video>
             </div>
-          ))}
+          </div>
+          <h1 className="first-title">Державне агентство розвитку туризму України -</h1>
+          <div className="first-text">
+            центральний орган виконавчої влади, який реалізує державну політику у сфері туризму та курортів.&nbsp;<br />
+            Ми команда, яка працює над підвищенням якості національного туристичного продукту, розвитком подорожей Україною та просуванням України як туристичної дестинації в світі.<br />
+          </div>
+        </div>
+      </div>
+
+      <div data-w-id="2be5c9c3-cacc-94c2-20d0-91565fb650ef" className="w-layout-blockcontainer o-container our-mission-wrap w-container">
+        <div className="w-layout-grid _3-col-grid mission-grid">
+          <div data-w-id="2be5c9c3-cacc-94c2-20d0-91565fb650f1" className="gr-col-block">
+            <div className="second-screen-img">
+              <img src="/webflow/images/bg-img-1_1.webp" loading="lazy" alt="our description image" className="image-description" />
+            </div>
+            <div className="gr-2nd-col-block">
+              <h2 className="gr-col-h mission-item-heading">Місія</h2>
+              <div className="gr-col-inf mission-item-text">
+                Ми формуємо сучасну, сталу та діджиталізовану систему туризму в Україні, засновану на прозорості, достовірній статистиці, інноваційних сервісах і якісному туристичному продукті, який відповідає європейським стандартам. Ми працюємо над відновленням та стратегічною трансформацією галузі, аби підготувати її до відновлення іноземних туристичних потоків і повноцінного післявоєнного розвитку.
+              </div>
+            </div>
+          </div>
+          <div data-w-id="2be5c9c3-cacc-94c2-20d0-91565fb650fb" className="gr-col-block">
+            <div className="second-screen-img">
+              <img src="/webflow/images/bg-img-3_1.webp" loading="lazy" alt="vision decorative" />
+            </div>
+            <div className="gr-2nd-col-block">
+              <h2 className="gr-col-h mission-item-heading">Візія</h2>
+              <div className="gr-col-inf mission-item-text">
+                Ми бачимо Україну інноваційною, інтегрованою в європейський простір туристичною дестинацією, яка динамічно розвивається і в якій туризм є доступним, зручним, відкритим і цікавим для масштабних інвестицій, рівним у можливостях для кожного мандрівника та однією зі складових зростання економіки.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="o-container alt-container w-container">
+        <div className="alt-projects">
+          <h2 className="alt-project-head">Проєкти ДАРТ</h2>
+          <div data-w-id="2be5c9c3-cacc-94c2-20d0-91565fb6513c" className="alt-project-text">
+            Ми реалізовуємо проєкти, які популяризують Україну і для українців і світу. У цих проєктах, ми підтримуємо місцеві ініціативи, промотуємо нові маршрути, звертаємо увагу на туристичні дестинації.
+          </div>
+        </div>
+        <div className="w-layout-grid _4-column-grid">
+          <a href="https://www.facebook.com/MandruiUkrainoiu/" target="_blank" rel="noopener noreferrer" className="grid-item w-inline-block">
+            <div className="u-overflow">
+              <img src="/webflow/images/mandruy-pict_1.webp" loading="lazy" alt="mandruy-project image" />
+            </div>
+            <div className="gr-2nd-col-block">
+              <h3 className="grid-item-head">#МандруйУкраїною</h3>
+              <div className="grid-item-text">Медіапроєкт, який знайомить українців з Україною: невідомою, красивою, розмаїтою і цікавою. Кожен зможе відкрити для себе нові локації, дізнатися неймовірні історії і точно запише запропоновані маршрути у список «must-visit».</div>
+            </div>
+          </a>
+          <a href="/webflow/documents/marshrouts.pdf" target="_blank" rel="noopener noreferrer" className="grid-item w-inline-block">
+            <div className="u-overflow">
+              <img src="/webflow/images/marshruty-pict_1.webp" loading="lazy" alt="marshruty image" />
+            </div>
+            <div className="gr-2nd-col-block">
+              <h3 className="grid-item-head">Маршрути пам’яті</h3>
+              <div className="grid-item-text">Мережа локацій, які вшановують пам’ять загиблих, події та місця, пов’язані із збройною агресією росії проти України та протистояння їй. У кожній області буде створено маршрут з декількома місцями пам’яті, які покажуть масштаби цієї війни.</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div className="news__section-wrap">
+        <div className="o-container news-header-container">
+          <h2 data-w-id="2be5c9c3-cacc-94c2-20d0-91565fb651e9" className="main-all-news">Новини</h2>
+        </div>
+        <section className="news-section">
+          <div className="o-container news-main w-container">
+            <div className="collection-list-wrapper alt-news-collection w-dyn-list">
+              <div role="list" className="collection-list second-collection w-dyn-items">
+                {blogs.map((blog) => (
+                  <div key={blog.id} role="listitem" className="collection-item news-item w-dyn-item">
+                    <Link href={`/news/${blog.slug}`} className="o-layout-nws u-anim news-item-wrap w-inline-block">
+                      <div className="o-layout-nws-overflow news-img-wrap">
+                        {/* Placeholder or dynamic image if available */}
+                        <img loading="lazy" src="/webflow/images/hero_1.webp" alt={blog.name} className="o-layout-img" />
+                      </div>
+                      <h3 className="news-heading">{blog.name}</h3>
+                    </Link>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="alt-all-news-wrap">
+              <Link href="/news" className="alt-all-news-link w-inline-block">
+                <div className="text-block-14">Всі новини</div>
+                <img src="/webflow/images/blue-arrow-next.svg" loading="lazy" alt="" className="image-10" />
+              </Link>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <section id="contact" className="h-section-5 alt-main-form">
+        <div className="o-container u-size last-section w-container">
+          <div className="_4column-flex">
+            <div className="div-block-18">
+              <h3 className="banner-heading">Наші інформаційні партнери</h3>
+              <div className="slider-block">
+                {/* Simplified slider for now, Webflow JS will handle the interaction if classes match */}
+                <div className="slider-3 w-slider">
+                  <div className="mask w-slider-mask">
+                    <div className="slide-6 w-slide">
+                      <img src="/webflow/images/slide-link-1-img_1.webp" loading="lazy" alt="" className="o-img alt-page-img" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="_4col-last-block">
+              <h3 className="form-main-header">Написати нам</h3>
+              <div className="form-block-2 main-form w-form">
+                <form id="email-form" name="email-form" className="form">
+                  <div className="form-1st-block">
+                    <input className="txt-field form-main-input w-input" maxLength={256} name="name-2" placeholder="Прізвище та ім'я" type="text" id="name-2" required />
+                    <input className="txt-field-2 form-main-input w-input" maxLength={256} name="email-2" placeholder="Електронна адреса" type="email" id="email-2" required />
+                  </div>
+                  <textarea className="txt-area form-main-area w-input" maxLength={5000} name="field-2" placeholder="Повідомлення" id="field-2" required></textarea>
+                  <div className="submit-checkbox">
+                    <label className="w-checkbox checkbox-wrap">
+                      <div className="w-checkbox-input w-checkbox-input--inputType-custom checkbox"></div>
+                      <input id="checkbox-2" type="checkbox" name="checkbox-2" required style={{ opacity: 0, position: 'absolute', zIndex: -1 }} />
+                      <span className="checkbox-label w-form-label" htmlFor="checkbox-2">Я погоджуюсь з обробкою персональних даних</span>
+                    </label>
+                    <div className="form-cta submit-button">
+                      <input type="submit" className="form-main-submit w-button" value="Надіслати" />
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
-    </div>
+    </>
   )
 }

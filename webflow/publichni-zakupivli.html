@@ -1,0 +1,537 @@
+<!DOCTYPE html><!--  Last Published: Mon Mar 09 2026 19:21:13 GMT+0000 (Coordinated Universal Time)  -->
+<html data-wf-page="64b680cfc9ad6b5c6f36ae4f" data-wf-site="5fe0d678b18d7e19e32c3389">
+<head>
+  <meta charset="utf-8">
+  <title>Публічні закупівлі</title>
+  <meta content="Публічні закупівлі" property="og:title">
+  <meta content="Публічні закупівлі" property="twitter:title">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <link href="css/normalize.css" rel="stylesheet" type="text/css">
+  <link href="css/webflow.css" rel="stylesheet" type="text/css">
+  <link href="css/tourismgovua.webflow.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
+  <script type="text/javascript">WebFont.load({  google: {    families: ["Oswald:200,300,400,500,600,700","Open Sans:300,300italic,400,400italic,600,600italic,700,700italic,800,800italic"]  }});</script>
+  <script type="text/javascript">!function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);</script>
+  <link href="images/favicon.png" rel="shortcut icon" type="image/x-icon">
+  <link href="images/webclip.png" rel="apple-touch-icon">
+  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-HBQRKNJL5T"></script>
+  <script type="text/javascript">window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('set', 'developer_id.dZGVlNj', true);gtag('js', new Date());gtag('config', 'G-HBQRKNJL5T');</script><!--  Google tag (gtag.js)  -->
+  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-HBQRKNJL5T"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-HBQRKNJL5T');
+</script>
+  <style>
+textarea{
+  resize:none;
+  }
+ /* a{
+   font-size:18px;
+   text-decoration:none;
+  }*/
+  .triangle-down{
+  width: 0; 
+  height: 0; 
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 8px solid #2d5ca6;
+}
+  .filter{
+    filter: grayscale(1);
+	}
+  .active{
+        color: #B2E0F9;
+  }
+  .slider-wrapper{
+  	animation-name: slider-moving;
+	animation-duration: 40s;
+    animation-delay: 2s;
+	animation-iteration-count: infinite;
+  }
+	.slider-wrapper:hover{
+     animation-play-state: paused;
+  	}
+  @keyframes slider-moving {
+   from{
+     transform: translateX(0vw);
+    }
+    50%{
+      transform: translateX(-82.21vw);
+    }
+    to{
+    transform: translateX(0vw);
+    }
+  }
+  .details-icon::before,.details-icon::after{
+  content: '';
+  position: absolute;
+  width: 1vw;
+  height: 1.5px;
+  background-color: white;
+}
+.details-icon::before{
+  transform: rotate(45deg);
+  top: 0.55vw;
+  left: 0.45vw;
+}
+.details-icon::after{
+  transform: rotate(-45deg);
+  top: 1.2vw;
+  left: 0.45vw;
+}
+.second-menu{
+  transition: height 0.3s ease-in;
+}
+.menu-block{
+  transition: height 0.3s ease-in;
+}
+  .serch-container{
+    transition: height 0.3s ease-in;
+  }
+  .header-trigger{
+  transition: padding-top 0.3s ease-in;
+}
+  .listTransition{
+    transform:translate3d(0vw,0px,0px) ;
+  	transition: transform 0.3s ease-in;
+    position: absolute;
+    top: 0%;
+    bottom: auto;
+    left: 0%;
+    right: 0%;
+  }
+    .initialListTransition{
+    transform:translate3d(-120vw,0px,0px) ;
+          position: absolute;
+    top: 0%;
+    bottom: auto;
+    left: 0%;
+    right: 0%;
+  }
+      .backListTransition{
+    transform:translate3d(-120vw,0px,0px) ;
+    transition: transform 0.3s ease-in;
+            position: absolute;
+    top: 0%;
+    bottom: auto;
+    left: 0%;
+    right: 0%;
+  }
+    @keyframes slider-moving-tablet {
+   from{
+     transform: translateX(0vw);
+    }
+    50%{
+      transform: translateX(-120vw);
+    }
+    to{
+    transform: translateX(0vw);
+    }
+  }
+  @keyframes slider-moving-phone {
+   from{
+     transform: translateX(0vw);
+    }
+    50%{
+      transform: translateX(-190vw);
+    }
+    to{
+    transform: translateX(0vw);
+    }
+  }
+  @media (max-width:767px){
+    .slider-wrapper{
+  	animation-name: slider-moving-phone;
+    }
+      .details-icon::before,.details-icon::after{
+  		width: 3vw;
+	}
+	.details-icon::before{
+  		transform: rotate(45deg);
+  		top: 1.6vw;
+  		left: 1.4vw;
+	}
+	.details-icon::after{
+  		transform: rotate(-45deg);
+  		top: 3.5vw;
+  		left: 1.4vw;
+	}
+  }
+  @media (min-width:768px) and (max-width:1023px){
+    .slider-wrapper{
+  	animation-name: slider-moving-tablet;
+    }
+  }
+  .customCursor {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 512 512'%3E%3Cpath d='M429.742 319.31L82.49 0l-.231 471.744 105.375-100.826 61.89 141.083 96.559-42.358-61.89-141.083 145.549-9.25zM306.563 454.222l-41.62 18.259-67.066-152.879-85.589 81.894.164-333.193 245.264 225.529-118.219 7.512 67.066 152.878z' xmlns='http://www.w3.org/2000/svg'/%3E%3C/svg%3E"), default;
+}
+</style>
+  <script src="https://cdn.prod.website-files.com/5fe0d678b18d7e19e32c3389%2F66ba5a08efe71070f98dd10a%2F6810eb9d10e2d4fc35fe92ff%2Fhbqrknjl5t-1.1.1.js" type="text/javascript"></script>
+</head>
+<body>
+  <div style="opacity:0" class="main">
+    <header class="c-inner-header">
+      <div class="o-container u-size w-container">
+        <nav class="nav-tab">
+          <div class="inner-nav-block">
+            <a href="index.html" class="logo-link-block w-inline-block"><img src="images/main-logo--grey.svg" loading="lazy" alt="" class="svg-img"></a>
+            <a data-w-id="2a9841c5-aa2e-f762-72d0-8299542047d4" href="#" class="tab-link-menu w-inline-block">
+              <div class="tlm-bg"></div>
+              <div class="tlm-ico u-hover"></div>
+              <div class="tlm-ico"></div>
+            </a>
+          </div>
+          <div class="nav-hide-block">
+            <a href="index.html" class="m-link-block w-inline-block">
+              <h2 class="ml-h">Головна</h2>
+            </a>
+            <a href="about-dart.html" class="m-link-block w-inline-block">
+              <h2 class="ml-h">Про ДАРТ</h2>
+            </a>
+            <a href="management.html" class="m-link-block w-inline-block">
+              <h2 class="ml-h">Керівництво</h2>
+            </a>
+            <a href="struktura-dart.html" class="m-link-block w-inline-block">
+              <h2 class="ml-h">Структура агентства</h2>
+            </a>
+            <a href="news-and-announcements.html" class="m-link-block w-inline-block">
+              <h2 class="ml-h">Новини та анонси</h2>
+            </a>
+            <a href="diyalnist.html" class="m-link-block w-inline-block">
+              <h2 class="ml-h">Діяльність</h2>
+            </a>
+            <div class="hcb-cta-block u-spcing-size">
+              <a href="contact.html" class="nav-cta _3 u-size w-inline-block">
+                <div class="nc-bg"></div>
+                <div class="nc-bg hover"></div>
+                <div class="nc-inf _3">зв&#x27;язатися з нами</div>
+              </a>
+            </div>
+          </div>
+        </nav>
+        <nav class="nav-bar">
+          <a href="index.html" class="nav-logo w-inline-block"><img src="images/main-logo--grey.svg" loading="lazy" alt="" class="svg-img"></a>
+          <div class="nav-menu-block">
+            <a href="index.html" data-w-id="c40c7e9a-0739-00b4-6eea-7d423c05ca59" class="nm-link">Головна</a>
+            <div data-hover="false" data-delay="0" class="dropdown w-dropdown">
+              <div class="dropdown-toggle w-dropdown-toggle">
+                <div class="icon w-icon-dropdown-toggle"></div>
+                <div data-w-id="c40c7e9a-0739-00b4-6eea-7d423c05ca5e" class="nm-link">Про ДАРТ</div>
+              </div>
+              <nav class="dropdown-list w-dropdown-list">
+                <a href="about-dart.html" id="drop-link0" class="dropdown-link-2 nm-link w-dropdown-link">Про агентство</a>
+                <a href="struktura-dart.html" class="dropdown-link-2 nm-link w-dropdown-link">Структура ДАРТ</a>
+                <a href="management.html" class="dropdown-link-2 nm-link last w-dropdown-link">Керівництво</a>
+              </nav>
+            </div>
+            <a href="news-and-announcements.html" data-w-id="c40c7e9a-0739-00b4-6eea-7d423c05ca67" class="nm-link">Новини та анонси</a>
+            <a href="diyalnist.html" data-w-id="c40c7e9a-0739-00b4-6eea-7d423c05ca69" class="nm-link">Діяльність</a>
+          </div>
+          <div class="nav-cta-block">
+            <a href="contact.html" class="nav-cta w-inline-block">
+              <div class="nc-bg"></div>
+              <div class="nc-bg hover"></div>
+              <div class="nc-inf">контакти</div>
+            </a>
+            <a href="#" class="nav-cta _2 w-inline-block">
+              <div class="nc-bg _2"></div>
+              <div class="nc-bg hover"></div>
+              <div class="nc-inf _2">Зв&#x27;язатися з нами</div>
+            </a>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <div class="c-section u-switch-1 u-margin">
+      <div class="o-container w-container">
+        <a href="diyalnist.html" data-w-id="c0b10196-74c9-e9c5-8dbc-c8fa5ed01c24" style="opacity:0" class="c-section__back-to-page-button w-inline-block">
+          <div class="arr-svg-bock"></div>
+          <div class="arr-inf">Назад до діяльності</div>
+        </a>
+        <div class="o-column-medium">
+          <h1 id="IAD" class="o-tabpane-h u-padd-top">Публічні закупівлі <strong>ДАРТ</strong></h1>
+          <div href="" class="o-tabpane-inf">
+            <a href="https://drive.google.com/file/d/19wGGsYJ2J2f2HIHFswPruwPoKOPK2tsN/view?usp=sharing">ТЕО за кодом ДК 021:2015: 72410000-7 Послуги провайдерів (розробка інформаційного порталу «Travel Ukraine»)</a><br>‍<br>
+            <a href="https://drive.google.com/file/d/1yrbcTvIJC_uIRA3Sizpcc2FsNSsXTs3B/view?usp=sharing">ТЕО за кодом ДК 021:2015:79340000-9 Рекламні та маркетингові послуги (Послуги з організації та проведення промоційних річкових туристичних рейсів (турів) за маршрутами Київ-Канів-Київ, та Київ-Чорнобиль-Київ)<br><br></a>
+            <a href="https://drive.google.com/file/d/1U4TtGurAMeAmgraf4UBWl7xszvlXPD8Q/view?usp=sharing">ТЕО за кодом ДК 021:2015: 55120000-7 Послуги з організації зустрічей і конференцій у готелях (Організація конференцій та круглих столів для регiонів та туристичного бізнесу) </a><br><br>
+            <a href="https://docs.google.com/document/d/1XyDA13F9xOnNljR8GC_pVw81gpAyRNiH/edit?usp=sharing&amp;ouid=102950708243884726082&amp;rtpof=true&amp;sd=true">ТЕО за кодом ДК 021:2015: 92110000-5: Послуги з виробництва кіноплівки та відеокасет і супутні послуги (Послуги з виготовлення відеороликів з метою популяризації провідних локацій для літнього відпочинку внутрішніх туристів)</a>
+            <a href="https://drive.google.com/file/d/1XyDA13F9xOnNljR8GC_pVw81gpAyRNiH/view?usp=sharing"><br>‍</a><br>
+            <a href="https://docs.google.com/document/d/1VxOUfHjgTnbOSQMe7IJME0IQKjfAB1R0/edit?usp=sharing&amp;ouid=102950708243884726082&amp;rtpof=true&amp;sd=true">ТЕО за кодом ДК 021:2015:79950000-8: Послуги з організації виставок ярмарок і конгресів (Послуги з організації фестивалю Мандруй Україною для популяризації туристичних маршрутів України до 30-річчя Незалежності України)</a>
+            <a href="https://drive.google.com/file/d/1VxOUfHjgTnbOSQMe7IJME0IQKjfAB1R0/view?usp=sharing"><br>‍</a><br>
+            <a href="https://docs.google.com/document/d/1MzkAxeitqGvzO028LdjWh9yXO6Vvsn_X/edit?usp=sharing&amp;ouid=102950708243884726082&amp;rtpof=true&amp;sd=true">ТЕО за кодом ДК 021:2015:79340000-9 Рекламні та маркетингові послуги (Популяризація річкових туристичних маршрутів України)</a>
+            <a href="https://drive.google.com/file/d/1MzkAxeitqGvzO028LdjWh9yXO6Vvsn_X/view?usp=sharing"><br>‍</a><br>
+            <a href="https://docs.google.com/document/d/1SXr21TGsfF1bI7dXNWqwwLqY4StKuBNf/edit?usp=sharing&amp;ouid=102950708243884726082&amp;rtpof=true&amp;sd=true">ТЕО за кодом ДК 021:2015:79416000-3: Послуги з організації та підтримки зв’язків із громадськістю («Розробка концепції та ведення сторінок &quot;Мандруй Україною&quot; в соціальних мережах Facebook, Instagram»)</a><br><br>
+            <a href="https://docs.google.com/document/d/1uX1fY7mb_Yr1bUpmVoWAn-MCCjmfzxQS/edit?usp=sharing&amp;ouid=102950708243884726082&amp;rtpof=true&amp;sd=true">ТЕО за кодом ДК 021:2015: 79310000-0 Послуги з проведення ринкових досліджень (Проведення кількісних досліджень в’їзного туризму на пунктах пропуску)</a><br><br>
+            <a href="https://docs.google.com/document/d/1kFKwNce1goMgElnzDkKH9JkuGNMys4gn/edit?usp=sharing&amp;ouid=102950708243884726082&amp;rtpof=true&amp;sd=true">ТЕО за доком ДК021-2015: 9211000-5 — Послуги виробництва кіноплівки та відеокасет і супутні послуги (Виготовлення відео роликів з метою популяризації України, як туристичного напрямку для іноземних туристів)</a><br><br>
+            <a href="https://docs.google.com/document/d/1CAGIeyYrGVZcgv8ReR5LAujJj7KCU2hc/edit?usp=sharing&amp;ouid=102950708243884726082&amp;rtpof=true&amp;sd=true">ТЕО за кодом 73300000-5: Проектування та виконання НДДКР (Розробка методики формування вибіркової сукупності для проведення досліджень внутрішнього та виїзного туризму)</a><br><br>
+            <a href="https://docs.google.com/document/d/1Be7jm4h8t8vLL_kl2IeGHiI5MOvoGPFC/edit?usp=sharing&amp;ouid=102950708243884726082&amp;rtpof=true&amp;sd=true">ТЕО за кодом ДК 021:2015:80520000-5 — Навчальні засоби (Запровадження онлайн-вебінарів (онлайн-конференцій) для представників закордонних бізнес-спільнот, асоціацій з метою популяризації українського продукту)<br><br></a>
+            <a href="https://docs.google.com/document/d/1qJGnHSrlH4DSgFwIHiDXutIWTy2tqJGJ/edit?usp=sharing&amp;ouid=102950708243884726082&amp;rtpof=true&amp;sd=true">ТЕО за кодом ДК 021:2015:79340000-9 —  Рекламні та маркетингові послуги («Популяризація локального туризму в цифрових засобах масової інформації на відео та банерній продукції в літній період»)</a><br>‍<br>
+            <a href="https://docs.google.com/document/d/1HdYQlyH84XkQvUyR8xcXL8TOSeHc0vhI/edit?usp=sharing&amp;ouid=102950708243884726082&amp;rtpof=true&amp;sd=true">ТЕО за кодом ДК 021:2015:72210000-0:Послуги з розробки пакетів програмного забезпечення (Створення та ведення реєстру суб&#x27;єктів туристичної діяльності та порталу ЄТР)</a><br><br>
+            <a href="https://docs.google.com/document/d/1w6ek7LWgCupQM-7NqVoWIIb4yEG0WC8T/edit?usp=sharing&amp;ouid=102950708243884726082&amp;rtpof=true&amp;sd=true">ТЕО за кодом ДК 021:2015:79310000-0: Послуги з проведення ринкових досліджень (Проведення якісних досліджень туристів (фокус групи, глибинні інтерв&#x27;ю тощо) щодо частоти та мети подорожі; аналізу вподобань туристів)</a><strong><br></strong><br>
+            <a href="https://docs.google.com/document/d/17ee82Y2jPafU02f_fWCh_c1th3lwH7OV/edit?usp=sharing&amp;ouid=102950708243884726082&amp;rtpof=true&amp;sd=true">ТЕО за кодом ДК 021:2015:92110000-5: Послуги з виробництва кіноплівки та відеокасет і супутні послуги (Послуги з виготовлення відеороликів з метою популяризації провідних локацій для літнього відпочинку внутрішніх туристів)</a><strong><br></strong><br>
+            <a href="https://docs.google.com/document/d/1TxPsyaYne02bgf0vZa_Ql5S8AfUJwb9E/edit?usp=sharing&amp;ouid=102950708243884726082&amp;rtpof=true&amp;sd=true">ТЕО за кодом ДК 021:2015:79960000-1:Послуги фотографів і супутні послуги(Виготовлення фото матеріалів для популяризації провідних локацій зимового та літнього туризму в Україні)</a><strong><br></strong><br>
+            <a href="https://docs.google.com/document/d/1ubmLCUKdkbK13ADyTjAYKoMxoQyOum4p/edit?usp=sharing&amp;ouid=102950708243884726082&amp;rtpof=true&amp;sd=true">ТЕО за кодом ДК 021:2015:79416000-3:Послуги з організації та підтримки зав’язків із громадськістю (Розробка концепції, ведення сторінок та промоція постів «Мандруй Україною» в соціальних мережах)</a><br><br>
+            <a href="https://docs.google.com/document/d/16oxtaXjslgid_7uG1T0vANF3YykZjiP9/edit?usp=sharing&amp;ouid=102950708243884726082&amp;rtpof=true&amp;sd=true">ТЕО за кодом ДК 021:2015:79340000-9:Рекламні та маркетингові послуги (Виготовлення графічних матеріалів (статичні та динамічні банери для розміщення в мережі інтернет)<br><br></a>
+            <a href="https://docs.google.com/document/d/1wxmEjo2SMh8IEMpp2g3Uh0kPsKl_viBs/edit?usp=sharing&amp;ouid=102950708243884726082&amp;rtpof=true&amp;sd=true">ТЕО за кодом ДК 021:2015:79340000-9:Рекламні та маркетингові послуги (Розміщення відео та графічних промоційних матеріалів на підтримку локального туризму в цифрових засобах масової інформації в осінньо-зимовий туристичний сезон)<br><br></a>
+            <a href="https://docs.google.com/document/d/1X3vjV823S3gvjOIYQnZKbATBfnYKu_vo/edit?usp=sharing&amp;ouid=102950708243884726082&amp;rtpof=true&amp;sd=true">ТЕО за кодом ДК 021:2015: 92110000-5: Послуги з виробництва кіноплівки та відеокасет і супутні послуги (Виготовлення відео роликів з метою популяризації України, як туристичного напрямку для іноземних<strong> </strong>туристів)</a><br><br>
+            <a href="https://docs.google.com/document/d/1KeoTixMoqsKILYrX-0IvMc0_N_m9mbX9/edit?usp=sharing&amp;ouid=102950708243884726082&amp;rtpof=true&amp;sd=true">ТЕО за кодом ДК 021:2015:79340000-9:Рекламні та маркетингові послуги (Розміщення відео, аудіо матеріалів на носіях зовнішньої інформації з метою популяризації внутрішнього туризму серед жителів міст України (5 млн. людей)</a><br><br>
+            <a href="https://docs.google.com/document/d/1A1vkc-Gchhuiepx7_pDBTPG--7UlVIyL/edit?usp=sharing&amp;ouid=102950708243884726082&amp;rtpof=true&amp;sd=true">ТЕО за кодом ДК 021:2015:79340000-9:Рекламні та маркетингові послуги (Розміщення відео, аудіо матеріалів в мережі Інтернет, на ринках першого пріоритету Туреччина та Польща, з метою популяризації зимового відпочинку в України)</a><br><br>
+            <a href="https://docs.google.com/document/d/11k6omH-R0nbKF2DyLYJK8DWvtBmN6_bv/edit?usp=sharing&amp;ouid=102950708243884726082&amp;rtpof=true&amp;sd=true">ТЕО за кодом ДК 021:2015:55120000-7 Послуги з організації зустрічей і конференцій у готелях (Організація туристичних подій для регіонів та туристичного бізнесу)</a><br><br>
+            <a href="https://docs.google.com/document/d/1FZs1vouS84gMA2j7oJhNEbPzy5k8LSHj/edit?usp=sharing&amp;ouid=102950708243884726082&amp;rtpof=true&amp;sd=true">ТЕО за кодом ДК 021:2015:72220000-3: Консультаційні послуги з питань систем та з технічних питань (Розробка туристичної інформаційно-орієнтаційної системи для туристів)</a><br><br>
+            <a href="https://docs.google.com/document/d/1D962TpTGQyZM8dV7xsIM5Mynuw4mHXJU/edit?usp=sharing&amp;ouid=102950708243884726082&amp;rtpof=true&amp;sd=true">ТЕО за кодом ДК 021:2015:79340000-9: Рекламні та маркетингові послуги (Розміщення відео, аудіо матеріалів у мережі Інтернет, на ринках другого пріоритету Азейбарджан, Білорусь, Казахстан з метою популяризації весняно-літнього відпочинку в України)</a><br><br>
+            <a href="https://docs.google.com/document/d/1T_byqP7Y9Pxr42-EUEBvJ0RxfWfQpqT9/edit?usp=sharing&amp;ouid=102950708243884726082&amp;rtpof=true&amp;sd=true">ТЕО за кодом ДК 021:2015:79340000-9: Рекламні та маркетингові послуги (Розміщення відео, аудіо матеріалів у мережі Інтернет, на ринках другого пріоритету Азейбарджан, Білорусь, Казахстан з метою популяризації зимового відпочинку в України)</a><br><br>
+            <a href="https://docs.google.com/document/d/1hHaaonHCmkmV_ckxgl6_yz_GNV1tjJvC/edit?usp=sharing&amp;ouid=102950708243884726082&amp;rtpof=true&amp;sd=true">ТЕО за кодом ДК 021:2015: 92110000-5: Послуги з виробництва кіноплівки та відеокасет і супутні послуги (Послуги з виготовлення відеороликів з метою популяризації провідних локацій для літнього відпочинку внутрішніх туристів)</a><br><br>
+            <a href="https://docs.google.com/document/d/1vyLdYWJrFCjQMcblUF3HmI96wCAOU19q/edit?usp=sharing&amp;ouid=102950708243884726082&amp;rtpof=true&amp;sd=true">ТЕО за кодом ДК 021:2015: 92110000-5: Послуги з виробництва кіноплівки та відеокасет і супутні послуги (Послуги з виготовлення відеороликів з метою популяризації провідних локацій для зимового відпочинку внутрішніх туристів)</a><br><br>
+            <a href="https://docs.google.com/document/d/1EosdHXGlmhPKcoZqFStIEslhy0nDcsED/edit?usp=sharing&amp;ouid=102950708243884726082&amp;rtpof=true&amp;sd=true">ТЕО за кодом ДК 021:2015: 71350000-6 - Науково-технічні послуги в галузі інженерії (Розробка концепції та друк карт з популярними маршрутами Україною)</a><br><br>
+            <a href="https://docs.google.com/document/d/1e4mOTTePtOkygdVj5YENUvDsEjmxiKdW/edit?usp=sharing&amp;ouid=102950708243884726082&amp;rtpof=true&amp;sd=true">ТЕО за кодом ДК 021:2015:71620000-0:Аналітичні послуги (Дослідження рівня розвитку туристичних регіонів України з подальшою пріоритезацією для визначення інвестиційної привабливості)</a><br><br>
+            <a href="https://docs.google.com/document/d/1rxfzmYfCdLsJc4gAeE64SS0rmAAo1cDo/edit?usp=sharing&amp;ouid=102950708243884726082&amp;rtpof=true&amp;sd=true">ТЕО за кодом ДК 021:2015: 79310000-0: Послуги з проведення ринкових досліджень (Проведення досліджень внутрішнього та виїзного туризму шляхом обстежень домогосподарств)</a><br><br>
+            <a href="https://docs.google.com/document/d/13tqfY53w8__PlG7enUO2Cr7SP43rHh-q/edit?usp=sharing&amp;ouid=102950708243884726082&amp;rtpof=true&amp;sd=true">ТЕО за кодом ДК 021:2015: 79950000-8: Послуги з організації виставок, ярмарок і конгресів  (Організація туристичних подій для регіонів та туристичного бізнесу)</a><br><br>
+            <a href="https://docs.google.com/document/d/1THNdPbWCjGiCEk14Td8EO5uauORKcTRs/edit?usp=sharing&amp;ouid=102950708243884726082&amp;rtpof=true&amp;sd=true">ТЕО за кодом ДК 021:2015: 79950000-8: Послуги з організації виставок, ярмарок і конгресів  (Організація туристичних подій для регіонів та туристичного бізнесу)</a><br>‍<br>
+            <a href="https://docs.google.com/document/d/1MeXV9w99EiLjidfGiEG10pUfHRjZ4NXS/edit?usp=sharing&amp;ouid=102950708243884726082&amp;rtpof=true&amp;sd=true">ТЕО за кодом ДК 021:2015:92110000-5: Послуги з виробництва кіноплівки та відеокасет і супутні послуги (Відеоролик презентації України як місця для проведення подій (англомовний)</a><strong><br></strong><br>
+            <a href="https://docs.google.com/document/d/1k1uWxHZOmZMf5YuIG81rpv6kHLRQWz7E/edit?usp=sharing&amp;ouid=102950708243884726082&amp;rtpof=true&amp;sd=true">ТЕО за кодом ДК 021:2015:63510000-7:Послуги туристичних агентств та подібні послуги (Поїздки українських лідерів думок, з метою популяризації внутрішнього туризму у зимові місяці)<br><br></a>
+            <a href="https://docs.google.com/document/d/14Wo_3eFw6TqZHM5g7BznF3qXbOyI0p-k/edit?usp=sharing&amp;ouid=102950708243884726082&amp;rtpof=true&amp;sd=true">ТЕО за кодом ДК 021:2015:79340000-9:Рекламні та маркетингові послуги (Розміщення відео, аудіо матеріалів на носіях зовнішньої інформації з метою по-пуляризації внутрішнього туризму серед жителів міст України (5 млн. людей))</a><br><br>
+            <a href="https://docs.google.com/document/d/1N-U1dPjXLHWhsrryNHYuJJQbi5JHwoJx/edit?usp=sharing&amp;ouid=102950708243884726082&amp;rtpof=true&amp;sd=true">ТЕО за кодом ДК 021:2015:63510000-7: Послуги туристичних агентств та подібні послуги (Організація туристичної події для гравців ринку)<br><br></a>
+            <a href="https://docs.google.com/document/d/1NyI6jP-Tzac_emakyxG517NhAFLSMxv9/edit?usp=sharing&amp;ouid=102950708243884726082&amp;rtpof=true&amp;sd=true">ТЕО за кодом ДК 021:2015:79340000-9: Рекламні та маркетингові послуги (Виготовлення промо-матеріалів) Спрощена закупівля<br><br></a>
+            <a href="https://docs.google.com/document/d/1IYixKsiLT_tPUPj9k7DsjeCg9Jp3-zNy/edit?usp=sharing&amp;ouid=102950708243884726082&amp;rtpof=true&amp;sd=true">ТЕО за кодом ДК 021:2015:72220000-3 Розробка туристичної інформаційно-орієнтаційної системи для туристів</a><br><br>
+            <a href="https://docs.google.com/document/d/1jV4rZPI6nz7WFsO51Ou2L0LuR0qpNw21/edit?usp=sharing&amp;ouid=102950708243884726082&amp;rtpof=true&amp;sd=true">ТЕО за кодом ДК 021:2015:71350000-6: Розробка концепції та друк карт з популярними маршрутами Україною<br><br>ТЕО за кодом ДК 021:2015:63510000-7: Послуги з організації зустрічей і конференцій у готелях (Організація туристичної події для гравців ринку)<br></a><br>
+            <a href="https://docs.google.com/document/d/1F5400TLhNhcvbEljSEQI-O8yJ6JNI9VM/edit?usp=sharing&amp;ouid=102950708243884726082&amp;rtpof=true&amp;sd=true">ТЕО за кодом ДК 021:2015:55120000-7: Послуги з організації зустрічей і конференцій у готелях (Організація туристичних подій для регіонів та туристичного бізнесу)</a><br><br>
+            <a href="https://docs.google.com/document/d/1Okoys9aovG40fZsK156rRqGr0fnczAr9/edit?usp=sharing&amp;ouid=102950708243884726082&amp;rtpof=true&amp;sd=true">ТЕО за кодом ДК 021:2015:72330000-2: Послуги зі стандартизації та класифікації контенту та даних (Закупівлі даних платіжних систем про структуру витрат туристів та країни прибуття)</a><br><br>
+            <a href="https://docs.google.com/document/d/1sDBYh_7dFz3l1x-fY2RID--L_DwCMQU7/edit?usp=sharing&amp;ouid=102950708243884726082&amp;rtpof=true&amp;sd=true">ТЕО за кодом ДК 021:2015:63510000-7: Послуги туристичних агентств та подібні послуги  (Поїздки українських лідерів думок, з метою популяризації внутрішнього туризму в зимові місяці)<br><br></a>
+            <a href="https://docs.google.com/document/d/1TkToGS-J2yyQfKulk0DjbvbnO-OVnN6L/edit?usp=sharing&amp;ouid=102950708243884726082&amp;rtpof=true&amp;sd=true">ТЕО за кодом ДК 021:2015:79340000-2: Рекламні та маркетингові послуги (Розміщення відео, аудіо матеріалів у мережі Інтернет, на ринках першого пріоритету Туреччина та Польща)<br><br></a>
+            <a href="https://docs.google.com/document/d/1dZyxLz4_NsliqCh2yMuXnv36yWLmTX3f/edit?usp=sharing&amp;ouid=102950708243884726082&amp;rtpof=true&amp;sd=true">ТЕО за кодом ДК 021:2015:55120000-7: Послуги з організації зустрічей і конференцій у готелях (Організація туристичних подій для регіонів та туристичного бізнесу)<br><br></a>
+            <a href="https://docs.google.com/document/d/1nghaZToSnj83EDS0Z5iceEZarlwLNJwa/edit?usp=sharing&amp;ouid=102950708243884726082&amp;rtpof=true&amp;sd=true">ТЕО за кодом ДК 021:2015:72210000-0: Послуги з розробки пакетів програмного забезпечення (Створення та ведення реєстру суб’єктів туристичної діяльності та порталу ЄТР)</a><br>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="c-section u-switch-2">
+      <div class="o-container w-container">
+        <a href="#" data-w-id="99cbb973-f9d9-8739-dce9-fc4039895d95" class="c-section__back-button w-inline-block">
+          <div class="arr-svg-bock"></div>
+          <div class="arr-inf">Назад до Нормативної бази</div>
+        </a>
+        <div class="o-column-medium">
+          <div class="o-tabpane-inf">
+            <a href="https://zakon.rada.gov.ua/laws/show/324/95-%D0%B2%D1%80" target="_blank">Закон України &quot;Про туризм&quot;</a>
+          </div>
+          <div class="o-tabpane-inf">
+            <a href="https://zakon.rada.gov.ua/laws/show/2026-14" target="_blank">Закон України &quot;Про курорти&quot;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <section id="contact" class="h-section-5">
+      <div class="o-container u-size w-container">
+        <div class="_2-col-flex-block">
+          <div class="_1st-col-h _2">
+            <h1 class="_1st-col-h-2">Державне <br>агентство розвитку <br>‍<strong>туризму</strong></h1>
+            <div class="_1st-col-inf">Маєте ідеї, як зробити Україну привабливішою для туристів, або пропозиції щодо нашої роботи? Напишіть нам!</div>
+            <div class="_1st-col-cta-block"></div>
+          </div>
+          <div class="_2nd-col-block-2">
+            <div class="form-block w-form">
+              <form id="email-form" name="email-form" data-name="Email Form" method="get" class="form" data-wf-page-id="64b680cfc9ad6b5c6f36ae4f" data-wf-element-id="418e1e25-a53c-856a-8d05-58b014470654">
+                <h1 class="form-h">Написати нам</h1>
+                <div class="form-1st-block"><input class="txt-field w-input" maxlength="256" name="name" data-name="Name" placeholder="Ім&#x27;я" type="text" id="name" required=""><input class="txt-field-2 w-input" maxlength="256" name="email" data-name="Email" placeholder="Електронна адреса" type="email" id="email" required=""></div><textarea placeholder="Повідомлення" maxlength="5000" id="field" name="field" data-name="Field" required="" class="txt-area w-input"></textarea>
+                <div class="btm-form-block"><label class="w-checkbox ch-field">
+                    <div class="w-checkbox-input w-checkbox-input--inputType-custom checkbox"></div><input type="checkbox" id="checkbox" name="checkbox" data-name="Checkbox" required="" style="opacity:0;position:absolute;z-index:-1"><span class="ch-label w-form-label" for="checkbox">Я згоден з обробкою персональних даних<a href="#" class="ch-label-span-link"></a></span>
+                  </label>
+                  <div class="form-cta">
+                    <div class="nc-bg hover _2"></div><input type="submit" data-wait="Очікуйте..." class="sub-cta w-button" value="Надіслати">
+                  </div>
+                </div>
+              </form>
+              <div class="success w-form-done">
+                <div class="fr-flex-block">
+                  <div class="x-img"><img src="https://uploads-ssl.webflow.com/5fe0d5ffb18e7f407fe86850/5fe0d5ffb18e7fbeeee868c4_chk-mark.svg" loading="lazy" alt="" class="x-svg"></div>
+                  <div class="s-txt">Thank you for filling out the form! We will contact you as soon as possible.</div>
+                </div>
+              </div>
+              <div class="error w-form-fail">
+                <div>Oops! Something went wrong while submitting the form.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer class="h-footer">
+      <div class="o-container u-size w-container">
+        <div class="foot-bg">
+          <div class="foot-2nd-bg"></div>
+        </div>
+        <div class="inner-foot-block">
+          <div class="if-left-block">
+            <a href="index.html" class="logo-link-block foot w-inline-block"><img src="images/main-logo--white.svg" loading="lazy" alt="" class="svg-img"></a>
+            <a href="index.html" class="nav-logo _2 w-inline-block"><img src="images/main-logo--white.svg" loading="lazy" alt="" class="svg-img"></a>
+            <div class="nav-menu-block _2">
+              <a href="index.html" class="nm-link _2">Головна</a>
+              <a href="about-dart.html" class="nm-link _2">Про ДАРТ</a>
+              <a href="news-and-announcements.html" class="nm-link _2">Новини та анонси</a>
+              <a href="diyalnist.html" class="nm-link _2">Діяльність</a>
+            </div>
+            <a href="antikorupciyna-diyalnist.html" class="anticor-footer w-inline-block"><img src="images/korruption_1.webp" loading="lazy" width="150" sizes="(max-width: 991px) 150px, 12vw" alt="" srcset="images/korruption_1korruption.webp 500w, images/korruption_1.webp 596w" class="image"></a>
+            <div class="nav-menu-block u-grid">
+              <a href="https://www.facebook.com/DARTUkraine" target="_blank" class="c-social w-inline-block">
+                <div class="c-social__ico"><img src="images/fb-ico--black.svg" loading="lazy" alt="" class="o-img"></div>
+                <div class="c-social__target"></div>
+              </a>
+              <a href="https://t.me/DARTUkraine?fbclid=IwAR2FnWXIaSFlfv-YYS6DU7n19XYta4OXMcwzc2rFxlMjrFfkfx2cRJjeBmw" target="_blank" class="c-social w-inline-block">
+                <div class="c-social__ico"><img src="images/tg-ico--black.svg" loading="lazy" alt="" class="o-img"></div>
+                <div class="c-social__target"></div>
+              </a>
+              <a href="https://www.instagram.com/ukrainenow_travel" target="_blank" class="c-social w-inline-block">
+                <div class="c-social__ico"><img src="images/inst-ico--black.svg" loading="lazy" alt="" class="o-img"></div>
+                <div class="c-social__target"></div>
+              </a>
+              <a href="https://www.youtube.com/channel/UCV4648Lv6svmY7lQd0snGug" target="_blank" class="c-social w-inline-block">
+                <div class="c-social__ico"><img src="images/yt-ico--black.svg" loading="lazy" alt="" class="o-img"></div>
+                <div class="c-social__target"></div>
+              </a>
+            </div>
+          </div>
+          <div class="if-right-block">
+            <div id="w-node-_14488c18-678e-97d0-d90e-5e982df4e281-2df4e25c" class="ifr-inf">Корисні посилання:</div>
+            <a data-w-id="14488c18-678e-97d0-d90e-5e982df4e283" href="https://ukraine.ua/" target="_blank" class="h-footer__banner w-inline-block"><img src="images/Group-3869.webp" loading="lazy" alt="" class="o-img"></a>
+            <a data-w-id="14488c18-678e-97d0-d90e-5e982df4e285" href="https://mtu.gov.ua/" target="_blank" class="h-footer__banner w-inline-block"><img src="images/Group-3869-2.webp" loading="lazy" alt="" class="o-img"></a>
+            <a data-w-id="14488c18-678e-97d0-d90e-5e982df4e287" href="http://www.kmu.gov.ua/" target="_blank" class="h-footer__banner w-inline-block"><img src="images/kmu-banner.webp" loading="lazy" alt="" class="o-img"></a>
+            <a data-w-id="14488c18-678e-97d0-d90e-5e982df4e289" href="http://www.rada.gov.ua/" target="_blank" class="h-footer__banner w-inline-block"><img src="images/vru-banner.webp" loading="lazy" alt="" class="o-img"></a>
+            <a data-w-id="14488c18-678e-97d0-d90e-5e982df4e28b" href="http://www.president.gov.ua/" target="_blank" class="h-footer__banner w-inline-block"><img src="images/pru-banner.webp" loading="lazy" alt="" class="o-img"></a>
+            <a data-w-id="14488c18-678e-97d0-d90e-5e982df4e28d" href="https://dpsu.gov.ua/" target="_blank" class="h-footer__banner w-inline-block"><img src="images/dpsu-banner.webp" loading="lazy" alt="" class="o-img"></a>
+          </div>
+        </div>
+        <div class="inner-foot-btm-block">
+          <div class="ifb-inf">© 2020 Державне Агентство Розвитку Туризму<br></div>
+          <div class="nav-cta-block">
+            <a href="contact.html" class="nav-cta w-inline-block">
+              <div class="nc-bg _3-1"></div>
+              <div class="nc-bg hover"></div>
+              <div class="nc-inf _4">Контакти</div>
+            </a>
+            <a href="#" class="nav-cta _2 w-inline-block">
+              <div class="nc-bg _2"></div>
+              <div class="nc-bg hover"></div>
+              <div class="nc-inf _2">Зв&#x27;язатися з нами</div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+  <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=5fe0d678b18d7e19e32c3389" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+  <script src="js/webflow.js" type="text/javascript"></script><!-- <script src="https://cdn.jsdelivr.net/gh/BMKiyv/csb-jwdsdc/index.js"></script> -->
+  <!-- <script src="https://uploads-ssl.webflow.com/5fe0d678b18d7e19e32c3389/65a16ec5c740e669993ea0db_index.txt"></script> -->
+  <script src="https://cdn.prod.website-files.com/5fe0d678b18d7e19e32c3389/68d55186346c926f21c73bf4_accessibility-new.txt"></script>
+  <script>
+let button = document.querySelectorAll(".global-search");
+let search = document.querySelector(".serch-container");
+let header = document.querySelector("header");
+let body = header.nextElementSibling;
+let footer = document.querySelector("footer");
+let customLocation = document.location;
+let about = document.querySelector("#about");
+let activity = document.querySelector("#activity");
+let menu1 = document.querySelector("#about-menu");
+let menu2 = document.querySelector("#activity-menu");
+let uaLang = document.querySelectorAll(".lang-ua");
+let enLang = document.querySelectorAll(".lang-en");
+let languages = document.querySelectorAll(".language");
+let main = document.querySelector(".header-trigger");
+let triangle = document.querySelector(".triangle-up");
+//console.log(customLocation.pathname.slice(0, 3));
+languages[1].addEventListener("mouseover", () => {
+  enLang[1].style.display = "block";
+  triangle.classList.replace("triangle-up", "triangle-down");
+});
+languages[1].addEventListener("mouseout", () => {
+  enLang[1].style.display = "none";
+  triangle.classList.replace("triangle-down", "triangle-up");
+});
+if (customLocation.pathname.slice(0, 3) !== "/en" || customLocation.pathname === '/search') {
+  let additionalList = document.querySelector(".additional-list");
+  additionalList.classList.add("initialListTransition");
+  let mobileActivities = document.querySelector(".modal-menu-list-last");
+  mobileActivities.addEventListener("click", (e) => {
+    let classCss = additionalList.classList[1];
+    let classReplace = additionalList.classList.contains("listTransition")
+      ? "backListTransition"
+      : "listTransition";
+    additionalList.classList.replace(classCss, classReplace);
+  });
+  for (let item of uaLang) {
+    item.classList.add("active");
+  }
+} else {
+  uaLang[0].classList.remove("active");
+  enLang[0].classList.add("active");
+  uaLang[1].classList.add("active");
+  uaLang[1].innerHTML = "En";
+  enLang[1].innerHTML = "Ua";
+}
+for (let item of languages) {
+  item.addEventListener("click", (e) => {
+    let target = e.target;
+    // console.log((target === uaLang[0].innerHTML) === "Ua");
+    if (
+      (target === enLang[1] && enLang[1].innerHTML === "Ua") ||
+      target === uaLang[0]
+    ) {
+      let url = `${customLocation.origin}`;
+      customLocation.assign(url);
+    } else {
+      let url = `${customLocation.origin}/en/home`;
+      customLocation.assign(url);
+    }
+  });
+}
+about.addEventListener("click", (e) => {
+  console.log(e.target);
+  menu2.style.height = "0.5px";
+  if (!menu1.style.height || menu1.style.height === "0px") {
+    menu1.style.height = "64px";
+    search.style.height = '0px';
+    search.style.borderBottom = '0px solid #c2c5cb';
+    main.style.paddingTop = "5vw";
+    console.log(search.style.height);
+  } else {
+    menu1.style.height = "0px";
+    main.style.paddingTop = "2vw";
+  }
+});
+activity.addEventListener("click", (e) => {
+  menu1.style.height = "0px";
+   //console.log(e.target);
+  if (!menu2.style.height || menu2.style.height === "0.5px") {
+    menu2.style.height = "9vw";
+    main.style.paddingTop = "11vw";
+    search.style.height = '0px';
+    search.style.borderBottom = '0px solid #c2c5cb';
+    // console.log(menu2.style.height);
+  } else {
+    menu2.style.height = "0.5px";
+    main.style.paddingTop = "2vw";
+  }
+});
+  for(let item of button){
+  item.addEventListener("click", () => {
+    console.log(search.style.height,!search.style.height)
+    if (search.style.height==='0px' || !search.style.height) {
+      search.style.height = '146px';
+      search.style.borderBottom = '0.5px solid #c2c5cb';
+      main.style.paddingTop = "12vw";
+      menu2.style.height = "0.5px";
+      menu1.style.height = "0px";
+       main.style.paddingTop = "11vw";
+    } else {
+      search.style.borderBottom = '0px solid #c2c5cb';
+      search.style.height = '0px';
+      main.style.paddingTop = "2vw";
+    }
+  });}
+</script>
+</body>
+</html>

@@ -1,0 +1,784 @@
+<!DOCTYPE html><!--  Last Published: Mon Mar 09 2026 19:21:13 GMT+0000 (Coordinated Universal Time)  -->
+<html data-wf-page="65a139b8ed60e56509c35950" data-wf-site="5fe0d678b18d7e19e32c3389">
+<head>
+  <meta charset="utf-8">
+  <title>Search Results</title>
+  <meta content="Search Results" property="og:title">
+  <meta content="Search Results" property="twitter:title">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <link href="css/normalize.css" rel="stylesheet" type="text/css">
+  <link href="css/webflow.css" rel="stylesheet" type="text/css">
+  <link href="css/tourismgovua.webflow.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
+  <script type="text/javascript">WebFont.load({  google: {    families: ["Oswald:200,300,400,500,600,700","Open Sans:300,300italic,400,400italic,600,600italic,700,700italic,800,800italic"]  }});</script>
+  <script type="text/javascript">!function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);</script>
+  <link href="images/favicon.png" rel="shortcut icon" type="image/x-icon">
+  <link href="images/webclip.png" rel="apple-touch-icon">
+  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-HBQRKNJL5T"></script>
+  <script type="text/javascript">window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('set', 'developer_id.dZGVlNj', true);gtag('js', new Date());gtag('config', 'G-HBQRKNJL5T');</script><!--  Google tag (gtag.js)  -->
+  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-HBQRKNJL5T"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-HBQRKNJL5T');
+</script>
+  <style>
+textarea{
+  resize:none;
+  }
+ /* a{
+   font-size:18px;
+   text-decoration:none;
+  }*/
+  .triangle-down{
+  width: 0; 
+  height: 0; 
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 8px solid #2d5ca6;
+}
+  .filter{
+    filter: grayscale(1);
+	}
+  .active{
+        color: #B2E0F9;
+  }
+  .slider-wrapper{
+  	animation-name: slider-moving;
+	animation-duration: 40s;
+    animation-delay: 2s;
+	animation-iteration-count: infinite;
+  }
+	.slider-wrapper:hover{
+     animation-play-state: paused;
+  	}
+  @keyframes slider-moving {
+   from{
+     transform: translateX(0vw);
+    }
+    50%{
+      transform: translateX(-82.21vw);
+    }
+    to{
+    transform: translateX(0vw);
+    }
+  }
+  .details-icon::before,.details-icon::after{
+  content: '';
+  position: absolute;
+  width: 1vw;
+  height: 1.5px;
+  background-color: white;
+}
+.details-icon::before{
+  transform: rotate(45deg);
+  top: 0.55vw;
+  left: 0.45vw;
+}
+.details-icon::after{
+  transform: rotate(-45deg);
+  top: 1.2vw;
+  left: 0.45vw;
+}
+.second-menu{
+  transition: height 0.3s ease-in;
+}
+.menu-block{
+  transition: height 0.3s ease-in;
+}
+  .serch-container{
+    transition: height 0.3s ease-in;
+  }
+  .header-trigger{
+  transition: padding-top 0.3s ease-in;
+}
+  .listTransition{
+    transform:translate3d(0vw,0px,0px) ;
+  	transition: transform 0.3s ease-in;
+    position: absolute;
+    top: 0%;
+    bottom: auto;
+    left: 0%;
+    right: 0%;
+  }
+    .initialListTransition{
+    transform:translate3d(-120vw,0px,0px) ;
+          position: absolute;
+    top: 0%;
+    bottom: auto;
+    left: 0%;
+    right: 0%;
+  }
+      .backListTransition{
+    transform:translate3d(-120vw,0px,0px) ;
+    transition: transform 0.3s ease-in;
+            position: absolute;
+    top: 0%;
+    bottom: auto;
+    left: 0%;
+    right: 0%;
+  }
+    @keyframes slider-moving-tablet {
+   from{
+     transform: translateX(0vw);
+    }
+    50%{
+      transform: translateX(-120vw);
+    }
+    to{
+    transform: translateX(0vw);
+    }
+  }
+  @keyframes slider-moving-phone {
+   from{
+     transform: translateX(0vw);
+    }
+    50%{
+      transform: translateX(-190vw);
+    }
+    to{
+    transform: translateX(0vw);
+    }
+  }
+  @media (max-width:767px){
+    .slider-wrapper{
+  	animation-name: slider-moving-phone;
+    }
+      .details-icon::before,.details-icon::after{
+  		width: 3vw;
+	}
+	.details-icon::before{
+  		transform: rotate(45deg);
+  		top: 1.6vw;
+  		left: 1.4vw;
+	}
+	.details-icon::after{
+  		transform: rotate(-45deg);
+  		top: 3.5vw;
+  		left: 1.4vw;
+	}
+  }
+  @media (min-width:768px) and (max-width:1023px){
+    .slider-wrapper{
+  	animation-name: slider-moving-tablet;
+    }
+  }
+  .customCursor {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 512 512'%3E%3Cpath d='M429.742 319.31L82.49 0l-.231 471.744 105.375-100.826 61.89 141.083 96.559-42.358-61.89-141.083 145.549-9.25zM306.563 454.222l-41.62 18.259-67.066-152.879-85.589 81.894.164-333.193 245.264 225.529-118.219 7.512 67.066 152.878z' xmlns='http://www.w3.org/2000/svg'/%3E%3C/svg%3E"), default;
+}
+</style>
+  <script src="https://cdn.prod.website-files.com/5fe0d678b18d7e19e32c3389%2F66ba5a08efe71070f98dd10a%2F6810eb9d10e2d4fc35fe92ff%2Fhbqrknjl5t-1.1.1.js" type="text/javascript"></script>
+</head>
+<body>
+  <header id="structure-alt" class="c-inner-header alt-inner-header">
+    <div class="alt-container header-container w-container">
+      <nav class="nav-tab strucutre-list">
+        <div class="inner-nav-block">
+          <a href="index.html" class="nav-logo alt-hed-logo w-inline-block">
+            <div class="alt-logo-wrap">
+              <div class="logo-point"><img src="images/logo_1.svg" loading="lazy" width="60" alt="logo-scroll" class="image-5"></div>
+              <div class="logo-word"><img src="images/logo_word.svg" loading="lazy" alt="" class="image-6"></div>
+            </div>
+            <div class="alt-logo-hover"><img src="images/logo_1_hover.svg" loading="lazy" width="30" alt="" class="image-5"><img src="images/logo_word_hover.svg" loading="lazy" alt="" class="image-6"></div>
+          </a>
+          <div class="mob-nav-wrap">
+            <a data-w-id="db69eed7-e4d3-f635-70ac-b41211adec81" href="#" class="tab-link-menu w-inline-block">
+              <div class="tlm-bg mob-menu"></div>
+              <div class="tlm-ico u-hover mob-menu-exit"></div>
+              <div class="tlm-ico mob-menu-item"></div>
+            </a>
+          </div>
+        </div>
+        <div class="nav-hide-block alt-nav-hide">
+          <a href="index.html" class="m-link-block modal-menu-list-link w-inline-block">
+            <h2 class="modal-menu-list-item">Головна</h2>
+          </a>
+          <a href="news-and-announcements.html" class="m-link-block modal-menu-list-link w-inline-block">
+            <h2 class="modal-menu-list-item">Новини та анонси</h2>
+          </a>
+          <a href="struktura-dart.html" class="m-link-block modal-menu-list-link w-inline-block">
+            <h2 class="modal-menu-list-item">Структура агентства</h2>
+          </a>
+          <a href="vakansiyi.html" class="m-link-block modal-menu-list-link w-inline-block">
+            <h2 class="modal-menu-list-item">Вакансії</h2>
+          </a>
+          <a href="our-team.html" class="m-link-block modal-menu-list-link w-inline-block">
+            <h2 class="modal-menu-list-item">Команда</h2>
+          </a>
+          <div class="modal-menu-list-last">
+            <h2 class="modal-menu-list-item">Діяльність</h2>
+            <div data-w-id="bfb006df-8482-2d5e-eebd-a701768f3feb" class="additional-list">
+              <a href="licensuvannya.html" class="modal-menu-drop-link w-inline-block">
+                <div class="modal-menu-drop-text">Ліцензування туроператорів</div>
+              </a>
+              <a href="categorization.html" class="modal-menu-drop-link w-inline-block">
+                <div class="modal-menu-drop-text">Категоризація готелів</div>
+              </a>
+              <a href="statistic.html" class="modal-menu-drop-link w-inline-block">
+                <div class="modal-menu-drop-text">Статистика</div>
+              </a>
+              <a href="for-sitizens.html" class="modal-menu-drop-link w-inline-block">
+                <div class="modal-menu-drop-text">Громадськості</div>
+              </a>
+              <a href="projects-npa.html" class="modal-menu-drop-link w-inline-block">
+                <div class="modal-menu-drop-text">Проекти НПА</div>
+              </a>
+              <a href="anticor.html" class="modal-menu-drop-link w-inline-block">
+                <div class="modal-menu-drop-text">Очищення влади та антикорупційна діяльність</div>
+              </a>
+              <a href="finances.html" class="modal-menu-drop-link w-inline-block">
+                <div class="modal-menu-drop-text">Фінанси та бюджет</div>
+              </a>
+              <a href="public-orders.html" class="modal-menu-drop-link w-inline-block">
+                <div class="modal-menu-drop-text">Публічні закупівлі</div>
+              </a>
+              <a href="plans-and-report.html" class="modal-menu-drop-link w-inline-block">
+                <div class="modal-menu-drop-text">Плани та звіти діяльності ДАРТ</div>
+              </a>
+              <a href="orders.html" class="modal-menu-drop-link w-inline-block">
+                <div class="modal-menu-drop-text">Нормативна база та накази</div>
+              </a>
+              <a href="#" class="back-link back mobile-back w-inline-block">
+                <div class="modal-menu-link">
+                  <div class="text-block-13">Назад</div>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="modal-menu-button">
+            <a href="contact.html" class="modal-menu-link w-inline-block">
+              <div class="text-block-13">Контакти</div>
+            </a>
+          </div>
+          <div class="div-block-13">
+            <div data-w-id="021d25b8-265d-a02f-15e8-62d94d4efd5a" class="global-search"><img src="images/blind_blue.svg" loading="lazy" width="40" alt=""></div>
+            <div class="language">
+              <div class="lang-ua">UA</div>
+              <div class="lang-en">EN</div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div class="alt-nav-wrap">
+        <nav class="nav-bar alt-nav">
+          <a href="index.html" class="nav-logo alt-hed-logo w-inline-block">
+            <div class="alt-logo-wrap">
+              <div class="logo-point"><img src="images/logo_1.svg" loading="lazy" width="60" alt="logo-scroll" class="image-5"></div>
+              <div class="logo-word"><img src="images/logo_word.svg" loading="lazy" alt="" class="image-6"></div>
+            </div>
+            <div class="alt-logo-hover"><img src="images/logo_1_hover.svg" loading="lazy" width="30" alt="" class="image-5"><img src="images/logo_word_hover.svg" loading="lazy" alt="" class="image-6"></div>
+          </a>
+          <div class="nav-menu-block">
+            <a href="index.html" data-w-id="db69eed7-e4d3-f635-70ac-b41211adecc3" class="nm-link header-decktop">Головна</a>
+            <div id="about" role="button" aria-expanded="false" tabindex="0" data-w-id="f5f309da-a7e2-36c7-3ea6-26907a2fb2df" class="nm-link about">Про ДАРТ</div>
+            <a href="news-and-announcements.html" data-w-id="db69eed7-e4d3-f635-70ac-b41211adecd1" class="nm-link header-decktop">Новини та анонси</a>
+            <div id="activity" role="button" aria-expanded="false" tabindex="0" data-w-id="06f74093-accb-71e0-51c5-299aafceead0" class="nm-link header-decktop activity">Діяльність</div>
+          </div>
+          <div class="nav-cta-block alternate">
+            <a href="contact.html" role="button" class="nav-cta w-inline-block">
+              <div class="nc-bg _2 alt-button"></div>
+              <div class="nc-inf button-1">контакти</div>
+            </a>
+            <div class="div-block-13">
+              <div tabindex="0" role="button" aria-expanded="false" class="global-search"><img src="images/search-icon.svg" loading="lazy" width="25" alt=""></div>
+              <div tabindex="0" role="button" aria-expanded="false" class="language">
+                <div class="lang-ua">Ua</div>
+                <div class="lang-en">En</div>
+                <div class="triangle-up"></div>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+      <div id="activity-menu" class="menu-block">
+        <div class="o-container alt-page-menu activity-menu">
+          <a href="licensuvannya.html" class="nm-link drop-menu w-inline-block">Ліцензування туроператорів</a>
+          <a href="categorization.html" class="nm-link drop-menu w-inline-block">Категоризація готелів</a>
+          <a href="for-sitizens.html" class="nm-link drop-menu w-inline-block">Громадськості</a>
+          <a href="statistic.html" class="nm-link drop-menu w-inline-block">Статистика</a>
+          <a href="projects-npa.html" class="nm-link drop-menu w-inline-block">Проекти НПА та регуляторна діяльність</a>
+          <a href="anticor.html" class="nm-link drop-menu w-inline-block">Антикорупційна діяльність та очищення влади</a>
+          <a href="finances.html" class="nm-link drop-menu w-inline-block">Фінанси та бюджет</a>
+          <a href="public-orders.html" class="nm-link drop-menu w-inline-block">Публічні закупівлі</a>
+          <a href="plans-and-report.html" class="nm-link drop-menu w-inline-block">Плани та звіти діяльності ДАРТ</a>
+          <a href="orders.html" class="nm-link drop-menu w-inline-block">Нормативна база та накази</a>
+        </div>
+      </div>
+      <div id="about-menu" class="second-menu">
+        <div class="o-container alt-page-menu">
+          <a href="struktura-dart.html" class="nm-link header-decktop w-inline-block">Структура агентства</a>
+          <a href="our-team.html" class="nm-link header-decktop w-inline-block">Команда ДАРТ</a>
+          <a href="vakansiyi.html" class="nm-link header-decktop w-inline-block">Вакансії</a>
+          <a href="professional-development.html" class="nm-link header-decktop w-inline-block">Професійний розвиток</a>
+          <a href="subsidiary/home.html" class="nm-link header-decktop w-inline-block">Підвідомчі організації</a>
+        </div>
+      </div>
+      <div class="serch-container">
+        <form action="/search" class="search w-form"><label for="search-2" class="field-label">Пошук на сайті</label><input class="search-input w-input" maxlength="256" name="query" placeholder="Введіть назву чи ключове слово" type="search" id="search-in-component" required=""><input type="submit" class="search-button w-button" value="Пошук"></form>
+      </div>
+    </div>
+  </header>
+  <div class="o-container search-results w-container">
+    <div class="availability-box">
+      <div class="w-embed">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons&amp;text=ads_click,text_rotation_none,text_fields,format_size,blind,restart_alt,close,link,local_parking,contrast,spellcheck,local_library,format_bold,format_line_spacing" rel="stylesheet">
+        <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap');
+    .asw-menu {
+        font-family: 'Inter';
+        position: fixed;
+        right: 20px;
+        top: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 0px 20px #00000080;
+        opacity: 1;
+        transition: .3s;
+        z-index: 500000;
+        overflow: hidden;
+        background: #f9f9f9;
+        width: 500px;
+        line-height: 1;
+        font-size: 16px;
+        letter-spacing: 0.015em;
+        height: calc(100% - 40px - 75px);
+        color: #000 ;
+    }
+    .asw-menu-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-left: 18px;
+        height: 60px;
+        font-size: 18px;
+        font-weight: 700;
+        border-bottom: 1px solid #dedede;
+        color: #000;
+    }
+    .asw-menu-header > div {
+        display: flex;
+    }
+    .asw-menu-header div[role="button"] {
+        padding: 12px;
+        cursor: pointer;
+        color: #000;
+    }
+    .asw-menu-header div[role="button"]:hover {
+        opacity: 0.8;
+        color: #000;
+    }
+    .asw-card {
+        margin: 0 15px 30px;
+    }
+    .asw-items {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
+    }
+    .asw-btn {
+        aspect-ratio: 6 / 5;
+        border-radius: 4px;
+        padding: 0 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        color: #333;
+        font-size: 16px !important;
+        background: #fff;
+        border: 1px solid #dedede;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        line-height: 1.4;
+    }
+    .asw-btn .asw-translate {
+        font-size: 15px !important;
+    }
+    .asw-btn .material-icons {
+        margin-bottom: 16px;
+    }
+    .asw-btn:hover {
+        border-color:  #2d5ca6;
+    }
+    .asw-btn.asw-selected {
+        background: #2d5ca6;
+        color: white;
+        border-color: #2d5ca6;
+    }
+    .asw-menu-content {
+        overflow-y: scroll;
+        max-height: calc(100% - 80px);
+        color: #333;
+        padding: 15px 0;
+    }
+    .asw-widget,
+    .asw-menu {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        font-weight: 400;
+        -webkit-font-smoothing: antialiased;
+    }
+    .asw-widget *,
+    .asw-menu * {
+        box-sizing: border-box;
+    }
+    .asw-menu-btn {
+        position: fixed;
+        z-index: 500000;
+        right: 20px;
+        top: 25px;
+        background: #2d5ca6 ;
+        box-shadow: 0 5px 15px 0 rgb(37 44 97 / 15%), 0 2px 4px 0 rgb(93 100 148 / 20%);
+        transition: .3s;
+        border-radius: 50%;
+        align-items: center;
+        justify-content: center;
+        transform: scale(1);
+        width: 40px;
+        height: 40px;
+        display: flex;
+        cursor: pointer;
+        border: 4px solid white ;
+        outline: 4px solid #2d5ca6;
+        text-decoration: none;
+    }
+    .asw-menu-btn:hover {
+        transform: scale(1.1);
+        outline: 4px solid #2d5ca6;
+    }
+    .material-icons.md-36.white { font-size: 25px; color: #f9f9f9; }
+    @font-face {
+            font-family: 'OpenDyslexic';
+            src: url("https://website-widgets.pages.dev/fonts/OpenDyslexic-Regular.woff") format("woff"), url("https://website-widgets.pages.dev/fonts/OpenDyslexic-Regular.ttf") format("truetype");
+        }
+    @media only screen and (max-width: 560px) {
+        .asw-menu-btn {
+            width: 38px;
+            height: 38px;
+        }
+        .asw-menu-btn svg {
+            width: 24px;
+            height: 24px;
+            min-height: 24px;
+            min-width: 24px;
+            max-width: 24px;
+            max-height: 24px;
+        }
+    }
+    @media only screen and (max-width: 560px) {
+        .asw-menu {
+            width: calc(100% - 20px);
+            left: 10px;
+        }
+    }
+    @media only screen and (max-width: 420px) {
+        .asw-items {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.5rem;
+        }
+        .asw-menu {
+            width: calc(100% - 20px);
+            left: 10px;
+        }
+    }
+        @media only screen and (max-width: 959px) {
+        .asw-menu-btn {
+        		top: 160px;
+        }
+    }
+        @media only screen and (max-width: 569px) {
+        .asw-menu-btn {
+            top: 120px;
+        }
+    }
+.asw-menu-btn:focus-visible,
+.asw-menu-reset:focus-visible,
+.asw-menu-close:focus-visible,
+.asw-btn:focus-visible {
+    outline: 3px solid #005fcc; /* Яскравий колір, який добре видно */
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px white; /* Додаткова рамка для контрасту */
+}
+.asw-menu[hidden] {
+    display: none;
+}
+</style>
+      </div>
+      <div class="w-embed">
+        <div class="asw-menu" id="aswMenu" role="dialog" aria-modal="true" aria-labelledby="aswMenuHeader" hidden="">
+          <div class="asw-menu-header">
+            <div class="asw-translate" id="aswMenuHeader">
+              Accessibility Menu
+            </div>
+            <div>
+              <button type="button" class="asw-menu-reset" title="Reset settings" id="aswResetBtn">
+                <span class="material-icons">restart_alt</span>
+              </button>
+              <button type="button" class="asw-menu-close" title="Close" id="aswCloseBtn">
+                <span class="material-icons">close</span>
+              </button>
+            </div>
+          </div>
+          <div class="asw-menu-content">
+            <div class="asw-card">
+              <div class="asw-items content">
+                <button class="asw-btn" type="button" onclick="adjustFontSize(0.1)">
+                  <span class="material-icons">format_size</span>
+                  <span class="asw-translate">Increase Font Size</span>
+                </button>
+                <button class="asw-btn" type="button" onclick="adjustFontSize(-0.1)">
+                  <span class="material-icons">text_fields</span>
+                  <span class="asw-translate">Decrease Font Size</span>
+                </button>
+                <button class="asw-btn" type="button" onclick="adjustLineHeight(1)">
+                  <span class="material-icons">format_line_spacing</span>
+                  <span class="asw-translate">Line Spacing</span>
+                </button>
+                <button class="asw-btn" type="button" onclick="adjustLetterSpacing(0.1)">
+                  <span class="material-icons">text_rotation_none</span>
+                  <span class="asw-translate">Letter Spacing</span>
+                </button>
+                <button class="asw-btn" type="button" onclick="enableDyslexicFont()">
+                  <span class="material-icons">spellcheck</span>
+                  <span class="asw-translate">Dyslexic Font</span>
+                </button>
+                <button class="asw-btn" type="button" onclick="enableHighlightHeadings()">
+                  <span class="material-icons">local_parking</span>
+                  <span class="asw-translate">Highlight Headings</span>
+                </button>
+                <button class="asw-btn" type="button" onclick="enableHighlightLinks()">
+                  <span class="material-icons">link</span>
+                  <span class="asw-translate">Highlight Links</span>
+                </button>
+                <button class="asw-btn" type="button" onclick="adjustFontWeight(400)">
+                  <span class="material-icons">format_bold</span>
+                  <span class="asw-translate">Font Weight</span>
+                </button>
+                <button class="asw-btn" type="button" onclick="enableBigCursor()">
+                  <span class="material-icons">ads_click</span>
+                  <span class="asw-translate">Bigger Cursor</span>
+                </button>
+                <button class="asw-btn" type="button" onclick="adjustContrast()">
+                  <span class="material-icons">contrast</span>
+                  <span class="asw-translate">Contrast</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="asw-widget">
+          <button class="asw-menu-btn" title="Open Accessibility Menu" aria-expanded="false" aria-controls="aswMenu" id="aswMenuBtn">
+            <span class="material-icons md-36 white">blind</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <h1 class="search-heading">Результати пошуку</h1>
+    <form action="/search" id="search-page" class="w-form"><label for="search" class="search-label">Шукати ще</label><input class="search-input w-input" maxlength="256" name="query" placeholder="Назва або ключове слово" type="search" id="search" required=""><input type="submit" class="search-button w-button" value="Шукати"></form>
+  </div>
+  <footer id="uk-footer" class="footer">
+    <div class="w-layout-blockcontainer o-container w-container">
+      <div class="div-block-20 footer-grid">
+        <a id="w-node-_8bcb07db-ad27-85db-cd37-159508a6348c-a8ec814b" href="index.html" class="link-block-11 w-inline-block"><img src="images/main-logo--blue.svg" loading="lazy" width="140" alt="" class="image-8"></a>
+        <div id="w-node-_696bb326-b972-7206-c000-c270a8ec814f-a8ec814b" class="footer-contacts">
+          <h4 class="adress-header">Наша адреса:</h4>
+          <div class="footer-adress"> тел. (044) 278 08 08</div>
+          <a href="mailto:dart@tourism.gov.ua?subject=%D0%BB%D0%B8%D1%81%D1%82%20%D0%B7%20%D0%BE%D1%84%D1%96%D1%86%D1%96%D0%B9%D0%BD%D0%BE%D0%B3%D0%BE%20%D1%81%D0%B0%D0%B9%D1%82%D1%83" class="footer-mail w-inline-block">
+            <div class="footer-adress"> e-mail: dart@tourism.gov.ua</div>
+          </a>
+          <div class="footer-adress"> м. Київ, пров. Музейний, 12</div>
+        </div>
+        <div id="w-node-_696bb326-b972-7206-c000-c270a8ec8158-a8ec814b" class="footer-icons">
+          <h4 class="icons-header">Корисні посилання:</h4>
+          <div class="icons-block">
+            <a href="https://mindev.gov.ua/" target="_blank" class="link-block-5 w-inline-block"><img src="images/logo-dark-miu-ukr.svg" loading="lazy" title="Міністерство розвитку громад та територій" height="35" alt="" class="image-9"></a>
+            <a href="https://dpsu.gov.ua/ua/" target="_blank" class="link-block-10 w-inline-block"><img src="images/bordersguard.webp" loading="lazy" width="34" height="34" alt="" title="Державна прикордонна служба України" class="border"></a>
+            <a href="https://www.president.gov.ua/" target="_blank" class="link-block-8 w-inline-block"><img src="images/president.webp" loading="lazy" title="Президент України" height="35" alt=""></a>
+            <a href="https://www.rada.gov.ua/" target="_blank" class="link-block-6 w-inline-block"><img src="images/parlaiment.webp" loading="lazy" width="46" height="35" alt="" title="Верховна Рада України" class="parliament"></a>
+            <a href="https://www.kmu.gov.ua/" target="_blank" class="link-block-9 w-inline-block"><img src="images/cabinet_ministry_1.webp" height="33" alt="" sizes="100vw" title="Кабінет Міністрів України" loading="lazy" srcset="images/cabinet_ministry_1cabinet_ministry.webp 500w, images/cabinet_ministry_1.webp 717w"></a>
+          </div>
+        </div>
+        <div id="w-node-_696bb326-b972-7206-c000-c270a8ec8162-a8ec814b" class="social-icons">
+          <h4 class="icons-header">Соціальні мережі:</h4>
+          <div class="social-icons-block">
+            <a id="w-node-_696bb326-b972-7206-c000-c270a8ec8166-a8ec814b" href="https://www.facebook.com/DARTUkraine" target="_blank" class="footer-icon-wrap w-inline-block">
+              <div class="social-icon"><img src="images/facebook.svg" loading="lazy" title="Фейсбук" alt="" class="footer-img"></div>
+            </a>
+            <a id="w-node-_696bb326-b972-7206-c000-c270a8ec816a-a8ec814b" href="https://t.me/DARTUkraine?fbclid=IwAR2FnWXIaSFlfv-YYS6DU7n19XYta4OXMcwzc2rFxlMjrFfkfx2cRJjeBmw" target="_blank" class="footer-icon-wrap w-inline-block">
+              <div class="social-icon"><img src="images/telegram.svg" loading="lazy" title="Телеграм" alt="" class="footer-img"></div>
+            </a>
+            <a id="w-node-_696bb326-b972-7206-c000-c270a8ec816e-a8ec814b" href="https://www.instagram.com/ukrainenow_travel" target="_blank" class="footer-icon-wrap w-inline-block">
+              <div class="social-icon"><img src="images/instagram.svg" loading="lazy" title="Інстаграм" alt="" class="footer-img"></div>
+            </a>
+            <a id="w-node-_696bb326-b972-7206-c000-c270a8ec8172-a8ec814b" href="https://www.youtube.com/channel/UCV4648Lv6svmY7lQd0snGug" target="_blank" class="footer-icon-wrap w-inline-block">
+              <div class="social-icon"><img src="images/youtube.svg" loading="lazy" alt="" title="Ютуб" class="footer-img"></div>
+            </a>
+          </div>
+        </div>
+        <div id="w-node-_696bb326-b972-7206-c000-c270a8ec8176-a8ec814b" class="copywrite">2020-2025 Державне Агентство Розвитку Туризму України</div>
+      </div>
+    </div>
+  </footer>
+  <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=5fe0d678b18d7e19e32c3389" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+  <script src="js/webflow.js" type="text/javascript"></script><!-- <script src="https://cdn.jsdelivr.net/gh/BMKiyv/csb-jwdsdc/index.js"></script> -->
+  <!-- <script src="https://uploads-ssl.webflow.com/5fe0d678b18d7e19e32c3389/65a16ec5c740e669993ea0db_index.txt"></script> -->
+  <script src="https://cdn.prod.website-files.com/5fe0d678b18d7e19e32c3389/68d55186346c926f21c73bf4_accessibility-new.txt"></script>
+  <script>
+let button = document.querySelectorAll(".global-search");
+let search = document.querySelector(".serch-container");
+let header = document.querySelector("header");
+let body = header.nextElementSibling;
+let footer = document.querySelector("footer");
+let customLocation = document.location;
+let about = document.querySelector("#about");
+let activity = document.querySelector("#activity");
+let menu1 = document.querySelector("#about-menu");
+let menu2 = document.querySelector("#activity-menu");
+let uaLang = document.querySelectorAll(".lang-ua");
+let enLang = document.querySelectorAll(".lang-en");
+let languages = document.querySelectorAll(".language");
+let main = document.querySelector(".header-trigger");
+let triangle = document.querySelector(".triangle-up");
+//console.log(customLocation.pathname.slice(0, 3));
+languages[1].addEventListener("mouseover", () => {
+  enLang[1].style.display = "block";
+  triangle.classList.replace("triangle-up", "triangle-down");
+});
+languages[1].addEventListener("mouseout", () => {
+  enLang[1].style.display = "none";
+  triangle.classList.replace("triangle-down", "triangle-up");
+});
+if (customLocation.pathname.slice(0, 3) !== "/en" || customLocation.pathname === '/search') {
+  let additionalList = document.querySelector(".additional-list");
+  additionalList.classList.add("initialListTransition");
+  let mobileActivities = document.querySelector(".modal-menu-list-last");
+  mobileActivities.addEventListener("click", (e) => {
+    let classCss = additionalList.classList[1];
+    let classReplace = additionalList.classList.contains("listTransition")
+      ? "backListTransition"
+      : "listTransition";
+    additionalList.classList.replace(classCss, classReplace);
+  });
+  for (let item of uaLang) {
+    item.classList.add("active");
+  }
+} else {
+  uaLang[0].classList.remove("active");
+  enLang[0].classList.add("active");
+  uaLang[1].classList.add("active");
+  uaLang[1].innerHTML = "En";
+  enLang[1].innerHTML = "Ua";
+}
+for (let item of languages) {
+  item.addEventListener("click", (e) => {
+    let target = e.target;
+    // console.log((target === uaLang[0].innerHTML) === "Ua");
+    if (
+      (target === enLang[1] && enLang[1].innerHTML === "Ua") ||
+      target === uaLang[0]
+    ) {
+      let url = `${customLocation.origin}`;
+      customLocation.assign(url);
+    } else {
+      let url = `${customLocation.origin}/en/home`;
+      customLocation.assign(url);
+    }
+  });
+}
+about.addEventListener("click", (e) => {
+  console.log(e.target);
+  menu2.style.height = "0.5px";
+  if (!menu1.style.height || menu1.style.height === "0px") {
+    menu1.style.height = "64px";
+    search.style.height = '0px';
+    search.style.borderBottom = '0px solid #c2c5cb';
+    main.style.paddingTop = "5vw";
+    console.log(search.style.height);
+  } else {
+    menu1.style.height = "0px";
+    main.style.paddingTop = "2vw";
+  }
+});
+activity.addEventListener("click", (e) => {
+  menu1.style.height = "0px";
+   //console.log(e.target);
+  if (!menu2.style.height || menu2.style.height === "0.5px") {
+    menu2.style.height = "9vw";
+    main.style.paddingTop = "11vw";
+    search.style.height = '0px';
+    search.style.borderBottom = '0px solid #c2c5cb';
+    // console.log(menu2.style.height);
+  } else {
+    menu2.style.height = "0.5px";
+    main.style.paddingTop = "2vw";
+  }
+});
+  for(let item of button){
+  item.addEventListener("click", () => {
+    console.log(search.style.height,!search.style.height)
+    if (search.style.height==='0px' || !search.style.height) {
+      search.style.height = '146px';
+      search.style.borderBottom = '0.5px solid #c2c5cb';
+      main.style.paddingTop = "12vw";
+      menu2.style.height = "0.5px";
+      menu1.style.height = "0px";
+       main.style.paddingTop = "11vw";
+    } else {
+      search.style.borderBottom = '0px solid #c2c5cb';
+      search.style.height = '0px';
+      main.style.paddingTop = "2vw";
+    }
+  });}
+</script>
+  <script>
+//let previousPage = document.referrer;
+//let engHeader = document.querySelector('#structure-alt-eng');
+//let ukHeader = document.querySelector('#structure-alt');
+//let engFooter = document.querySelector('#eng-footer');
+//let ukFooter = document.querySelector('#uk-footer');
+//let checkLang = previousPage.split("/")[3];
+//console.log(previousPage, checkLang);
+//window.addEventListener('DOMContentLoaded',()=>{
+//console.log(checkLang);
+//if( checkLang!=="en"){
+//console.log( checkLang);
+//let label = document.querySelector('.search-label');
+ //let searchButton = document.querySelector('.search-button');
+// let searchHeading = document.querySelector('.search-heading');
+ //label.innerHTML = 'Шукати ще';
+ // searchHeading.innerHTML = 'Результати пошуку';
+ // let searchInput = document.querySelector('.search-input');
+  //searchButton.setAttribute('value','Пошук');
+  //searchInput.setAttribute('placeholder','Назва або ключове слово');
+  //engHeader.style.display = 'none';
+  //engFooter.style.display = 'none';
+//}
+//else{
+	//ukHeader.style.display = 'none';
+	//ukFooter.style.display = 'none';
+  //engHeader.style.display = 'block';
+ // engFooter.style.display = 'block';
+//}
+//})
+about.addEventListener("click", (e) => {
+  //console.log(e.target);
+  menu2.style.height = "0.5px";
+  menu2eng.style.height = "0.5px";
+  if (!menu1.style.height || menu1.style.height === "0px") {
+    menu1.style.height = "64px";
+    menu1eng.style.height = "64px";
+    main.style.paddingTop = "5vw";
+  } else {
+    menu1.style.height = "0px";
+    menu1eng.style.height = "0px";
+    main.style.paddingTop = "2vw";
+  }
+});
+</script>
+</body>
+</html>

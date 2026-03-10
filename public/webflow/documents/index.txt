@@ -1,0 +1,118 @@
+let button = document.querySelectorAll(".div-block-7");
+let header = document.querySelector("header");
+let body = header.nextElementSibling;
+let footer = document.querySelector("footer");
+let customLocation = document.location;
+let about = document.querySelector(".about");
+let activity = document.querySelector(".activity");
+let menu1 = document.querySelector(".second-menu");
+let menu2 = document.querySelector("#activity");
+let counter = localStorage.getItem("filterCounter")
+  ? localStorage.getItem("filterCounter")
+  : 0;
+let uaLang = document.querySelectorAll(".lang-ua");
+let enLang = document.querySelectorAll(".lang-en");
+let languages = document.querySelectorAll(".div-block-8");
+let main = document.querySelector(".header-trigger");
+let triangle = document.querySelector(".triangle-up");
+//console.log(customLocation.pathname.slice(0, 3));
+//console.log("what the fuck!");
+languages[1].addEventListener("mouseover", () => {
+  enLang[1].style.display = "block";
+  triangle.classList.replace("triangle-up", "triangle-down");
+});
+languages[1].addEventListener("mouseout", () => {
+  enLang[1].style.display = "none";
+  triangle.classList.replace("triangle-down", "triangle-up");
+});
+
+if (customLocation.pathname.slice(0, 3) !== "/en" && customLocation.pathname !== '/search') {
+  let additionalList = document.querySelector(".additional-list");
+  additionalList.classList.add("initialListTransition");
+  let mobileActivities = document.querySelector(".modal-menu-list-last");
+  mobileActivities.addEventListener("click", (e) => {
+    let classCss = additionalList.classList[1];
+    let classReplace = additionalList.classList.contains("listTransition")
+      ? "backListTransition"
+      : "listTransition";
+    additionalList.classList.replace(classCss, classReplace);
+  });
+  for (let item of uaLang) {
+    item.classList.add("active");
+  }
+  // for (let item of enLang) {
+  //   item.classList.remove("active");
+  // }
+} else {
+  uaLang[0].classList.remove("active");
+  enLang[0].classList.add("active");
+  uaLang[1].classList.add("active");
+  uaLang[1].innerHTML = "En";
+  enLang[1].innerHTML = "Ua";
+}
+
+for (let item of languages) {
+  item.addEventListener("click", (e) => {
+    let target = e.target;
+   // console.log((target === uaLang[0].innerHTML) === "Ua");
+    if (
+      (target === enLang[1] && enLang[1].innerHTML === "Ua") ||
+      target === uaLang[0]
+    ) {
+      let url = `${customLocation.origin}`;
+      customLocation.assign(url);
+    } else {
+      let url = `${customLocation.origin}/en/home`;
+      customLocation.assign(url);
+    }
+  });
+}
+if (
+  localStorage.getItem("filtered") === "1" &&
+  localStorage.getItem("filterCounter") % 2
+) {
+  header.classList.add("filter");
+  body.classList.add("filter");
+  footer.classList.add("filter");
+}
+for (let item of button) {
+  item.addEventListener("click", () => {
+    counter++;
+    if (counter % 2) {
+      header.classList.add("filter");
+      body.classList.add("filter");
+      footer.classList.add("filter");
+      localStorage.setItem("filtered", "1");
+      localStorage.setItem("filterCounter", counter);
+    } else {
+      header.classList.remove("filter");
+      body.classList.remove("filter");
+      footer.classList.remove("filter");
+      localStorage.setItem("filtered", "0");
+      localStorage.setItem("filterCounter", counter);
+    }
+  });
+}
+about.addEventListener("click", (e) => {
+  //console.log(e.target);
+  menu2.style.height = "0.5px";
+  if (!menu1.style.height || menu1.style.height === "0px") {
+    menu1.style.height = "64px";
+    main.style.paddingTop = "5vw";
+  } else {
+    menu1.style.height = "0px";
+    main.style.paddingTop = "2vw";
+  }
+});
+activity.addEventListener("click", (e) => {
+  menu1.style.height = "0px";
+ // console.log(menu1.style.height);
+  if (!menu2.style.height || menu2.style.height === "0.5px") {
+    menu2.style.height = "9vw";
+    main.style.paddingTop = "11vw";
+   // console.log(menu2.style.height);
+  } else {
+    menu2.style.height = "0.5px";
+    main.style.paddingTop = "2vw";
+  }
+});

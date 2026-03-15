@@ -7,69 +7,35 @@ export default async function OrdersPage() {
   
   const { docs: orders } = await payload.find({
     collection: 'orders',
-    limit: 100, // Для початку виведемо багато, потім додамо пагінацію
     sort: '-date',
+    limit: 100,
   })
 
   return (
-    <div className="container mx-auto px-4 py-12 min-h-screen">
-      <nav className="mb-8 flex items-center text-sm text-gray-500 gap-2">
-        <Link href="/" className="hover:text-[#2d5ca6]">Головна</Link>
-        <span>/</span>
-        <span className="font-bold text-gray-900">Накази</span>
-      </nav>
-
-      <header className="mb-12">
-        <h1 className="text-5xl font-oswald uppercase font-black text-gray-900 mb-4 tracking-tighter">
-          Офіційні накази
-        </h1>
-        <p className="text-xl text-gray-600 max-w-2xl leading-relaxed">
-          Архів наказів та розпоряджень Державного агентства розвитку туризму України.
-        </p>
-      </header>
-
-      <div className="bg-white rounded-[2rem] border border-gray-100 shadow-sm overflow-hidden">
-        <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse">
-            <thead>
-              <tr className="bg-gray-50 border-b border-gray-100">
-                <th className="px-8 py-5 text-sm font-bold text-gray-400 uppercase tracking-widest">№ Наказу</th>
-                <th className="px-8 py-5 text-sm font-bold text-gray-400 uppercase tracking-widest">Назва документа</th>
-                <th className="px-8 py-5 text-sm font-bold text-gray-400 uppercase tracking-widest text-right">Дата</th>
-                <th className="px-8 py-5 text-sm font-bold text-gray-400 uppercase tracking-widest text-right">Дія</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-50">
-              {orders.map((order) => (
-                <tr key={order.id} className="hover:bg-blue-50/30 transition-colors group">
-                  <td className="px-8 py-6">
-                    <span className="font-mono font-bold text-[#2d5ca6] bg-blue-50 px-3 py-1 rounded-lg">
-                      {order.number}
-                    </span>
-                  </td>
-                  <td className="px-8 py-6">
-                    <h3 className="text-lg font-bold text-gray-900 group-hover:text-[#2d5ca6] transition-colors leading-snug">
-                      {order.name}
-                    </h3>
-                  </td>
-                  <td className="px-8 py-6 text-right whitespace-nowrap font-medium text-gray-500">
-                    {order.date ? new Date(order.date).toLocaleDateString('uk-UA') : '—'}
-                  </td>
-                  <td className="px-8 py-6 text-right">
-                    <a 
-                      href={order.url || '#'} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 bg-gray-900 text-white px-5 py-2.5 rounded-xl font-bold hover:bg-[#2d5ca6] transition-all shadow-sm active:scale-95"
-                    >
-                      PDF
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                    </a>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+    <div className="c-section finances-wrap header-trigger">
+      <div className="o-container projects-npa-wrap w-container">
+        <div className="content-container">
+          <h1 id="IAD" className="finances-heading">Нормативна база</h1>
+          <div className="o-tabpane-inf">
+            <a href="https://zakon.rada.gov.ua/laws/show/324/95-%D0%B2%D1%80" target="_blank" className="laws-list-item">Закони України</a>
+          </div>
+          <div className="o-tabpane-inf">
+            <a href="https://zakon.rada.gov.ua/laws/show/1047/98" target="_blank" className="laws-list-item">Указ Президента України "Про День туризму"</a>
+          </div>
+          <div className="o-tabpane-inf">
+            <a href="https://docs.google.com/document/d/1GBbONgqiJ1vOvcMteapWDKh6djxk2DueiqcN7KRi3TA/edit?usp=sharing" className="laws-list-item">Акти Кабінету Міністрів України</a>
+          </div>
+          
+          <h2 className="finances-heading" style={{ marginTop: '40px' }}>Накази ДАРТ</h2>
+          <div className="orders-list">
+            {orders.map((order) => (
+              <div key={order.id} className="o-tabpane-inf">
+                <a href={order.url || order.link || '#'} target="_blank" rel="noopener noreferrer" className="laws-list-item">
+                  {order.name} {order.number ? `№ ${order.number}` : ''} {order.date ? `від ${new Date(order.date).toLocaleDateString('uk-UA')}` : ''}
+                </a>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>

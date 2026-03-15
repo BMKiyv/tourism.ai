@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import Script from "next/script";
+import { AuthProvider } from "@/components/AuthProvider";
 
 export const oswald = Oswald({
   variable: "--font-oswald",
@@ -40,11 +41,13 @@ export default function RootLayout({
         <link href="/webflow/css/tourismgovua.webflow.css" rel="stylesheet" type="text/css" />
       </head>
       <body className="font-sans antialiased text-[#333] bg-white customCursor" suppressHydrationWarning>
-        <Header />
-        <main id="main-content" className="header-trigger">
-          {children}
-        </main>
-        <Footer />
+        <AuthProvider>
+          <Header />
+          <main id="main-content" className="header-trigger">
+            {children}
+          </main>
+          <Footer />
+        </AuthProvider>
         
         {/* Webflow JS */}
         <Script 

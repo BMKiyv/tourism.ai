@@ -3,8 +3,10 @@
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
+import { useAuth } from './AuthProvider'
 
 export const Header = () => {
+  const { user, logout } = useAuth()
   const router = useRouter()
   const pathname = usePathname()
   const [isLangOpen, setIsLangOpen] = useState(false)
@@ -244,6 +246,21 @@ export const Header = () => {
               <div id="activity" role="button" className="nm-link header-decktop activity">{isEn ? "About SATD" : "Діяльність"}</div>
             </div>
             <div className="nav-cta-block alternate">
+              {user ? (
+                <div className="flex items-center gap-4">
+                  <Link href="/user-account" className="nm-link header-decktop">
+                    {user.name || user.email}
+                  </Link>
+                  <button onClick={() => logout()} className="nm-link header-decktop" style={{ cursor: 'pointer', background: 'none', border: 'none', padding: 0 }}>
+                    {isEn ? "Logout" : "Вихід"}
+                  </button>
+                </div>
+              ) : (
+                <Link href="/log-in" role="button" className="nav-cta w-inline-block">
+                  <div className="nc-bg _2 alt-button"></div>
+                  <div className="nc-inf button-1">{isEn ? "Log In" : "Вхід"}</div>
+                </Link>
+              )}
               <Link href={isEn ? "/en/contacts" : "/contact"} role="button" className="nav-cta w-inline-block">
                 <div className="nc-bg _2 alt-button"></div>
                 <div className="nc-inf button-1">{isEn ? "Contact us" : "контакти"}</div>

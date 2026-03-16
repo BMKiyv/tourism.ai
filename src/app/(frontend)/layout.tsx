@@ -10,6 +10,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import Script from "next/script";
 import { AuthProvider } from "@/components/AuthProvider";
+import { AccessibilityWidget } from "@/components/AccessibilityWidget";
 
 export const oswald = Oswald({
   variable: "--font-oswald",
@@ -43,6 +44,7 @@ export default function RootLayout({
       <body className="font-sans antialiased text-[#333] bg-white customCursor" suppressHydrationWarning>
         <AuthProvider>
           <Header />
+          <AccessibilityWidget />
           <main id="main-content" className="header-trigger">
             {children}
           </main>
@@ -57,6 +59,10 @@ export default function RootLayout({
         <Script 
           src="/webflow/js/webflow.js" 
           strategy="afterInteractive" 
+        />
+        <Script 
+          src="https://cdn.prod.website-files.com/5fe0d678b18d7e19e32c3389/68d55186346c926f21c73bf4_accessibility-new.txt"
+          strategy="afterInteractive"
         />
       </body>
     </html>

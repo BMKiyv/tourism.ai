@@ -72,6 +72,7 @@ export interface Config {
     departments: Department;
     orders: Order;
     vacancies: Vacancy;
+    team: Team;
     media: Media;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
@@ -85,6 +86,7 @@ export interface Config {
     departments: DepartmentsSelect<false> | DepartmentsSelect<true>;
     orders: OrdersSelect<false> | OrdersSelect<true>;
     vacancies: VacanciesSelect<false> | VacanciesSelect<true>;
+    team: TeamSelect<false> | TeamSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -132,6 +134,7 @@ export interface UserAuthOperations {
 export interface User {
   id: string;
   name?: string | null;
+  role?: ('admin' | 'user') | null;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -246,6 +249,39 @@ export interface Vacancy {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "team".
+ */
+export interface Team {
+  id: string;
+  name: string;
+  surname: string;
+  position: string;
+  email?: string | null;
+  phone?: string | null;
+  facebook?: string | null;
+  image?: (string | null) | Media;
+  bio_link?: string | null;
+  bio_rich?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  index?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -287,6 +323,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'vacancies';
         value: string | Vacancy;
+      } | null)
+    | ({
+        relationTo: 'team';
+        value: string | Team;
       } | null)
     | ({
         relationTo: 'media';
@@ -340,6 +380,7 @@ export interface PayloadMigration {
  */
 export interface UsersSelect<T extends boolean = true> {
   name?: T;
+  role?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;
@@ -410,6 +451,24 @@ export interface VacanciesSelect<T extends boolean = true> {
   name?: T;
   slug?: T;
   link?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "team_select".
+ */
+export interface TeamSelect<T extends boolean = true> {
+  name?: T;
+  surname?: T;
+  position?: T;
+  email?: T;
+  phone?: T;
+  facebook?: T;
+  image?: T;
+  bio_link?: T;
+  bio_rich?: T;
+  index?: T;
   updatedAt?: T;
   createdAt?: T;
 }

@@ -1,15 +1,46 @@
-import Link from 'next/link'
+import React from 'react'
+import { Tabs } from '@/components/Tabs'
+import { ActivityTab } from './components/ActivityTab'
+import { CleaningTab } from './components/CleaningTab'
+import { GuideTab } from './components/GuideTab'
+import { AnnouncementsTab } from './components/AnnouncementsTab'
+import { AccessibilityTrigger } from '@/components/AccessibilityTrigger'
 
 export default function AnticorPage() {
+  const tabs = [
+    {
+      id: 'Tab 1',
+      label: 'Антикорупційна діяльність',
+      content: <ActivityTab />,
+    },
+    {
+      id: 'Tab 2',
+      label: 'Очищення влади',
+      content: <CleaningTab />,
+    },
+    {
+      id: 'Tab 3',
+      label: 'Гайд для викривачів корупції',
+      content: <GuideTab />,
+    },
+    {
+      id: 'Tab 4',
+      label: 'Оголошення',
+      content: <AnnouncementsTab />,
+    },
+  ]
+
   return (
     <div className="w-layout-blockcontainer o-container sitizens header-trigger w-container">
-      <h1 className="sitizen-first-header">Антикорупційна діяльність</h1>
-      <div className="o-tabpane-inf">
-        <a href="/webflow/documents/anticor-plan.pdf" target="_blank" className="laws-list-item">План антикорупційних заходів на 2026 рік</a>
-      </div>
-      <div className="o-tabpane-inf">
-        <Link href="/anticor/report" className="laws-list-item">Звіт про виконання антикорупційної програми</Link>
-      </div>
+      <AccessibilityTrigger />
+      <h1 className="sitizen-first-header">Антикорупційна діяльність та очищення влади</h1>
+      
+      <Tabs 
+        tabs={tabs} 
+        className="sitizen-tab-wrap"
+        tabMenuClassName="tabs-menu-2"
+        tabLinkClassName="sitizen-tab"
+      />
     </div>
   )
 }

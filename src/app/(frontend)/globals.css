@@ -127,6 +127,11 @@
     @apply font-sans;
   }
 }
+
+.header-trigger {
+  transition: padding-top 0.3s ease-in;
+}
+
 /* High Contrast Mode for Government Standards */
 .high-contrast {
   background-color: black !important;

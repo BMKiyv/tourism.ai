@@ -1,10 +1,8 @@
 import React from 'react'
-import { AccessibilityTrigger } from '@/components/AccessibilityTrigger'
 
 export default function BiographyPage() {
   return (
     <div className="o-container manager header-trigger w-container">
-      <AccessibilityTrigger />
       
       <div className="bio-header-wrap">
         <h1 className="heading-4">Голова Державного агентства розвитку туризму України</h1>

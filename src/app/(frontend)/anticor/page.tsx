@@ -4,7 +4,6 @@ import { ActivityTab } from './components/ActivityTab'
 import { CleaningTab } from './components/CleaningTab'
 import { GuideTab } from './components/GuideTab'
 import { AnnouncementsTab } from './components/AnnouncementsTab'
-import { AccessibilityTrigger } from '@/components/AccessibilityTrigger'
 
 export default function AnticorPage() {
   const tabs = [
@@ -32,7 +31,7 @@ export default function AnticorPage() {
 
   return (
     <div className="w-layout-blockcontainer o-container sitizens header-trigger w-container">
-      <AccessibilityTrigger />
+      
       <h1 className="sitizen-first-header">Антикорупційна діяльність та очищення влади</h1>
       
       <Tabs 

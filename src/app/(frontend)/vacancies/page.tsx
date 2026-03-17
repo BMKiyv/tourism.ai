@@ -1,7 +1,6 @@
 import React from 'react'
 import { getPayload } from 'payload'
 import config from '@/payload.config'
-import { AccessibilityTrigger } from '@/components/AccessibilityTrigger'
 import { DocumentLink } from '@/components/DocumentLink'
 import Link from 'next/link'
 
@@ -16,7 +15,6 @@ export default async function VacanciesPage() {
 
   return (
     <div className="w-layout-blockcontainer o-container header-trigger department w-container">
-      <AccessibilityTrigger />
       
       <h1 className="plans-header">Вакансії</h1>
       <div className="categories--page--text">

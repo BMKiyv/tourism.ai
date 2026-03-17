@@ -1,11 +1,9 @@
 import React from 'react'
 import { DocumentLink } from '@/components/DocumentLink'
-import { AccessibilityTrigger } from '@/components/AccessibilityTrigger'
 
 export default function EnglishLicensingPage() {
   return (
     <div className="categories-page-wrap header-trigger">
-      <AccessibilityTrigger />
       
       <div className="w-layout-blockcontainer o-container alt-categories w-container">
         <h1 className="categories-page-header1">Procedure for obtaining a tour operator license</h1>

@@ -1,11 +1,9 @@
 import React from 'react'
 import { DocListItem } from '@/components/DocListItem'
-import { AccessibilityTrigger } from '@/components/AccessibilityTrigger'
 
 export default function PublicOrdersPage() {
   return (
     <div className="c-section finances-wrap header-trigger">
-      <AccessibilityTrigger />
       
       <div className="o-container projects-npa-wrap w-container">
         <div className="content-container">

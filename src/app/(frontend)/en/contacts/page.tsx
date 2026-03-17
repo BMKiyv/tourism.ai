@@ -1,11 +1,9 @@
 import React from 'react'
 import { ContactForm } from '@/components/ContactForm'
-import { AccessibilityTrigger } from '@/components/AccessibilityTrigger'
 
 export default function EnglishContactsPage() {
   return (
     <section id="contact" className="contacts-wrap header-trigger">
-      <AccessibilityTrigger />
       
       <div className="o-container contacts w-container">
         <div className="contacts-content">

@@ -2,7 +2,6 @@ import React from 'react'
 import { getPayload } from 'payload'
 import config from '@/payload.config'
 import { DocListItem } from '@/components/DocListItem'
-import { AccessibilityTrigger } from '@/components/AccessibilityTrigger'
 import { DocumentLink } from '@/components/DocumentLink'
 
 export default async function OrdersPage({
@@ -23,7 +22,6 @@ export default async function OrdersPage({
 
   return (
     <div className="c-section finances-wrap header-trigger">
-      <AccessibilityTrigger />
       
       <div className="o-container projects-npa-wrap w-container">
         <div className="content-container">

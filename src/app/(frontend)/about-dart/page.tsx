@@ -1,12 +1,10 @@
 import React from 'react'
 import Link from 'next/link'
 import { ContactForm } from '@/components/ContactForm'
-import { AccessibilityTrigger } from '@/components/AccessibilityTrigger'
 
 export default function AboutDartPage() {
   return (
     <div className="about-page-content">
-      <AccessibilityTrigger />
       
       <header className="hiw-header">
         <img 

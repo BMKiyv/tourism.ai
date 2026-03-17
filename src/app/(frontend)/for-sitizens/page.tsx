@@ -2,7 +2,6 @@ import React from 'react'
 import { Tabs } from '@/components/Tabs'
 import { DocListItem } from '@/components/DocListItem'
 import { DocumentLink } from '@/components/DocumentLink'
-import { AccessibilityTrigger } from '@/components/AccessibilityTrigger'
 
 export default function ForSitizensPage() {
   const tabs = [
@@ -126,7 +125,7 @@ export default function ForSitizensPage() {
 
   return (
     <div className="w-layout-blockcontainer o-container sitizens header-trigger w-container">
-      <AccessibilityTrigger />
+      
       <h1 className="sitizen-first-header">Інформація для громадськості</h1>
       
       <Tabs 

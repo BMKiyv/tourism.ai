@@ -1,10 +1,8 @@
 import React from 'react'
-import { AccessibilityTrigger } from '@/components/AccessibilityTrigger'
 
 export default function SubsidiaryPage() {
   return (
     <div className="contacts-wrap header-trigger">
-      <AccessibilityTrigger />
       
       <div className="o-container subsidiary-container">
         <h1 className="categories-page-header1">Підвідомчі організації</h1>

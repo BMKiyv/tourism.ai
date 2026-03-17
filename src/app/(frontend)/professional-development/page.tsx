@@ -1,10 +1,8 @@
 import React from 'react'
-import { AccessibilityTrigger } from '@/components/AccessibilityTrigger'
 
 export default function ProfessionalDevelopmentPage() {
   return (
     <div className="categories-page-wrap header-trigger">
-      <AccessibilityTrigger />
       
       <div className="o-container alt-categories w-container">
         <h1 className="categories-page-header1">Пріоритетні напрями професійного розвитку персоналу у 2026 році</h1>

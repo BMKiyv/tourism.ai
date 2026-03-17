@@ -1,7 +1,6 @@
 import React from 'react'
 import { getPayload } from 'payload'
 import config from '@/payload.config'
-import { AccessibilityTrigger } from '@/components/AccessibilityTrigger'
 import Link from 'next/link'
 
 export default async function OurTeamPage() {
@@ -54,7 +53,6 @@ export default async function OurTeamPage() {
 
   return (
     <div className="main header-trigger">
-      <AccessibilityTrigger />
       
       <div className="w-layout-blockcontainer o-container our-team w-container">
         <h1 className="our-team-header">Команда ДАРТ</h1>

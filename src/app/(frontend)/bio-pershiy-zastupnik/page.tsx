@@ -1,10 +1,8 @@
 import React from 'react'
-import { AccessibilityTrigger } from '@/components/AccessibilityTrigger'
 
 export default function BioPershiyZastupnikPage() {
   return (
     <div className="o-container manager header-trigger w-container">
-      <AccessibilityTrigger />
       
       <div className="bio-header-wrap">
         <h1 className="heading-4">Перший заступник Голови Державного агентства розвитку туризму України</h1>

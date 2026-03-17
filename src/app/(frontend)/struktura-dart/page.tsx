@@ -1,7 +1,6 @@
 import React from 'react'
 import { getPayload } from 'payload'
 import config from '@/payload.config'
-import { AccessibilityTrigger } from '@/components/AccessibilityTrigger'
 import Link from 'next/link'
 
 export default async function StrukturaDartPage() {
@@ -19,7 +18,6 @@ export default async function StrukturaDartPage() {
   
   return (
     <div className="w-layout-blockcontainer o-container alt-structure header-trigger w-container">
-      <AccessibilityTrigger />
       
       <h2 className="structure-header">Структура Державного агентства розвитку туризму України</h2>
       <div className="structure-wrap">

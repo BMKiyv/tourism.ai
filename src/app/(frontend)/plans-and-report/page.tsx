@@ -1,11 +1,9 @@
 import React from 'react'
 import { DocListItem } from '@/components/DocListItem'
-import { AccessibilityTrigger } from '@/components/AccessibilityTrigger'
 
 export default function PlansAndReportPage() {
   return (
     <div className="w-layout-blockcontainer o-container department header-trigger w-container">
-      <AccessibilityTrigger />
       
       <h1 className="plans-header">Плани та звіти діяльності ДАРТ</h1>
       <div className="o-tabpane-inf">

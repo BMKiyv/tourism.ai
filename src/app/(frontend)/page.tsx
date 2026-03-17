@@ -1,6 +1,7 @@
 import { getPayload } from "payload";
 import config from "@/payload.config";
 import Link from "next/link";
+import Image from "next/image";
 
 export default async function HomePage() {
   const payload = await getPayload({ config });
@@ -11,11 +12,11 @@ export default async function HomePage() {
     sort: "-date",
   });
 
-  const { docs: orders } = await payload.find({
-    collection: "orders",
-    limit: 5,
-    sort: "-date",
-  });
+  // const { docs: orders } = await payload.find({
+  //   collection: "orders",
+  //   limit: 5,
+  //   sort: "-date",
+  // });
 
   return (
     <>
@@ -71,11 +72,13 @@ export default async function HomePage() {
             className="gr-col-block"
           >
             <div className="second-screen-img">
-              <img
+              <Image
                 src="/webflow/images/bg-img-1_1.webp"
-                loading="lazy"
+                width={400}
+                height={300}
                 alt="our description image"
                 className="image-description"
+                style={{ objectFit: 'cover' }}
               />
             </div>
             <div className="gr-2nd-col-block">
@@ -96,10 +99,12 @@ export default async function HomePage() {
             className="gr-col-block"
           >
             <div className="second-screen-img">
-              <img
+              <Image
                 src="/webflow/images/bg-img-3_1.webp"
-                loading="lazy"
+                width={400}
+                height={300}
                 alt="vision decorative"
+                style={{ objectFit: 'cover' }}
               />
             </div>
             <div className="gr-2nd-col-block">
@@ -136,10 +141,12 @@ export default async function HomePage() {
             className="grid-item w-inline-block"
           >
             <div className="u-overflow">
-              <img
+              <Image
                 src="/webflow/images/mandruy-pict_1.webp"
-                loading="lazy"
+                width={400}
+                height={250}
                 alt="mandruy-project image"
+                style={{ objectFit: 'cover' }}
               />
             </div>
             <div className="gr-2nd-col-block">
@@ -159,10 +166,12 @@ export default async function HomePage() {
             className="grid-item w-inline-block"
           >
             <div className="u-overflow">
-              <img
+              <Image
                 src="/webflow/images/marshruty-pict_1.webp"
-                loading="lazy"
+                width={400}
+                height={250}
                 alt="marshruty image"
+                style={{ objectFit: 'cover' }}
               />
             </div>
             <div className="gr-2nd-col-block">
@@ -206,11 +215,13 @@ export default async function HomePage() {
                     >
                       <div className="o-layout-nws-overflow news-img-wrap">
                         {/* Placeholder or dynamic image if available */}
-                        <img
-                          loading="lazy"
+                        <Image
                           src="/webflow/images/hero_1.webp"
+                          width={400}
+                          height={250}
                           alt={blog.name}
                           className="o-layout-img"
+                          style={{ objectFit: 'cover' }}
                         />
                       </div>
                       <h3 className="news-heading">{blog.name}</h3>
@@ -222,9 +233,10 @@ export default async function HomePage() {
             <div className="alt-all-news-wrap">
               <Link href="/news" className="alt-all-news-link w-inline-block">
                 <div className="text-block-14">Всі новини</div>
-                <img
+                <Image
                   src="/webflow/images/blue-arrow-next.svg"
-                  loading="lazy"
+                  width={20}
+                  height={20}
                   alt=""
                   className="image-10"
                 />
@@ -255,11 +267,13 @@ export default async function HomePage() {
                 >
                   <div className="mask w-slider-mask">
                     <div className="slide-6 w-slide">
-                      <img
+                      <Image
                         src="/webflow/images/slide-link-1-img_1.webp"
-                        loading="lazy"
+                        width={300}
+                        height={100}
                         alt=""
                         className="o-img alt-page-img"
+                        style={{ objectFit: 'contain' }}
                       />
                     </div>
                   </div>

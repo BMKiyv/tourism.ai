@@ -26,7 +26,8 @@ const openSans = Open_Sans({
 
 export const metadata: Metadata = {
   title: "Державне агентство розвитку туризму України",
-  description: "Центральний орган виконавчої влади, який реалізує державну політику в галузі туризму та курортів України.",
+  description:
+    "Центральний орган виконавчої влади, який реалізує державну політику в галузі туризму та курортів України.",
 };
 
 export default function RootLayout({
@@ -35,13 +36,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="uk" className={cn(oswald.variable, openSans.variable)} data-wf-site="5fe0d678b18d7e19e32c3389">
-      <head>
-        <link href="/webflow/css/normalize.css" rel="stylesheet" type="text/css" />
-        <link href="/webflow/css/webflow.css" rel="stylesheet" type="text/css" />
-        <link href="/webflow/css/tourismgovua.webflow.css" rel="stylesheet" type="text/css" />
-      </head>
-      <body className="font-sans antialiased text-[#333] bg-white customCursor" suppressHydrationWarning>
+    <html
+      lang="uk"
+      className={cn(oswald.variable, openSans.variable)}
+      data-wf-site="5fe0d678b18d7e19e32c3389"
+    >
+      <body
+        className="font-sans antialiased text-[#333] bg-white customCursor"
+        suppressHydrationWarning
+      >
         <AuthProvider>
           <Header />
           <AccessibilityWidget />
@@ -50,20 +53,13 @@ export default function RootLayout({
           </main>
           <Footer />
         </AuthProvider>
-        
+
         {/* Webflow JS */}
-        <Script 
-          src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" 
-          strategy="beforeInteractive" 
+        <Script
+          src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+          strategy="beforeInteractive"
         />
-        <Script 
-          src="/webflow/js/webflow.js" 
-          strategy="afterInteractive" 
-        />
-        <Script 
-          src="https://cdn.prod.website-files.com/5fe0d678b18d7e19e32c3389/68d55186346c926f21c73bf4_accessibility-new.txt"
-          strategy="afterInteractive"
-        />
+        <Script src="/webflow/js/webflow.js" strategy="afterInteractive" />
       </body>
     </html>
   );

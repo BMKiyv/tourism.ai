@@ -240,8 +240,19 @@ export default async function HomePage() {
             <div className="div-block-18">
               <h3 className="banner-heading">Наші інформаційні партнери</h3>
               <div className="slider-block">
-                {/* Simplified slider for now, Webflow JS will handle the interaction if classes match */}
-                <div className="slider-3 w-slider">
+                <div
+                  data-delay="4000"
+                  data-animation="slide"
+                  className="slider-3 w-slider"
+                  data-autoplay="true"
+                  data-easing="ease"
+                  data-hide-arrows="false"
+                  data-disable-swipe="false"
+                  data-autoplay-limit="0"
+                  data-nav-spacing="3"
+                  data-duration="500"
+                  data-infinite="true"
+                >
                   <div className="mask w-slider-mask">
                     <div className="slide-6 w-slide">
                       <img
@@ -252,6 +263,13 @@ export default async function HomePage() {
                       />
                     </div>
                   </div>
+                  <div className="left-arrow-2 w-slider-arrow-left">
+                    <div className="w-icon-slider-left"></div>
+                  </div>
+                  <div className="right-arrow w-slider-arrow-right">
+                    <div className="w-icon-slider-right"></div>
+                  </div>
+                  <div className="slide-nav w-slider-nav w-round w-num"></div>
                 </div>
               </div>
             </div>

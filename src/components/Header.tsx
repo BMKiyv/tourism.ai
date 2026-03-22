@@ -2,12 +2,13 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 
 export const Header = () => {
   const router = useRouter()
   const pathname = usePathname()
+  const headerRef = useRef<HTMLElement>(null)
 
   const isEn = pathname.startsWith('/en')
   const [mobileOpen, setMobileOpen] = useState(false)
@@ -23,6 +24,19 @@ export const Header = () => {
     setActivityOpen(false)
     setSearchOpen(false)
   }
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (headerRef.current && !headerRef.current.contains(event.target as Node)) {
+        setAboutOpen(false)
+        setActivityOpen(false)
+        setSearchOpen(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
 
   useEffect(() => {
     const main = document.querySelector('.header-trigger') as HTMLElement
@@ -52,15 +66,23 @@ export const Header = () => {
     setSearchOpen(false);
   };
 
+  const isActive = (path: string) => {
+    if (path === '/' && pathname === '/') return true;
+    if (path === '/en' && pathname === '/en') return true;
+    if (path !== '/' && path !== '/en' && pathname.startsWith(path)) return true;
+    return false;
+  };
+
   return (
-    <header id="structure-alt" className="c-inner-header alt-inner-header">
-      <div onMouseLeave={closeDesktopMenus}>
+    <header id="structure-alt" className="c-inner-header alt-inner-header" ref={headerRef}>
+      <div>
         <div className="alt-container header-container w-container">
           <nav className="nav-tab strucutre-list">
             <div className="inner-nav-block">
               <Link
                 href={isEn ? "/en" : "/"}
-                className="nav-logo alt-hed-logo w-inline-block"
+                className={`nav-logo alt-hed-logo w-inline-block ${isActive(isEn ? "/en" : "/") ? "w--current" : ""}`}
+                onClick={closeDesktopMenus}
               >
                 <div className="alt-logo-wrap">
                   <div className="logo-point">
@@ -126,7 +148,7 @@ export const Header = () => {
             >
               <Link
                 href={isEn ? "/en" : "/"}
-                className="m-link-block modal-menu-list-link w-inline-block"
+                className={`m-link-block modal-menu-list-link w-inline-block ${isActive(isEn ? "/en" : "/") ? "w--current" : ""}`}
               >
                 <h2 className="modal-menu-list-item">
                   {isEn ? "Main" : "Головна"}
@@ -134,7 +156,7 @@ export const Header = () => {
               </Link>
               <Link
                 href="/news"
-                className="m-link-block modal-menu-list-link w-inline-block"
+                className={`m-link-block modal-menu-list-link w-inline-block ${isActive("/news") ? "w--current" : ""}`}
               >
                 <h2 className="modal-menu-list-item">
                   {isEn ? "News and announcements" : "Новини та анонси"}
@@ -142,7 +164,7 @@ export const Header = () => {
               </Link>
               <Link
                 href="/struktura-dart"
-                className="m-link-block modal-menu-list-link w-inline-block"
+                className={`m-link-block modal-menu-list-link w-inline-block ${isActive("/struktura-dart") ? "w--current" : ""}`}
               >
                 <h2 className="modal-menu-list-item">
                   {isEn ? "Structure" : "Структура агентства"}
@@ -150,7 +172,7 @@ export const Header = () => {
               </Link>
               <Link
                 href="/vacancies"
-                className="m-link-block modal-menu-list-link w-inline-block"
+                className={`m-link-block modal-menu-list-link w-inline-block ${isActive("/vacancies") ? "w--current" : ""}`}
               >
                 <h2 className="modal-menu-list-item">
                   {isEn ? "Vacancies" : "Вакансії"}
@@ -158,20 +180,20 @@ export const Header = () => {
               </Link>
               <Link
                 href="/our-team"
-                className="m-link-block modal-menu-list-link w-inline-block"
+                className={`m-link-block modal-menu-list-link w-inline-block ${isActive("/our-team") ? "w--current" : ""}`}
               >
                 <h2 className="modal-menu-list-item">
                   {isEn ? "Team" : "Команда"}
                 </h2>
               </Link>
               <div className="modal-menu-list-last">
-                <h2 className="modal-menu-list-item">
+                <h2 className={`modal-menu-list-item ${activityOpen ? "active" : ""}`}>
                   {isEn ? "Activities" : "Діяльність"}
                 </h2>
                 <div className="additional-list">
                   <Link
                     href={isEn ? "/en/tour-operator-licensing" : "/licensuvannya"}
-                    className="modal-menu-drop-link w-inline-block"
+                    className={`modal-menu-drop-link w-inline-block ${isActive(isEn ? "/en/tour-operator-licensing" : "/licensuvannya") ? "w--current" : ""}`}
                   >
                     <div className="modal-menu-drop-text">
                       {isEn
@@ -181,7 +203,7 @@ export const Header = () => {
                   </Link>
                   <Link
                     href={isEn ? "/en/hotel-categorization" : "/categorization"}
-                    className="modal-menu-drop-link w-inline-block"
+                    className={`modal-menu-drop-link w-inline-block ${isActive(isEn ? "/en/hotel-categorization" : "/categorization") ? "w--current" : ""}`}
                   >
                     <div className="modal-menu-drop-text">
                       {isEn ? "Hotel categorization" : "Категоризація готелів"}
@@ -189,7 +211,7 @@ export const Header = () => {
                   </Link>
                   <Link
                     href={isEn ? "/en/statistics" : "/statistic"}
-                    className="modal-menu-drop-link w-inline-block"
+                    className={`modal-menu-drop-link w-inline-block ${isActive(isEn ? "/en/statistics" : "/statistic") ? "w--current" : ""}`}
                   >
                     <div className="modal-menu-drop-text">
                       {isEn ? "Statistics" : "Статистика"}
@@ -197,7 +219,7 @@ export const Header = () => {
                   </Link>
                   <Link
                     href="/for-sitizens"
-                    className="modal-menu-drop-link w-inline-block"
+                    className={`modal-menu-drop-link w-inline-block ${isActive("/for-sitizens") ? "w--current" : ""}`}
                   >
                     <div className="modal-menu-drop-text">
                       {isEn ? "Citizens" : "Громадськості"}
@@ -208,7 +230,7 @@ export const Header = () => {
               <div className="modal-menu-button">
                 <Link
                   href={isEn ? "/en/contacts" : "/contact"}
-                  className="modal-menu-link w-inline-block"
+                  className={`modal-menu-link w-inline-block ${isActive(isEn ? "/en/contacts" : "/contact") ? "w--current" : ""}`}
                 >
                   <div className="text-block-13">
                     {isEn ? "Contacts" : "Контакти"}
@@ -222,8 +244,8 @@ export const Header = () => {
             <nav className="nav-bar alt-nav">
               <Link
                 href={isEn ? "/en" : "/"}
-                className="nav-logo alt-hed-logo w-inline-block"
-                onMouseEnter={closeDesktopMenus}
+                className={`nav-logo alt-hed-logo w-inline-block ${isActive(isEn ? "/en" : "/") ? "w--current" : ""}`}
+                onClick={closeDesktopMenus}
               >
                 <div className="alt-logo-wrap">
                   <div className="logo-point">
@@ -273,31 +295,52 @@ export const Header = () => {
               <div className="nav-menu-block">
                 <Link
                   href={isEn ? "/en" : "/"}
-                  className="nm-link header-decktop"
+                  className={`nm-link header-decktop ${isActive(isEn ? "/en" : "/") ? "w--current" : ""}`}
+                  onClick={closeDesktopMenus}
                 >
                   {isEn ? "Main" : "Головна"}
                 </Link>
                 <button
                   type="button"
                   id="about"
-                  className="nm-link about"
-                  onMouseEnter={() => {
-                    setAboutOpen(true);
+                  className={`nm-link about ${aboutOpen ? "w--current" : ""}`}
+                  style={{ 
+                    color: '#2d5ca6', 
+                    background: 'none', 
+                    border: 'none', 
+                    padding: 0, 
+                    font: 'inherit',
+                    cursor: 'pointer' 
+                  }}
+                  onClick={() => {
+                    setAboutOpen((prev) => !prev);
                     setActivityOpen(false);
                     setSearchOpen(false);
                   }}
                 >
                   {isEn ? "About SATD" : "Про ДАРТ"}
                 </button>
-                <Link href="/news" className="nm-link header-decktop">
+                <Link 
+                  href="/news" 
+                  className={`nm-link header-decktop ${isActive("/news") ? "w--current" : ""}`}
+                  onClick={closeDesktopMenus}
+                >
                   {isEn ? "News and announcements" : "Новини та анонси"}
                 </Link>
                 <button
                   type="button"
                   id="activity"
-                  className="nm-link header-decktop activity"
-                  onMouseEnter={() => {
-                    setActivityOpen(true);
+                  className={`nm-link header-decktop activity ${activityOpen ? "w--current" : ""}`}
+                  style={{ 
+                    color: '#2d5ca6', 
+                    background: 'none', 
+                    border: 'none', 
+                    padding: 0, 
+                    font: 'inherit',
+                    cursor: 'pointer' 
+                  }}
+                  onClick={() => {
+                    setActivityOpen((prev) => !prev);
                     setAboutOpen(false);
                     setSearchOpen(false);
                   }}
@@ -309,7 +352,7 @@ export const Header = () => {
                 <Link
                   href={isEn ? "/en/contacts" : "/contact"}
                   role="button"
-                  className="nav-cta w-inline-block"
+                  className={`nav-cta w-inline-block ${isActive(isEn ? "/en/contacts" : "/contact") ? "w--current" : ""}`}
                 >
                   <div className="nc-bg _2 alt-button"></div>
                   <div className="nc-inf button-1">
@@ -319,7 +362,7 @@ export const Header = () => {
                 <div className="div-block-13">
                   <button
                     type="button"
-                    className="global-search"
+                    className={`global-search ${searchOpen ? "active" : ""}`}
                     onClick={() => {
                       setSearchOpen((prev) => !prev);
                       setAboutOpen(false);
@@ -358,55 +401,64 @@ export const Header = () => {
           <div className="o-container alt-page-menu activity-menu">
             <Link
               href={isEn ? "/en/tour-operator-licensing" : "/licensuvannya"}
-              className="nm-link drop-menu w-inline-block"
+              className={`nm-link drop-menu w-inline-block ${isActive(isEn ? "/en/tour-operator-licensing" : "/licensuvannya") ? "w--current" : ""}`}
             >
               {isEn ? "Tour operator licensing" : "Ліцензування туроператорів"}
             </Link>
             <Link
               href={isEn ? "/en/hotel-categorization" : "/categorization"}
-              className="nm-link drop-menu w-inline-block"
+              className={`nm-link drop-menu w-inline-block ${isActive(isEn ? "/en/hotel-categorization" : "/categorization") ? "w--current" : ""}`}
             >
               {isEn ? "Hotel categorization" : "Категоризація готелів"}
             </Link>
             <Link
               href="/for-sitizens"
-              className="nm-link drop-menu w-inline-block"
+              className={`nm-link drop-menu w-inline-block ${isActive("/for-sitizens") ? "w--current" : ""}`}
             >
               {isEn ? "Citizens" : "Громадськості"}
             </Link>
             <Link
               href={isEn ? "/en/statistics" : "/statistic"}
-              className="nm-link drop-menu w-inline-block"
+              className={`nm-link drop-menu w-inline-block ${isActive(isEn ? "/en/statistics" : "/statistic") ? "w--current" : ""}`}
             >
               {isEn ? "Statistics" : "Статистика"}
             </Link>
             <Link
               href="/projects-npa"
-              className="nm-link drop-menu w-inline-block"
+              className={`nm-link drop-menu w-inline-block ${isActive("/projects-npa") ? "w--current" : ""}`}
             >
               {isEn ? "NPA projects" : "Проєкти НПА"}
             </Link>
-            <Link href="/anticor" className="nm-link drop-menu w-inline-block">
+            <Link 
+              href="/anticor" 
+              className={`nm-link drop-menu w-inline-block ${isActive("/anticor") ? "w--current" : ""}`}
+            >
               {isEn
                 ? "Anti-corruption"
                 : "Очищення влади та anti-corruption діяльність"}
             </Link>
-            <Link href="/finances" className="nm-link drop-menu w-inline-block">
+            <Link 
+              href="/finances" 
+              className={`nm-link drop-menu w-inline-block ${isActive("/finances") ? "w--current" : ""}`}
+            >
               {isEn ? "Finance and budget" : "Фінанси та бюджет"}
             </Link>
             <Link
               href="/public-orders"
-              className="nm-link drop-menu w-inline-block"
+              className={`nm-link drop-menu w-inline-block ${isActive("/public-orders") ? "w--current" : ""}`}
             >
               {isEn ? "Public procurement" : "Публічні закупівлі"}
             </Link>
             <Link
               href="/plans-and-report"
-              className="nm-link drop-menu w-inline-block"
+              className={`nm-link drop-menu w-inline-block ${isActive("/plans-and-report") ? "w--current" : ""}`}
             >
               {isEn ? "Plans and reports" : "Плани та звіти діяльності ДАРТ"}
             </Link>
-            <Link href="/orders" className="nm-link drop-menu w-inline-block">
+            <Link 
+              href="/orders" 
+              className={`nm-link drop-menu w-inline-block ${isActive("/orders") ? "w--current" : ""}`}
+            >
               {isEn ? "Orders and regulations" : "Нормативна база та накази"}
             </Link>
           </div>
@@ -420,31 +472,31 @@ export const Header = () => {
           <div className="o-container alt-page-menu">
             <Link
               href="/struktura-dart"
-              className="nm-link header-decktop w-inline-block"
+              className={`nm-link header-decktop w-inline-block ${isActive("/struktura-dart") ? "w--current" : ""}`}
             >
               {isEn ? "Structure" : "Структура агентства"}
             </Link>
             <Link
               href="/our-team"
-              className="nm-link header-decktop w-inline-block"
+              className={`nm-link header-decktop w-inline-block ${isActive("/our-team") ? "w--current" : ""}`}
             >
               {isEn ? "Team" : "Команда ДАРТ"}
             </Link>
             <Link
               href="/vacancies"
-              className="nm-link header-decktop w-inline-block"
+              className={`nm-link header-decktop w-inline-block ${isActive("/vacancies") ? "w--current" : ""}`}
             >
               {isEn ? "Vacancies" : "Вакансії"}
             </Link>
             <Link
               href="/professional-development"
-              className="nm-link header-decktop w-inline-block"
+              className={`nm-link header-decktop w-inline-block ${isActive("/professional-development") ? "w--current" : ""}`}
             >
               {isEn ? "Professional development" : "Професійний розвиток"}
             </Link>
             <Link
               href="/subsidiary"
-              className="nm-link header-decktop w-inline-block"
+              className={`nm-link header-decktop w-inline-block ${isActive("/subsidiary") ? "w--current" : ""}`}
             >
               {isEn ? "Subsidiary organizations" : "Підвідомчі організації"}
             </Link>

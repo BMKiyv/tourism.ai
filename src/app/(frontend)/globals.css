@@ -132,6 +132,12 @@
   transition: padding-top 0.3s ease-in;
 }
 
+.menu-block,
+.second-menu,
+.serch-container {
+  transition: height 0.3s ease-in;
+}
+
 /* High Contrast Mode for Government Standards */
 .high-contrast {
   background-color: black !important;

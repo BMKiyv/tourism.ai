@@ -1,80 +1,92 @@
 "use client";
 
-import Image from 'next/image'
-import Link from 'next/link'
-import { useState, useEffect, useRef } from 'react'
-import { usePathname, useRouter } from 'next/navigation'
+import Image from "next/image";
+import Link from "next/link";
+import { useState, useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 
 export const Header = () => {
-  const router = useRouter()
-  const pathname = usePathname()
-  const headerRef = useRef<HTMLElement>(null)
+  const pathname = usePathname();
+  const headerRef = useRef<HTMLElement>(null);
 
-  const isEn = pathname.startsWith('/en')
-  const [mobileOpen, setMobileOpen] = useState(false)
-  const [aboutOpen, setAboutOpen] = useState(false)
-  const [activityOpen, setActivityOpen] = useState(false)
-  const [searchOpen, setSearchOpen] = useState(false)
+  const isEn = pathname.startsWith("/en");
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [aboutOpen, setAboutOpen] = useState(false);
+  const [activityOpen, setActivityOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [langHover, setLangHover] = useState(false);
 
-  const [prevPathname, setPrevPathname] = useState(pathname)
+  const [prevPathname, setPrevPathname] = useState(pathname);
   if (pathname !== prevPathname) {
-    setPrevPathname(pathname)
-    setMobileOpen(false)
-    setAboutOpen(false)
-    setActivityOpen(false)
-    setSearchOpen(false)
+    setPrevPathname(pathname);
+    setMobileOpen(false);
+    setAboutOpen(false);
+    setActivityOpen(false);
+    setSearchOpen(false);
+    setLangHover(false);
   }
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (headerRef.current && !headerRef.current.contains(event.target as Node)) {
-        setAboutOpen(false)
-        setActivityOpen(false)
-        setSearchOpen(false)
+      if (
+        headerRef.current &&
+        !headerRef.current.contains(event.target as Node)
+      ) {
+        setAboutOpen(false);
+        setActivityOpen(false);
+        setSearchOpen(false);
+        setLangHover(false);
       }
-    }
+    };
 
-    document.addEventListener('mousedown', handleClickOutside)
-    return () => document.removeEventListener('mousedown', handleClickOutside)
-  }, [])
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   useEffect(() => {
-    const main = document.querySelector('.header-trigger') as HTMLElement
-    if (!main) return
+    const main = document.querySelector(".header-trigger") as HTMLElement;
+    if (!main) return;
 
     if (activityOpen || searchOpen) {
-      main.style.paddingTop = '11vw'
+      main.style.paddingTop = "11vw";
     } else if (aboutOpen) {
-      main.style.paddingTop = '5vw'
+      main.style.paddingTop = "5vw";
     } else {
-      main.style.paddingTop = '2vw'
+      main.style.paddingTop = "2vw";
     }
-  }, [activityOpen, aboutOpen, searchOpen])
+  }, [activityOpen, aboutOpen, searchOpen]);
 
-  const toggleLanguage = () => {
-    if (isEn) {
-      router.push(pathname.replace("/en", "") || "/");
-      return;
+  const getLanguageUrl = (lang: "ua" | "en") => {
+    if (lang === "en") {
+      if (isEn) return pathname;
+      return `/en${pathname === "/" ? "" : pathname}`;
+    } else {
+      if (!isEn) return pathname;
+      return pathname.replace("/en", "") || "/";
     }
-
-    router.push(`/en${pathname === "/" ? "" : pathname}`);
   };
 
   const closeDesktopMenus = () => {
     setAboutOpen(false);
     setActivityOpen(false);
     setSearchOpen(false);
+    setLangHover(false);
   };
 
   const isActive = (path: string) => {
-    if (path === '/' && pathname === '/') return true;
-    if (path === '/en' && pathname === '/en') return true;
-    if (path !== '/' && path !== '/en' && pathname.startsWith(path)) return true;
+    if (path === "/" && pathname === "/") return true;
+    if (path === "/en" && pathname === "/en") return true;
+    if (path !== "/" && path !== "/en" && pathname.startsWith(path))
+      return true;
     return false;
   };
 
   return (
-    <header id="structure-alt" className="c-inner-header alt-inner-header" ref={headerRef}>
+    <header
+      id="structure-alt"
+      className="c-inner-header alt-inner-header"
+      ref={headerRef}
+    >
       <div>
         <div className="alt-container header-container w-container">
           <nav className="nav-tab strucutre-list">
@@ -187,12 +199,16 @@ export const Header = () => {
                 </h2>
               </Link>
               <div className="modal-menu-list-last">
-                <h2 className={`modal-menu-list-item ${activityOpen ? "active" : ""}`}>
+                <h2
+                  className={`modal-menu-list-item ${activityOpen ? "active" : ""}`}
+                >
                   {isEn ? "Activities" : "Діяльність"}
                 </h2>
                 <div className="additional-list">
                   <Link
-                    href={isEn ? "/en/tour-operator-licensing" : "/licensuvannya"}
+                    href={
+                      isEn ? "/en/tour-operator-licensing" : "/licensuvannya"
+                    }
                     className={`modal-menu-drop-link w-inline-block ${isActive(isEn ? "/en/tour-operator-licensing" : "/licensuvannya") ? "w--current" : ""}`}
                   >
                     <div className="modal-menu-drop-text">
@@ -304,24 +320,25 @@ export const Header = () => {
                   type="button"
                   id="about"
                   className={`nm-link about ${aboutOpen ? "w--current" : ""}`}
-                  style={{ 
-                    color: '#2d5ca6', 
-                    background: 'none', 
-                    border: 'none', 
-                    padding: 0, 
-                    font: 'inherit',
-                    cursor: 'pointer' 
+                  style={{
+                    color: "#2d5ca6",
+                    background: "none",
+                    border: "none",
+                    padding: 0,
+                    font: "inherit",
+                    cursor: "pointer",
                   }}
                   onClick={() => {
                     setAboutOpen((prev) => !prev);
                     setActivityOpen(false);
                     setSearchOpen(false);
+                    setLangHover(false);
                   }}
                 >
                   {isEn ? "About SATD" : "Про ДАРТ"}
                 </button>
-                <Link 
-                  href="/news" 
+                <Link
+                  href="/news"
                   className={`nm-link header-decktop ${isActive("/news") ? "w--current" : ""}`}
                   onClick={closeDesktopMenus}
                 >
@@ -331,18 +348,19 @@ export const Header = () => {
                   type="button"
                   id="activity"
                   className={`nm-link header-decktop activity ${activityOpen ? "w--current" : ""}`}
-                  style={{ 
-                    color: '#2d5ca6', 
-                    background: 'none', 
-                    border: 'none', 
-                    padding: 0, 
-                    font: 'inherit',
-                    cursor: 'pointer' 
+                  style={{
+                    color: "#2d5ca6",
+                    background: "none",
+                    border: "none",
+                    padding: 0,
+                    font: "inherit",
+                    cursor: "pointer",
                   }}
                   onClick={() => {
                     setActivityOpen((prev) => !prev);
                     setAboutOpen(false);
                     setSearchOpen(false);
+                    setLangHover(false);
                   }}
                 >
                   {isEn ? "Activities" : "Діяльність"}
@@ -367,6 +385,7 @@ export const Header = () => {
                       setSearchOpen((prev) => !prev);
                       setAboutOpen(false);
                       setActivityOpen(false);
+                      setLangHover(false);
                     }}
                   >
                     <Image
@@ -377,15 +396,57 @@ export const Header = () => {
                       alt=""
                     />
                   </button>
-                  <button
-                    type="button"
+                  <div
                     className="language"
-                    onClick={toggleLanguage}
+                    onMouseEnter={() => setLangHover(true)}
+                    onMouseLeave={() => setLangHover(false)}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      cursor: "pointer",
+                      position: "relative",
+                    }}
                   >
-                    <div className={`lang-ua ${!isEn ? "active" : ""}`}>Ua</div>
-                    <div className={`lang-en ${isEn ? "active" : ""}`}>En</div>
-                    <div className="triangle-up"></div>
-                  </button>
+                    <div style={{ position: "relative" }}>
+                      <div
+                        className={isEn ? "lang-en" : "lang-ua"}
+                        style={{ display: "block", position: "static" }}
+                      >
+                        {isEn ? "En" : "Ua"}
+                      </div>
+                      {langHover && (
+                        <Link
+                          href={getLanguageUrl(isEn ? "ua" : "en")}
+                          className={isEn ? "lang-ua" : "lang-en"}
+                          style={{
+                            display: "block",
+                            position: "absolute",
+                            top: "100%",
+                            left: 0,
+                            zIndex: 100,
+                            background: "transparent",
+                            boxShadow: "none",
+                            paddingTop: "5px",
+                          }}
+                        >
+                          {isEn ? "Ua" : "En"}
+                        </Link>
+                      )}
+                    </div>
+                    <div
+                      className="triangle-up"
+                      style={{
+                        transform: langHover
+                          ? "rotate(0deg)"
+                          : "rotate(180deg)",
+                        transition: "transform 0.3s ease",
+                        marginLeft: "2px",
+                        marginTop: "2px",
+                        position: "absolute",
+                        left: "100%",
+                      }}
+                    ></div>
+                  </div>
                 </div>
               </div>
             </nav>
@@ -429,16 +490,16 @@ export const Header = () => {
             >
               {isEn ? "NPA projects" : "Проєкти НПА"}
             </Link>
-            <Link 
-              href="/anticor" 
+            <Link
+              href="/anticor"
               className={`nm-link drop-menu w-inline-block ${isActive("/anticor") ? "w--current" : ""}`}
             >
               {isEn
                 ? "Anti-corruption"
                 : "Очищення влади та anti-corruption діяльність"}
             </Link>
-            <Link 
-              href="/finances" 
+            <Link
+              href="/finances"
               className={`nm-link drop-menu w-inline-block ${isActive("/finances") ? "w--current" : ""}`}
             >
               {isEn ? "Finance and budget" : "Фінанси та бюджет"}
@@ -455,8 +516,8 @@ export const Header = () => {
             >
               {isEn ? "Plans and reports" : "Плани та звіти діяльності ДАРТ"}
             </Link>
-            <Link 
-              href="/orders" 
+            <Link
+              href="/orders"
               className={`nm-link drop-menu w-inline-block ${isActive("/orders") ? "w--current" : ""}`}
             >
               {isEn ? "Orders and regulations" : "Нормативна база та накази"}
@@ -516,7 +577,9 @@ export const Header = () => {
               maxLength={256}
               name="query"
               placeholder={
-                isEn ? "Type title or keyword" : "Введіть назву чи ключове слово"
+                isEn
+                  ? "Type title or keyword"
+                  : "Введіть назву чи ключове слово"
               }
               type="search"
               id="search-in-component"

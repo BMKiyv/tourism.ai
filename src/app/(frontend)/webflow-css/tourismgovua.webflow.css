@@ -1468,7 +1468,7 @@ a:hover {
 .nav-menu-block {
   justify-content: space-between;
   align-items: center;
-  width: 30vw;
+  width: 34vw;
   display: flex;
 }
 
@@ -9023,10 +9023,9 @@ a:hover {
 
   .social-icons-block {
     grid-template-rows: auto;
-    grid-template-columns: minmax(40px, 48px) minmax(40px, 48px) minmax(
-        40px,
-        48px
-      ) minmax(40px, 48px);
+    grid-template-columns:
+      minmax(40px, 48px) minmax(40px, 48px) minmax(40px, 48px)
+      minmax(40px, 48px);
     place-items: center start;
     margin-left: 0;
   }

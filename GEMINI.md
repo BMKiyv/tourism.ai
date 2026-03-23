@@ -33,28 +33,25 @@ Official website for the **State Agency for Tourism Development of Ukraine (DART
 - [x] Імпорт основних колекцій з Webflow (Blogs, Departments, Orders, Vacancies).
 - [x] Налаштування локалізації (UK/EN).
 - [x] Реалізація системи автентифікації користувачів.
-- [x] Масштабна міграція статичних та динамічних сторінок (більше 15 сторінок):
-    - [x] Про ДАРТ, Структура, Команда, Біографії.
-    - [x] Фінанси, Громадськості, Проєкти НПА, Публічні закупівлі, Статистика.
-    - [x] Категоризація, Ліцензування, Накази, Вакансії, Антикорупція.
-    - [x] Професійний розвиток, Підвідомчі організації.
+- [x] Масштабна міграція статичних та динамічних сторінок (більше 15 сторінок).
 - [x] Створення перевикористовуваних компонентів: `Tabs`, `ContactForm`, `DocumentLink`, `DocListItem`.
 - [x] Налаштування динамічної колекції `team` у Payload.
-- [x] Fix ESLint error in `Header.tsx` (`react-hooks/set-state-in-effect`).
-- [x] Migrate `<img>` tags to `<Image />` in `Header.tsx` and `page.tsx`.
-- [x] Restore `header-trigger` functionality in `Header.tsx`.
-- [x] Integrated advanced Accessibility Widget from external source.
-- [x] Removed legacy `AccessibilityTrigger` and cleaned up all page-level imports.
+- [x] Рефакторинг `Header.tsx`:
+    - [x] Перехід на `<Image />` та семантичну верстку.
+    - [x] Відкриття меню за кліком (замість hover) та click-outside закриття.
+    - [x] Плавна анімація випадаючих списків.
+    - [x] Автоматичне виділення активної сторінки (`w--current`).
+    - [x] Реалізація перемикача мов (UA/EN) з ховер-ефектом та SEO-посиланнями.
+- [x] Integrated advanced Accessibility Widget.
 
 ### In Progress (В процесі)
+- [ ] Перевірка переспрямувань на відповідні сторінки в англійській версії хедера.
 - [ ] Міграція англомовної версії сайту (`/en/*`).
-- [ ] Вирішення питання переносу зображень, що були в колекціях Webflow (автоматизація завантаження).
-- [ ] Налаштування поштового сервісу для розсилки посилань на відновлення пароля.
+- [ ] Вирішення питання переносу зображень з Webflow.
 
 ### To Do (Заплановано)
+- [ ] Адаптація хедера для мобільних пристроїв та планшетів (Responsive).
 - [ ] Оптимізація роботи з медіа-файлами.
 - [ ] Реалізація пошуку по всьому сайту.
-- [ ] Налаштування захищених роутів для адмін-функцій на фронтенді.
-- [ ] Implement robust accessibility testing (using `a11y-debugging` skill).
-- [ ] Review all dynamic content pages for image optimization.
-- [ ] Optimize LCP for the homepage video/hero section.
+- [ ] Налаштування захищених роутів.
+- [ ] Оптимізація LCP для головної сторінки.

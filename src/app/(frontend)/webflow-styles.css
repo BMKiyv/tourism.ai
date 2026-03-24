@@ -147,3 +147,80 @@ button.language {
   color: inherit;
   text-align: inherit;
 }
+
+/* Footer alignment fixes to match exported Webflow footer and keep it responsive */
+.footer .footer-grid {
+  width: 100%;
+}
+
+.footer .link-block-11 {
+  align-self: flex-start;
+}
+
+.footer .footer-contacts,
+.footer .footer-icons,
+.footer .social-icons {
+  min-width: 0;
+}
+
+.footer .footer-mail {
+  color: inherit;
+}
+
+.footer .icons-block img,
+.footer .social-icon img {
+  display: block;
+}
+
+@media (max-width: 991px) {
+  .footer .footer-grid {
+    gap: 24px 0;
+  }
+
+  .footer .footer-icons,
+  .footer .social-icons {
+    width: 100%;
+  }
+
+  .footer .social-icons {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 767px) {
+  .footer .link-block-11,
+  .footer .footer-contacts,
+  .footer .footer-icons,
+  .footer .social-icons,
+  .footer .copywrite {
+    width: 100%;
+  }
+
+  .footer .link-block-11 {
+    display: flex;
+    justify-content: center;
+  }
+
+  .footer .icons-block {
+    justify-content: center;
+  }
+
+  .footer .social-icons {
+    margin-top: 24px;
+  }
+}
+
+@media (max-width: 479px) {
+  .footer {
+    padding-bottom: 6vw;
+  }
+
+  .footer .icons-block {
+    row-gap: 20px;
+  }
+
+  .footer .social-icons-block {
+    column-gap: 16px;
+    row-gap: 16px;
+  }
+}

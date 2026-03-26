@@ -2,6 +2,7 @@ import { getPayload } from "payload";
 import config from "@/payload.config";
 import Link from "next/link";
 import Image from "next/image";
+import VideoSlider from "@/components/VideoSlider";
 
 export default async function HomePage() {
   const payload = await getPayload({ config });
@@ -78,7 +79,7 @@ export default async function HomePage() {
                 height={300}
                 alt="our description image"
                 className="image-description"
-                style={{ objectFit: 'cover' }}
+                style={{ objectFit: "cover" }}
               />
             </div>
             <div className="gr-2nd-col-block">
@@ -104,7 +105,7 @@ export default async function HomePage() {
                 width={400}
                 height={300}
                 alt="vision decorative"
-                style={{ objectFit: 'cover' }}
+                style={{ objectFit: "cover" }}
               />
             </div>
             <div className="gr-2nd-col-block">
@@ -120,6 +121,8 @@ export default async function HomePage() {
           </div>
         </div>
       </div>
+
+      <VideoSlider />
 
       <div className="o-container alt-container w-container">
         <div className="alt-projects">
@@ -146,7 +149,7 @@ export default async function HomePage() {
                 width={400}
                 height={250}
                 alt="mandruy-project image"
-                style={{ objectFit: 'cover' }}
+                style={{ objectFit: "cover" }}
               />
             </div>
             <div className="gr-2nd-col-block">
@@ -171,7 +174,7 @@ export default async function HomePage() {
                 width={400}
                 height={250}
                 alt="marshruty image"
-                style={{ objectFit: 'cover' }}
+                style={{ objectFit: "cover" }}
               />
             </div>
             <div className="gr-2nd-col-block">
@@ -221,7 +224,7 @@ export default async function HomePage() {
                           height={250}
                           alt={blog.name}
                           className="o-layout-img"
-                          style={{ objectFit: 'cover' }}
+                          style={{ objectFit: "cover" }}
                         />
                       </div>
                       <h3 className="news-heading">{blog.name}</h3>
@@ -230,18 +233,18 @@ export default async function HomePage() {
                 ))}
               </div>
             </div>
-            <div className="alt-all-news-wrap">
+            {/* <div className="alt-all-news-wrap">
               <Link href="/news" className="alt-all-news-link w-inline-block">
                 <div className="text-block-14">Всі новини</div>
-                <Image
+                 <Image
                   src="/webflow/images/blue-arrow-next.svg"
                   width={20}
                   height={20}
                   alt=""
                   className="image-10"
-                />
+                /> 
               </Link>
-            </div>
+            </div> */}
           </div>
         </section>
       </div>
@@ -273,7 +276,7 @@ export default async function HomePage() {
                         height={100}
                         alt=""
                         className="o-img alt-page-img"
-                        style={{ objectFit: 'contain' }}
+                        style={{ objectFit: "contain" }}
                       />
                     </div>
                   </div>

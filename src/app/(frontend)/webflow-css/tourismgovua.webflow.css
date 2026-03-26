@@ -4533,9 +4533,9 @@ a:hover {
   grid-row-gap: 0vw;
   flex-wrap: wrap;
   flex: 1 0 100%;
-  justify-content: flex-start;
+  justify-content: center;
   align-self: auto;
-  align-items: flex-start;
+  align-items: center;
   max-width: 27vw;
   margin-top: 1vw;
   display: flex;
@@ -4647,11 +4647,17 @@ a:hover {
   cursor: pointer;
 }
 
+.link-block-5,
+.link-block-8,
+.link-block-9 {
+  width: 150px;
+}
+
 .slider-section {
   background-color: #b2e0f9;
   padding-top: 5vw;
   padding-bottom: 2vw;
-  display: none;
+  display: block;
   position: relative;
 }
 
@@ -4661,7 +4667,7 @@ a:hover {
   flex-direction: row;
   width: 164.42vw;
   height: 16vw;
-  display: none;
+  display: flex;
   position: relative;
   overflow: hidden;
 }

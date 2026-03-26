@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
 import Image from "next/image";
@@ -25,6 +26,16 @@ const videos = [
 ];
 
 export default function VideoSlider() {
+  const swiperRef = useRef<SwiperInstance | null>(null);
+
+  const handleMouseEnter = () => {
+    swiperRef.current?.autoplay.stop();
+  };
+
+  const handleMouseLeave = () => {
+    swiperRef.current?.autoplay.start();
+  };
+
   return (
     <section className="slider-section">
       <div className="w-layout-blockcontainer o-container video-slider w-container">

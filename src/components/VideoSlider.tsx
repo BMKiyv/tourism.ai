@@ -32,6 +32,7 @@ export default function VideoSlider() {
           className="video-swiper"
           modules={[Autoplay]}
           slidesPerView={1}
+          centeredSlides
           spaceBetween={24}
           loop
           autoplay={{
@@ -51,7 +52,7 @@ export default function VideoSlider() {
           {videos.map((video) => (
             <SwiperSlide 
               key={video.src} 
-              className="video-slide"
+            className="video-slide"
               style={{ height: "auto", width: "auto" }} // Allow Swiper to control width
             >
               <div 

@@ -1,7 +1,9 @@
 "use client";
 
+import { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
+import type { Swiper as SwiperInstance } from "swiper";
 import "swiper/css";
 
 const videos = [
@@ -24,6 +26,16 @@ const videos = [
 ];
 
 export default function VideoSlider() {
+  const swiperRef = useRef<SwiperInstance | null>(null);
+
+  const handleMouseEnter = () => {
+    swiperRef.current?.autoplay.stop();
+  };
+
+  const handleMouseLeave = () => {
+    swiperRef.current?.autoplay.start();
+  };
+
   return (
     <section className="slider-section">
       <div className="w-layout-blockcontainer o-container video-slider w-container">
@@ -38,6 +50,11 @@ export default function VideoSlider() {
             delay: 2500,
             disableOnInteraction: false,
           }}
+          onSwiper={(swiper) => {
+            swiperRef.current = swiper;
+          }}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
           breakpoints={{
             768: {
               slidesPerView: 2,

@@ -105,6 +105,7 @@ export const Header = () => {
                       height={60}
                       alt="logo-scroll"
                       className="image-5"
+                      style={{ height: "auto" }}
                     />
                   </div>
                   <div className="logo-word">
@@ -119,6 +120,7 @@ export const Header = () => {
                       height={60}
                       alt=""
                       className="image-6"
+                      style={{ height: "auto" }}
                     />
                   </div>
                 </div>
@@ -130,6 +132,7 @@ export const Header = () => {
                     height={30}
                     alt=""
                     className="image-5"
+                    style={{ height: "auto" }}
                   />
                   <Image
                     src="/webflow/images/logo_word_hover.svg"
@@ -138,6 +141,7 @@ export const Header = () => {
                     height={60}
                     alt=""
                     className="image-6"
+                    style={{ height: "auto" }}
                   />
                 </div>
               </Link>
@@ -272,6 +276,7 @@ export const Header = () => {
                       height={60}
                       alt="logo-scroll"
                       className="image-5"
+                      style={{ height: "auto" }}
                     />
                   </div>
                   <div className="logo-word">
@@ -286,6 +291,7 @@ export const Header = () => {
                       height={60}
                       alt=""
                       className="image-6"
+                      style={{ height: "auto" }}
                     />
                   </div>
                 </div>
@@ -297,6 +303,7 @@ export const Header = () => {
                     height={30}
                     alt=""
                     className="image-5"
+                    style={{ height: "auto" }}
                   />
                   <Image
                     src="/webflow/images/logo_word_hover.svg"
@@ -305,6 +312,7 @@ export const Header = () => {
                     height={60}
                     alt=""
                     className="image-6"
+                    style={{ height: "auto" }}
                   />
                 </div>
               </Link>
@@ -394,6 +402,7 @@ export const Header = () => {
                       width={25}
                       height={25}
                       alt=""
+                      style={{ height: "auto" }}
                     />
                   </button>
                   <div

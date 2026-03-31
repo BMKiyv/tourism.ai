@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useCallback, useState } from "react";
 import type { Swiper as SwiperInstance } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
@@ -29,20 +29,31 @@ const videos = [
 const loopVideos = [...videos, ...videos, ...videos];
 
 export default function VideoSlider() {
-  const swiperRef = useRef<SwiperInstance | null>(null);
   const [swiperInstance, setSwiperInstance] = useState<SwiperInstance | null>(
     null,
   );
-  const wrapperRef = useRef<HTMLDivElement | null>(null);
+
+  const stopAutoplay = useCallback(() => {
+    if (swiperInstance?.autoplay?.running) {
+      swiperInstance.autoplay.stop();
+    }
+  }, [swiperInstance]);
+
+  const startAutoplay = useCallback(() => {
+    if (swiperInstance && !swiperInstance.autoplay?.running) {
+      swiperInstance.autoplay.start();
+    }
+  }, [swiperInstance]);
 
   return (
-    <section
-      className="slider-section"
-      onMouseEnter={() => console.log("Section Hovered!")}
-    >
+    <section className="slider-section">
       <div className="w-layout-blockcontainer o-container video-slider w-container">
         <h2 className="white-header">Роздивись Україну</h2>
-        <div className="video-swiper-wrap" ref={wrapperRef}>
+        <div
+          className="video-swiper-wrap"
+          onMouseEnter={stopAutoplay}
+          onMouseLeave={startAutoplay}
+        >
           <button
             className="video-slider-nav video-slider-prev"
             type="button"
@@ -73,7 +84,6 @@ export default function VideoSlider() {
             className="video-swiper"
             modules={[Autoplay, Navigation]}
             onSwiper={(swiper) => {
-              swiperRef.current = swiper;
               setSwiperInstance(swiper);
             }}
             navigation={{
@@ -137,6 +147,8 @@ export default function VideoSlider() {
                           width: "100%",
                           height: "100%",
                         }}
+                        onMouseEnter={stopAutoplay}
+                        onMouseLeave={startAutoplay}
                       >
                         <source src={video.src} type="video/mp4" />
                       </video>

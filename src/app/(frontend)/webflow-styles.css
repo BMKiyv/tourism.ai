@@ -258,7 +258,7 @@ button.language {
 }
 
 .video-slider-prev {
-  left: -48px;
+  left: 16px;
 }
 
 .video-slider-prev img {
@@ -266,7 +266,7 @@ button.language {
 }
 
 .video-slider-next {
-  right: -48px;
+  right: 16px;
 }
 
 .video-slider-nav:hover {
@@ -333,11 +333,11 @@ button.language {
 
 @media (max-width: 991px) {
   .video-slider-prev {
-    left: -32px;
+    left: 12px;
   }
 
   .video-slider-next {
-    right: -32px;
+    right: 12px;
   }
 
   .video-slide {
@@ -356,11 +356,11 @@ button.language {
   }
 
   .video-slider-prev {
-    left: -12px;
+    left: 8px;
   }
 
   .video-slider-next {
-    right: -12px;
+    right: 8px;
   }
 
   .video-slide {

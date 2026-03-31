@@ -227,11 +227,13 @@ button.language {
 
 /* Видео-карусель (Swiper) */
 .video-swiper {
-  overflow: hidden;
+  overflow: visible;
 }
 
 .video-swiper-wrap {
   position: relative;
+  overflow: visible;
+  pointer-events: auto;
 }
 
 .video-slider-nav {
@@ -244,9 +246,9 @@ button.language {
   align-items: center;
   justify-content: center;
   border: 0;
-  border-radius: 999px;
-  background: rgb(255 255 255 / 90%);
-  box-shadow: 0 8px 24px rgb(21 17 95 / 16%);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
   transform: translateY(-50%);
   transition:
     background-color 0.2s ease,
@@ -256,7 +258,7 @@ button.language {
 }
 
 .video-slider-prev {
-  left: -24px;
+  left: -48px;
 }
 
 .video-slider-prev img {
@@ -264,18 +266,18 @@ button.language {
 }
 
 .video-slider-next {
-  right: -24px;
+  right: -48px;
 }
 
 .video-slider-nav:hover {
-  background: #fff;
-  box-shadow: 0 10px 28px rgb(21 17 95 / 24%);
+  background: transparent;
+  box-shadow: none;
 }
 
 .video-slider-nav:focus-visible {
   outline: 2px solid #2d5ca6;
   outline-offset: 2px;
-  background: #fff;
+  background: transparent;
 }
 
 .video-slider-nav.swiper-button-disabled {
@@ -289,8 +291,12 @@ button.language {
 }
 
 .video-swiper .video-slide {
-  width: 20.75vw;
-  transition: transform 0.35s ease, filter 0.35s ease, opacity 0.35s ease;
+  width: auto;
+  pointer-events: auto;
+  transition:
+    transform 0.35s ease,
+    filter 0.35s ease,
+    opacity 0.35s ease;
   transform: scale(0.94);
   filter: blur(1.5px);
   opacity: 0.72;
@@ -300,6 +306,14 @@ button.language {
 .video-swiper .video-slide .video-wrap {
   height: 11.7vw;
   overflow: visible;
+  pointer-events: auto;
+}
+
+.video-swiper .videoframe,
+.video-swiper .html-embed,
+.video-swiper .w-embed,
+.video-swiper .w-iframe {
+  pointer-events: auto;
 }
 
 .video-swiper .swiper-slide-active {
@@ -319,11 +333,11 @@ button.language {
 
 @media (max-width: 991px) {
   .video-slider-prev {
-    left: -16px;
+    left: -32px;
   }
 
   .video-slider-next {
-    right: -16px;
+    right: -32px;
   }
 
   .video-slide {
@@ -342,11 +356,11 @@ button.language {
   }
 
   .video-slider-prev {
-    left: 8px;
+    left: -12px;
   }
 
   .video-slider-next {
-    right: 8px;
+    right: -12px;
   }
 
   .video-slide {

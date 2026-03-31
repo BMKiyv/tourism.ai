@@ -1,6 +1,7 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import type { Swiper as SwiperInstance } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
 import Image from "next/image";
@@ -25,22 +26,23 @@ const videos = [
   },
 ];
 
+const loopVideos = [...videos, ...videos, ...videos];
+
 export default function VideoSlider() {
   const swiperRef = useRef<SwiperInstance | null>(null);
-
-  const handleMouseEnter = () => {
-    swiperRef.current?.autoplay.stop();
-  };
-
-  const handleMouseLeave = () => {
-    swiperRef.current?.autoplay.start();
-  };
+  const [swiperInstance, setSwiperInstance] = useState<SwiperInstance | null>(
+    null,
+  );
+  const wrapperRef = useRef<HTMLDivElement | null>(null);
 
   return (
-    <section className="slider-section">
+    <section
+      className="slider-section"
+      onMouseEnter={() => console.log("Section Hovered!")}
+    >
       <div className="w-layout-blockcontainer o-container video-slider w-container">
         <h2 className="white-header">Роздивись Україну</h2>
-        <div className="video-swiper-wrap">
+        <div className="video-swiper-wrap" ref={wrapperRef}>
           <button
             className="video-slider-nav video-slider-prev"
             type="button"
@@ -70,13 +72,23 @@ export default function VideoSlider() {
           <Swiper
             className="video-swiper"
             modules={[Autoplay, Navigation]}
-            navigation={{ prevEl: ".video-slider-prev", nextEl: ".video-slider-next" }}
+            onSwiper={(swiper) => {
+              swiperRef.current = swiper;
+              setSwiperInstance(swiper);
+            }}
+            navigation={{
+              prevEl: ".video-slider-prev",
+              nextEl: ".video-slider-next",
+            }}
             slidesPerView={1}
             spaceBetween={24}
+            centeredSlides={true}
             loop
+            loopAdditionalSlides={3}
             autoplay={{
               delay: 2500,
               disableOnInteraction: false,
+              pauseOnMouseEnter: true,
             }}
             breakpoints={{
               768: {
@@ -88,11 +100,10 @@ export default function VideoSlider() {
             }}
             style={{ width: "100%" }}
           >
-            {videos.map((video) => (
+            {loopVideos.map((video, index) => (
               <SwiperSlide
-                key={video.src}
+                key={`${video.src}-${index}`}
                 className="video-slide"
-                style={{ height: "auto", width: "auto" }} // Allow Swiper to control width
               >
                 <div
                   className="video-wrap"
@@ -101,9 +112,12 @@ export default function VideoSlider() {
                     height: "auto",
                     minHeight: "unset",
                     flex: "unset",
-                  }} // Override Webflow flex and height
+                  }}
                 >
-                  <div className="html-embed w-embed w-iframe" style={{ width: "100%" }}>
+                  <div
+                    className="html-embed w-embed w-iframe"
+                    style={{ width: "100%" }}
+                  >
                     <div
                       style={{
                         aspectRatio: "1.77777778",
@@ -118,7 +132,11 @@ export default function VideoSlider() {
                         controls
                         preload="metadata"
                         aria-label={video.title}
-                        style={{ objectFit: "cover", width: "100%", height: "100%" }}
+                        style={{
+                          objectFit: "cover",
+                          width: "100%",
+                          height: "100%",
+                        }}
                       >
                         <source src={video.src} type="video/mp4" />
                       </video>

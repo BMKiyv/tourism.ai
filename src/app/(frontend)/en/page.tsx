@@ -33,7 +33,7 @@ export default function EnglishHomePage() {
         <div className="w-layout-grid _3-col-grid mission-grid">
           <div className="gr-col-block">
             <div className="second-screen-img">
-              <img src="/webflow/images/bg-img-1_1.webp" loading="lazy" alt="mission" className="image-description" />
+              <img src="/webflow/images/bg-img-1_1.webp" loading="lazy" alt="mission" className="image-description" style={{ width: '100%', height: 'auto' }} />
             </div>
             <div className="gr-2nd-col-block">
               <h2 className="gr-col-h mission-item-heading">Mission</h2>
@@ -44,7 +44,7 @@ export default function EnglishHomePage() {
           </div>
           <div className="gr-col-block">
             <div className="second-screen-img">
-              <img src="/webflow/images/bg-img-3_1.webp" loading="lazy" alt="vision" />
+              <img src="/webflow/images/bg-img-3_1.webp" loading="lazy" alt="vision" style={{ width: '100%', height: 'auto' }} />
             </div>
             <div className="gr-2nd-col-block">
               <h2 className="gr-col-h mission-item-heading">Vision</h2>
@@ -66,7 +66,7 @@ export default function EnglishHomePage() {
         <div className="w-layout-grid _4-column-grid">
           <a href="https://www.facebook.com/MandruiUkrainoiu/" target="_blank" rel="noopener noreferrer" className="grid-item w-inline-block">
             <div className="u-overflow">
-              <img src="/webflow/images/mandruy-pict_1.webp" loading="lazy" alt="mandruy" />
+              <img src="/webflow/images/mandruy-pict_1.webp" loading="lazy" alt="mandruy" style={{ width: '100%', height: 'auto' }} />
             </div>
             <div className="gr-2nd-col-block">
               <h3 className="grid-item-head">#MandruyUkrainoyu</h3>
@@ -75,7 +75,7 @@ export default function EnglishHomePage() {
           </a>
           <a href="/webflow/documents/marshrouts.pdf" target="_blank" rel="noopener noreferrer" className="grid-item w-inline-block">
             <div className="u-overflow">
-              <img src="/webflow/images/marshruty-pict_1.webp" loading="lazy" alt="routes of memory" />
+              <img src="/webflow/images/marshruty-pict_1.webp" loading="lazy" alt="routes of memory" style={{ width: '100%', height: 'auto' }} />
             </div>
             <div className="gr-2nd-col-block">
               <h3 className="grid-item-head">Routes of Memory</h3>

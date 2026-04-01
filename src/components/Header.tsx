@@ -402,7 +402,7 @@ export const Header = () => {
                       width={25}
                       height={25}
                       alt=""
-                      style={{ height: "auto" }}
+                      style={{ width: "auto", height: "auto" }}
                     />
                   </button>
                   <div

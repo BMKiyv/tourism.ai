@@ -3782,6 +3782,7 @@ a:hover {
   grid-row-gap: 20px;
   margin-left: 20px;
   display: flex;
+  height: 2.5vw;
 }
 
 .management {

@@ -79,7 +79,7 @@ export default async function HomePage() {
                 height={300}
                 alt="our description image"
                 className="image-description"
-                style={{ objectFit: "cover" }}
+                style={{ objectFit: "cover", width: "100%", height: "auto" }}
               />
             </div>
             <div className="gr-2nd-col-block">
@@ -105,7 +105,7 @@ export default async function HomePage() {
                 width={400}
                 height={300}
                 alt="vision decorative"
-                style={{ objectFit: "cover" }}
+                style={{ objectFit: "cover", width: "100%", height: "auto" }}
               />
             </div>
             <div className="gr-2nd-col-block">
@@ -149,7 +149,7 @@ export default async function HomePage() {
                 width={400}
                 height={250}
                 alt="mandruy-project image"
-                style={{ objectFit: "cover" }}
+                style={{ objectFit: "cover", width: "100%", height: "auto" }}
               />
             </div>
             <div className="gr-2nd-col-block">
@@ -174,7 +174,7 @@ export default async function HomePage() {
                 width={400}
                 height={250}
                 alt="marshruty image"
-                style={{ objectFit: "cover" }}
+                style={{ objectFit: "cover", width: "100%", height: "auto" }}
               />
             </div>
             <div className="gr-2nd-col-block">

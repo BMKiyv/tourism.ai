@@ -15,7 +15,7 @@
 - [x] Task: Implement mobile menu toggle logic [af710eb]
     - [x] Add state management for mobile menu
     - [x] Implement toggle button with ARIA attributes
-- [x] Task: Style mobile navigation drawer [af710eb]
+- [x] Task: Style mobile navigation drawer [7ab01d7]
     - [x] Use Tailwind CSS 4 for responsive layout
     - [x] Ensure language switcher and search are accessible on mobile
 

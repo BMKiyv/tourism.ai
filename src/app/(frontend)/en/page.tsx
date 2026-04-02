@@ -1,4 +1,6 @@
 import Link from 'next/link'
+import PartnersSlider from "@/components/PartnersSlider";
+import VideoSlider from "@/components/VideoSlider";
 
 export default function EnglishHomePage() {
   return (
@@ -55,6 +57,8 @@ export default function EnglishHomePage() {
           </div>
         </div>
       </div>
+
+      <VideoSlider />
 
       <div className="o-container alt-container w-container">
         <div className="alt-projects">
@@ -113,15 +117,7 @@ export default function EnglishHomePage() {
           <div className="_4column-flex">
             <div className="div-block-18">
               <h3 className="banner-heading">Our Information Partners</h3>
-              <div className="slider-block">
-                <div className="slider-3 w-slider">
-                  <div className="mask w-slider-mask">
-                    <div className="slide-6 w-slide">
-                      <img src="/webflow/images/slide-link-1-img_1.webp" loading="lazy" alt="" className="o-img alt-page-img" />
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <PartnersSlider />
             </div>
             <div className="_4col-last-block">
               <h3 className="form-main-header">Write to Us</h3>

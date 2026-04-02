@@ -3,6 +3,7 @@ import config from "@/payload.config";
 import Link from "next/link";
 import Image from "next/image";
 import VideoSlider from "@/components/VideoSlider";
+import PartnersSlider from "@/components/PartnersSlider";
 
 export default async function HomePage() {
   const payload = await getPayload({ config });
@@ -254,41 +255,7 @@ export default async function HomePage() {
           <div className="_4column-flex">
             <div className="div-block-18">
               <h3 className="banner-heading">Наші інформаційні партнери</h3>
-              <div className="slider-block">
-                <div
-                  data-delay="4000"
-                  data-animation="slide"
-                  className="slider-3 w-slider"
-                  data-autoplay="true"
-                  data-easing="ease"
-                  data-hide-arrows="false"
-                  data-disable-swipe="false"
-                  data-autoplay-limit="0"
-                  data-nav-spacing="3"
-                  data-duration="500"
-                  data-infinite="true"
-                >
-                  <div className="mask w-slider-mask">
-                    <div className="slide-6 w-slide">
-                      <Image
-                        src="/webflow/images/slide-link-1-img_1.webp"
-                        width={300}
-                        height={100}
-                        alt=""
-                        className="o-img alt-page-img"
-                        style={{ objectFit: "contain" }}
-                      />
-                    </div>
-                  </div>
-                  <div className="left-arrow-2 w-slider-arrow-left">
-                    <div className="w-icon-slider-left"></div>
-                  </div>
-                  <div className="right-arrow w-slider-arrow-right">
-                    <div className="w-icon-slider-right"></div>
-                  </div>
-                  <div className="slide-nav w-slider-nav w-round w-num"></div>
-                </div>
-              </div>
+              <PartnersSlider />
             </div>
             <div className="_4col-last-block">
               <h3 className="form-main-header">Написати нам</h3>

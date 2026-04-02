@@ -15,9 +15,9 @@
 - [x] Task: Implement mobile menu toggle logic [af710eb]
     - [x] Add state management for mobile menu
     - [x] Implement toggle button with ARIA attributes
-- [ ] Task: Style mobile navigation drawer
-    - [ ] Use Tailwind CSS 4 for responsive layout
-    - [ ] Ensure language switcher and search are accessible on mobile
+- [x] Task: Style mobile navigation drawer [af710eb]
+    - [x] Use Tailwind CSS 4 for responsive layout
+    - [x] Ensure language switcher and search are accessible on mobile
 
 ## Phase 3: Verification and Polishing
 - [ ] Task: Implement animations and UX refinements

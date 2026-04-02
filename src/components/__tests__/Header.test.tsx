@@ -28,12 +28,12 @@ describe('Header Mobile Menu Accessibility', () => {
     
     // Find the mobile menu container (it has specific classes)
     const mobileMenu = document.querySelector('.nav-hide-block.alt-nav-hide')
-    expect(mobileMenu).toBeVisible()
+    expect(mobileMenu).toHaveClass('block')
     
     // Press Escape
     fireEvent.keyDown(window, { key: 'Escape', code: 'Escape' })
     
-    expect(mobileMenu).not.toBeVisible()
+    expect(mobileMenu).toHaveClass('hidden')
     expect(toggleButton).toHaveAttribute('aria-expanded', 'false')
   })
 })

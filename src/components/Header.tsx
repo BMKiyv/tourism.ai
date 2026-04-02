@@ -175,12 +175,42 @@ export const Header = () => {
               </div>
             </div>
             <div
-              className="nav-hide-block alt-nav-hide"
-              style={{ display: mobileOpen ? "block" : "none" }}
+              className={`nav-hide-block alt-nav-hide transition-all duration-300 ease-in-out ${
+                mobileOpen ? "block opacity-100" : "hidden opacity-0"
+              }`}
             >
+              <div className="flex flex-col gap-4 p-4 lg:hidden">
+                <div className="flex items-center justify-between border-b pb-4 mb-2">
+                  <div className="language flex gap-4">
+                    <Link
+                      href={getLanguageUrl("ua")}
+                      className={`text-lg font-bold ${!isEn ? "text-blue-600" : "text-gray-500"}`}
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      UA
+                    </Link>
+                    <Link
+                      href={getLanguageUrl("en")}
+                      className={`text-lg font-bold ${isEn ? "text-blue-600" : "text-gray-500"}`}
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      EN
+                    </Link>
+                  </div>
+                  <button
+                    type="button"
+                    className="text-gray-500"
+                    onClick={() => setMobileOpen(false)}
+                    aria-label="Close mobile menu"
+                  >
+                    <span className="text-2xl">✕</span>
+                  </button>
+                </div>
+              </div>
               <Link
                 href={isEn ? "/en" : "/"}
                 className={`m-link-block modal-menu-list-link w-inline-block ${isActive(isEn ? "/en" : "/") ? "w--current" : ""}`}
+                onClick={() => setMobileOpen(false)}
               >
                 <h2 className="modal-menu-list-item">
                   {isEn ? "Main" : "Головна"}

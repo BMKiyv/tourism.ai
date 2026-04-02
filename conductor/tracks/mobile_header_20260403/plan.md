@@ -1,20 +1,20 @@
 # Implementation Plan: Responsive Mobile Navigation
 
 ## Phase 1: Research and Setup
-- [ ] Task: Analyze current Header implementation and identify breakpoints
-    - [ ] Inspect `src/components/Header.tsx`
-    - [ ] Document current breakpoint logic in Tailwind 4 context
-- [ ] Task: Set up testing environment for mobile components
-    - [ ] Configure Vitest and React Testing Library if not present
-    - [ ] Create basic smoke test for Header component
+- [x] Task: Analyze current Header implementation and identify breakpoints
+    - [x] Inspect `src/components/Header.tsx`
+    - [x] Document current breakpoint logic in Tailwind 4 context
+- [x] Task: Set up testing environment for mobile components
+    - [x] Configure Vitest and React Testing Library if not present
+    - [x] Create basic smoke test for Header component
 
 ## Phase 2: Core Implementation (TDD)
-- [ ] Task: Write tests for mobile menu toggling
-    - [ ] Test that menu is hidden by default
-    - [ ] Test that clicking toggle button shows the menu
-- [ ] Task: Implement mobile menu toggle logic
-    - [ ] Add state management for mobile menu
-    - [ ] Implement toggle button with ARIA attributes
+- [x] Task: Write tests for mobile menu toggling
+    - [x] Test that menu is hidden by default
+    - [x] Test that clicking toggle button shows the menu
+- [x] Task: Implement mobile menu toggle logic
+    - [x] Add state management for mobile menu
+    - [x] Implement toggle button with ARIA attributes
 - [ ] Task: Style mobile navigation drawer
     - [ ] Use Tailwind CSS 4 for responsive layout
     - [ ] Ensure language switcher and search are accessible on mobile

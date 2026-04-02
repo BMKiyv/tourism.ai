@@ -27,6 +27,21 @@ export const Header = () => {
   }
 
   useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMobileOpen(false);
+        setAboutOpen(false);
+        setActivityOpen(false);
+        setSearchOpen(false);
+        setLangHover(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+  useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
         headerRef.current &&
@@ -151,6 +166,7 @@ export const Header = () => {
                   className="tab-link-menu w-inline-block"
                   onClick={() => setMobileOpen((prev) => !prev)}
                   aria-label="Open mobile menu"
+                  aria-expanded={mobileOpen}
                 >
                   <div className="tlm-bg mob-menu"></div>
                   <div className="tlm-ico u-hover mob-menu-exit"></div>

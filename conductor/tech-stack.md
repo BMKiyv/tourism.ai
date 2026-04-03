@@ -18,4 +18,5 @@
 ## Quality Assurance & Tools
 - **Linting:** ESLint - Enforcing code quality and consistency.
 - **Type Checking:** TypeScript - Static analysis for the entire codebase.
-- **Accessibility:** Custom Accessibility Widget + Semantic HTML standards.
+- **Testing:** Vitest & React Testing Library - For spec-driven development and unit testing of React components.
+- **Accessibility:** Custom Accessibility Widget + Semantic HTML standards + ARIA compliant components.

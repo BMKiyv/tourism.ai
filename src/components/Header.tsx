@@ -15,6 +15,7 @@ export const Header = () => {
   const [activityOpen, setActivityOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [langHover, setLangHover] = useState(false);
+  const mobileCloseRef = useRef<HTMLButtonElement>(null);
 
   const [prevPathname, setPrevPathname] = useState(pathname);
   if (pathname !== prevPathname) {
@@ -25,6 +26,12 @@ export const Header = () => {
     setSearchOpen(false);
     setLangHover(false);
   }
+
+  useEffect(() => {
+    if (mobileOpen && mobileCloseRef.current) {
+      mobileCloseRef.current.focus();
+    }
+  }, [mobileOpen]);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -176,8 +183,9 @@ export const Header = () => {
             </div>
             <div
               className={`nav-hide-block alt-nav-hide transition-all duration-300 ease-in-out ${
-                mobileOpen ? "block opacity-100" : "hidden opacity-0"
+                mobileOpen ? "opacity-100" : "opacity-0"
               }`}
+              style={{ display: mobileOpen ? "block" : "none" }}
             >
               <div className="flex flex-col gap-4 p-4 lg:hidden">
                 <div className="flex items-center justify-between border-b pb-4 mb-2">
@@ -202,6 +210,7 @@ export const Header = () => {
                     className="text-gray-500"
                     onClick={() => setMobileOpen(false)}
                     aria-label="Close mobile menu"
+                    ref={mobileCloseRef}
                   >
                     <span className="text-2xl">✕</span>
                   </button>

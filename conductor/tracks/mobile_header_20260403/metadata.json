@@ -1,8 +1,0 @@
-{
-  "track_id": "mobile_header_20260403",
-  "type": "feature",
-  "status": "new",
-  "created_at": "2026-04-03T00:55:00Z",
-  "updated_at": "2026-04-03T00:55:00Z",
-  "description": "Implement responsive mobile navigation for Header component"
-}

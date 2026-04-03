@@ -36,4 +36,15 @@ describe('Header Mobile Menu Accessibility', () => {
     expect(mobileMenu).toHaveClass('hidden')
     expect(toggleButton).toHaveAttribute('aria-expanded', 'false')
   })
+
+  it('focuses the close button when opened', async () => {
+    const user = userEvent.setup()
+    render(<Header />)
+    const toggleButton = screen.getByLabelText(/Open mobile menu/i)
+    
+    await user.click(toggleButton)
+    
+    const closeButton = screen.getByLabelText(/Close mobile menu/i)
+    expect(closeButton).toHaveFocus()
+  })
 })

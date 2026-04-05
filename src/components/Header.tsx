@@ -189,18 +189,28 @@ export const Header = () => {
             >
               <div className="flex flex-col gap-4 p-4 lg:hidden">
                 <div className="flex items-center justify-between border-b pb-4 mb-2">
-                  <div className="language flex gap-4">
+                  <div className="language flex gap-2">
                     <Link
                       href={getLanguageUrl("ua")}
-                      className={`text-lg font-bold ${!isEn ? "text-blue-600" : "text-gray-500"}`}
+                      className={`px-3 py-1 text-sm rounded-full transition-colors !no-underline !shadow-none ${
+                        !isEn 
+                          ? "bg-[#b2e0f9] text-[#2d5ca6] font-bold" 
+                          : "text-gray-500 hover:text-[#2d5ca6]"
+                      }`}
                       onClick={() => setMobileOpen(false)}
+                      style={{ textDecoration: 'none' }}
                     >
                       UA
                     </Link>
                     <Link
                       href={getLanguageUrl("en")}
-                      className={`text-lg font-bold ${isEn ? "text-blue-600" : "text-gray-500"}`}
+                      className={`px-3 py-1 text-sm rounded-full transition-colors !no-underline !shadow-none ${
+                        isEn 
+                          ? "bg-[#b2e0f9] text-[#2d5ca6] font-bold" 
+                          : "text-gray-500 hover:text-[#2d5ca6]"
+                      }`}
                       onClick={() => setMobileOpen(false)}
+                      style={{ textDecoration: 'none' }}
                     >
                       EN
                     </Link>

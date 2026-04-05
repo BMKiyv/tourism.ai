@@ -37,27 +37,43 @@ describe('Header Mobile Menu Accessibility', () => {
     expect(toggleButton).toHaveAttribute('aria-expanded', 'false')
   })
 
-  it('focuses the close button when opened', async () => {
+  it('focuses the toggle button when opened (it is the close button now)', async () => {
     const user = userEvent.setup()
     render(<Header />)
     const toggleButton = screen.getByLabelText(/Open mobile menu/i)
     
     await user.click(toggleButton)
     
-    const closeButton = screen.getByLabelText(/Close mobile menu/i)
-    expect(closeButton).toHaveFocus()
+    expect(toggleButton).toHaveFocus()
+    expect(toggleButton).toHaveAttribute('aria-label', 'Close mobile menu')
   })
 })
 
 describe('Header Mobile Language Switcher', () => {
-  it('displays language buttons horizontally', async () => {
+  it('displays language buttons horizontally and centered', async () => {
     const user = userEvent.setup()
     render(<Header />)
     await user.click(screen.getByLabelText(/Open mobile menu/i))
     
     const langContainer = screen.getByText('UA').parentElement
     expect(langContainer).toHaveClass('flex')
+    expect(langContainer).toHaveClass('flex-row')
     expect(langContainer).toHaveClass('gap-2')
+    
+    const parentContainer = langContainer?.parentElement
+    expect(parentContainer).toHaveClass('justify-center')
+  })
+
+  it('toggles to "X" icon when menu is open', async () => {
+    const user = userEvent.setup()
+    render(<Header />)
+    const toggleButton = screen.getByLabelText(/Open mobile menu/i)
+    
+    await user.click(toggleButton)
+    
+    expect(toggleButton).toHaveAttribute('aria-label', 'Close mobile menu')
+    const exitIcon = toggleButton.querySelector('.mob-menu-exit')
+    expect(exitIcon).toHaveClass('active')
   })
 
   it('styles the active language button correctly', async () => {

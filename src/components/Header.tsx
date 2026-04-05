@@ -172,12 +172,12 @@ export const Header = () => {
                   type="button"
                   className="tab-link-menu w-inline-block"
                   onClick={() => setMobileOpen((prev) => !prev)}
-                  aria-label="Open mobile menu"
+                  aria-label={mobileOpen ? "Close mobile menu" : "Open mobile menu"}
                   aria-expanded={mobileOpen}
                 >
-                  <div className="tlm-bg mob-menu"></div>
-                  <div className="tlm-ico u-hover mob-menu-exit"></div>
-                  <div className="tlm-ico mob-menu-item"></div>
+                  <div className={`tlm-bg mob-menu ${mobileOpen ? "active" : ""}`}></div>
+                  <div className={`tlm-ico u-hover mob-menu-exit ${mobileOpen ? "active" : ""}`}></div>
+                  <div className={`tlm-ico mob-menu-item ${mobileOpen ? "active" : ""}`}></div>
                 </button>
               </div>
             </div>
@@ -188,8 +188,8 @@ export const Header = () => {
               style={{ display: mobileOpen ? "block" : "none" }}
             >
               <div className="flex flex-col gap-4 p-4 lg:hidden">
-                <div className="flex items-center justify-between border-b pb-4 mb-2">
-                  <div className="language flex gap-2">
+                <div className="flex items-center justify-center border-b pb-4 mb-2">
+                  <div className="language flex flex-row gap-2">
                     <Link
                       href={getLanguageUrl("ua")}
                       className={`px-3 py-1 text-sm rounded-full transition-colors !no-underline !shadow-none ${
@@ -215,15 +215,6 @@ export const Header = () => {
                       EN
                     </Link>
                   </div>
-                  <button
-                    type="button"
-                    className="text-gray-500"
-                    onClick={() => setMobileOpen(false)}
-                    aria-label="Close mobile menu"
-                    ref={mobileCloseRef}
-                  >
-                    <span className="text-2xl">✕</span>
-                  </button>
                 </div>
               </div>
               <Link

@@ -35,3 +35,4 @@
 
 ## Phase: Review Fixes
 - [x] Task: Commit track artifacts 133ac29
+- [x] Task: Apply user feedback (center lang, X icon) 966fa8e

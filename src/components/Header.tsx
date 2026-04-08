@@ -182,7 +182,7 @@ export const Header = () => {
               </div>
             </div>
             <div
-              className={`nav-hide-block alt-nav-hide transition-all duration-300 ease-in-out ${
+              className={`nav-hide-block alt-nav-hide transition-all duration-300 ease-in-out relative overflow-x-hidden ${
                 mobileOpen ? "opacity-100" : "opacity-0"
               }`}
               style={{ display: mobileOpen ? "block" : "none" }}
@@ -194,7 +194,7 @@ export const Header = () => {
                       href={getLanguageUrl("ua")}
                       className={`px-3 py-1 text-sm rounded-full transition-colors !no-underline !shadow-none ${
                         !isEn 
-                          ? "bg-[#b2e0f9] text-[#2d5ca6] font-bold" 
+                          ? "active-lang bg-[#b2e0f9] text-[#2d5ca6] font-bold" 
                           : "text-gray-500 hover:text-[#2d5ca6]"
                       }`}
                       onClick={() => setMobileOpen(false)}
@@ -206,7 +206,7 @@ export const Header = () => {
                       href={getLanguageUrl("en")}
                       className={`px-3 py-1 text-sm rounded-full transition-colors !no-underline !shadow-none ${
                         isEn 
-                          ? "bg-[#b2e0f9] text-[#2d5ca6] font-bold" 
+                          ? "active-lang bg-[#b2e0f9] text-[#2d5ca6] font-bold" 
                           : "text-gray-500 hover:text-[#2d5ca6]"
                       }`}
                       onClick={() => setMobileOpen(false)}
@@ -217,98 +217,136 @@ export const Header = () => {
                   </div>
                 </div>
               </div>
-              <Link
-                href={isEn ? "/en" : "/"}
-                className={`m-link-block modal-menu-list-link w-inline-block ${isActive(isEn ? "/en" : "/") ? "w--current" : ""}`}
-                onClick={() => setMobileOpen(false)}
-              >
-                <h2 className="modal-menu-list-item">
-                  {isEn ? "Main" : "Головна"}
-                </h2>
-              </Link>
-              <Link
-                href="/news"
-                className={`m-link-block modal-menu-list-link w-inline-block ${isActive("/news") ? "w--current" : ""}`}
-              >
-                <h2 className="modal-menu-list-item">
-                  {isEn ? "News and announcements" : "Новини та анонси"}
-                </h2>
-              </Link>
-              <Link
-                href="/struktura-dart"
-                className={`m-link-block modal-menu-list-link w-inline-block ${isActive("/struktura-dart") ? "w--current" : ""}`}
-              >
-                <h2 className="modal-menu-list-item">
-                  {isEn ? "Structure" : "Структура агентства"}
-                </h2>
-              </Link>
-              <Link
-                href="/vacancies"
-                className={`m-link-block modal-menu-list-link w-inline-block ${isActive("/vacancies") ? "w--current" : ""}`}
-              >
-                <h2 className="modal-menu-list-item">
-                  {isEn ? "Vacancies" : "Вакансії"}
-                </h2>
-              </Link>
-              <Link
-                href="/our-team"
-                className={`m-link-block modal-menu-list-link w-inline-block ${isActive("/our-team") ? "w--current" : ""}`}
-              >
-                <h2 className="modal-menu-list-item">
-                  {isEn ? "Team" : "Команда"}
-                </h2>
-              </Link>
-              <div className="modal-menu-list-last">
-                <h2
-                  className={`modal-menu-list-item ${activityOpen ? "active" : ""}`}
+              <div className="relative overflow-hidden">
+                {/* Main Menu Panel */}
+                <div 
+                  className={`flex flex-col transition-all duration-500 ease-in-out ${
+                    activityOpen ? "translate-x-full opacity-0 pointer-events-none" : "translate-x-0 opacity-100"
+                  }`}
                 >
-                  {isEn ? "Activities" : "Діяльність"}
-                </h2>
-                <div className="additional-list">
                   <Link
-                    href={
-                      isEn ? "/en/tour-operator-licensing" : "/licensuvannya"
-                    }
-                    className={`modal-menu-drop-link w-inline-block ${isActive(isEn ? "/en/tour-operator-licensing" : "/licensuvannya") ? "w--current" : ""}`}
+                    href={isEn ? "/en" : "/"}
+                    className={`m-link-block modal-menu-list-link w-inline-block ${isActive(isEn ? "/en" : "/") ? "w--current" : ""}`}
+                    onClick={() => setMobileOpen(false)}
                   >
-                    <div className="modal-menu-drop-text">
-                      {isEn
-                        ? "Tour operator licensing"
-                        : "Ліцензування туроператорів"}
-                    </div>
+                    <h2 className="modal-menu-list-item text-center">
+                      {isEn ? "Main" : "Головна"}
+                    </h2>
                   </Link>
                   <Link
-                    href={isEn ? "/en/hotel-categorization" : "/categorization"}
-                    className={`modal-menu-drop-link w-inline-block ${isActive(isEn ? "/en/hotel-categorization" : "/categorization") ? "w--current" : ""}`}
+                    href="/news"
+                    className={`m-link-block modal-menu-list-link w-inline-block ${isActive("/news") ? "w--current" : ""}`}
                   >
-                    <div className="modal-menu-drop-text">
-                      {isEn ? "Hotel categorization" : "Категоризація готелів"}
-                    </div>
+                    <h2 className="modal-menu-list-item text-center">
+                      {isEn ? "News and announcements" : "Новини та анонси"}
+                    </h2>
                   </Link>
                   <Link
-                    href={isEn ? "/en/statistics" : "/statistic"}
-                    className={`modal-menu-drop-link w-inline-block ${isActive(isEn ? "/en/statistics" : "/statistic") ? "w--current" : ""}`}
+                    href="/struktura-dart"
+                    className={`m-link-block modal-menu-list-link w-inline-block ${isActive("/struktura-dart") ? "w--current" : ""}`}
                   >
-                    <div className="modal-menu-drop-text">
-                      {isEn ? "Statistics" : "Статистика"}
-                    </div>
+                    <h2 className="modal-menu-list-item text-center">
+                      {isEn ? "Structure" : "Структура агентства"}
+                    </h2>
                   </Link>
                   <Link
-                    href="/for-sitizens"
-                    className={`modal-menu-drop-link w-inline-block ${isActive("/for-sitizens") ? "w--current" : ""}`}
+                    href="/vacancies"
+                    className={`m-link-block modal-menu-list-link w-inline-block ${isActive("/vacancies") ? "w--current" : ""}`}
                   >
-                    <div className="modal-menu-drop-text">
-                      {isEn ? "Citizens" : "Громадськості"}
-                    </div>
+                    <h2 className="modal-menu-list-item text-center">
+                      {isEn ? "Vacancies" : "Вакансії"}
+                    </h2>
                   </Link>
+                  <Link
+                    href="/our-team"
+                    className={`m-link-block modal-menu-list-link w-inline-block ${isActive("/our-team") ? "w--current" : ""}`}
+                  >
+                    <h2 className="modal-menu-list-item text-center">
+                      {isEn ? "Team" : "Команда"}
+                    </h2>
+                  </Link>
+                  <div className="modal-menu-list-last relative cursor-pointer" onClick={() => setActivityOpen(true)}>
+                    <h2 className={`modal-menu-list-item text-center ${activityOpen ? "active" : ""}`}>
+                      {isEn ? "Activities" : "Діяльність"}
+                    </h2>
+                  </div>
+                </div>
+
+                {/* Activities Submenu Panel */}
+                <div 
+                  className={`absolute top-0 left-0 w-full h-full flex flex-col transition-all duration-500 ease-in-out ${
+                    activityOpen ? "translate-x-0 opacity-100" : "-translate-x-full opacity-0 pointer-events-none"
+                  }`}
+                >
+                  <button 
+                    type="button"
+                    className="p-4 z-10 flex items-center gap-2 text-[#2d5ca6] font-bold"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setActivityOpen(false);
+                    }}
+                  >
+                    <span className="text-xl">←</span> {isEn ? "Back" : "Назад"}
+                  </button>
+                  <div className="flex flex-col items-center">
+                    <Link
+                      href={isEn ? "/en/tour-operator-licensing" : "/licensuvannya"}
+                      className={`m-link-block modal-menu-list-link w-inline-block w-full ${isActive(isEn ? "/en/tour-operator-licensing" : "/licensuvannya") ? "w--current" : ""}`}
+                      onClick={() => {
+                        setMobileOpen(false);
+                        setActivityOpen(false);
+                      }}
+                    >
+                      <h2 className="modal-menu-list-item text-center">
+                        {isEn ? "Tour operator licensing" : "Ліцензування туроператорів"}
+                      </h2>
+                    </Link>
+                    <Link
+                      href={isEn ? "/en/hotel-categorization" : "/categorization"}
+                      className={`m-link-block modal-menu-list-link w-inline-block w-full ${isActive(isEn ? "/en/hotel-categorization" : "/categorization") ? "w--current" : ""}`}
+                      onClick={() => {
+                        setMobileOpen(false);
+                        setActivityOpen(false);
+                      }}
+                    >
+                      <h2 className="modal-menu-list-item text-center">
+                        {isEn ? "Hotel categorization" : "Категоризація готелів"}
+                      </h2>
+                    </Link>
+                    <Link
+                      href={isEn ? "/en/statistics" : "/statistic"}
+                      className={`m-link-block modal-menu-list-link w-inline-block w-full ${isActive(isEn ? "/en/statistics" : "/statistic") ? "w--current" : ""}`}
+                      onClick={() => {
+                        setMobileOpen(false);
+                        setActivityOpen(false);
+                      }}
+                    >
+                      <h2 className="modal-menu-list-item text-center">
+                        {isEn ? "Statistics" : "Статистика"}
+                      </h2>
+                    </Link>
+                    <Link
+                      href="/for-sitizens"
+                      className={`m-link-block modal-menu-list-link w-inline-block w-full ${isActive("/for-sitizens") ? "w--current" : ""}`}
+                      onClick={() => {
+                        setMobileOpen(false);
+                        setActivityOpen(false);
+                      }}
+                    >
+                      <h2 className="modal-menu-list-item text-center">
+                        {isEn ? "Citizens" : "Громадськості"}
+                      </h2>
+                    </Link>
+                  </div>
                 </div>
               </div>
-              <div className="modal-menu-button">
+              <div className="modal-menu-button pb-8">
                 <Link
                   href={isEn ? "/en/contacts" : "/contact"}
                   className={`modal-menu-link w-inline-block ${isActive(isEn ? "/en/contacts" : "/contact") ? "w--current" : ""}`}
+                  onClick={() => setMobileOpen(false)}
                 >
-                  <div className="text-block-13">
+                  <div className="text-block-13 text-center">
                     {isEn ? "Contacts" : "Контакти"}
                   </div>
                 </Link>

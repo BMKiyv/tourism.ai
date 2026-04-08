@@ -42,6 +42,7 @@ Official website for the **State Agency for Tourism Development of Ukraine (DART
     - [x] Плавна анімація випадаючих списків.
     - [x] Автоматичне виділення активної сторінки (`w--current`).
     - [x] Реалізація перемикача мов (UA/EN) з ховер-ефектом та SEO-посиланнями.
+    - [x] Адаптація для мобільних пристроїв та планшетів (слайдер підменю).
 - [x] Integrated advanced Accessibility Widget.
 
 ### In Progress (В процесі)
@@ -50,7 +51,6 @@ Official website for the **State Agency for Tourism Development of Ukraine (DART
 - [ ] Вирішення питання переносу зображень з Webflow.
 
 ### To Do (Заплановано)
-- [ ] Адаптація хедера для мобільних пристроїв та планшетів (Responsive).
 - [ ] Оптимізація роботи з медіа-файлами.
 - [ ] Реалізація пошуку по всьому сайту.
 - [ ] Налаштування захищених роутів.

@@ -92,35 +92,52 @@ body {
   pointer-events: none;
 }
 
-/* Мобільні переходи для вкладених списків */
-.listTransition {
-  transform: translate3d(0vw, 0px, 0px) !important;
-  transition: transform 0.3s ease-in;
-  position: absolute;
-  top: 0%;
-  bottom: auto;
-  left: 0%;
-  right: 0%;
-  display: flex !important;
+/* Мобільні переходи для вкладених списків (застарілі, замінені на Tailwind слайдер) */
+.listTransition, .initialListTransition, .backListTransition {
+  display: none !important;
 }
 
-.initialListTransition {
-  transform: translate3d(-120vw, 0px, 0px) !important;
-  position: absolute;
-  top: 0%;
-  bottom: auto;
-  left: 0%;
-  right: 0%;
+/* Додаткові стилі для нового слайдера меню */
+.modal-menu-list-item.text-center {
+  text-align: center;
+  width: 100%;
 }
 
-.backListTransition {
-  transform: translate3d(-120vw, 0px, 0px) !important;
-  transition: transform 0.3s ease-in;
-  position: absolute;
-  top: 0%;
-  bottom: auto;
-  left: 0%;
-  right: 0%;
+/* Mobile Navigation and Language Switcher Overrides */
+@media (max-width: 991px) {
+  .nav-hide-block .language {
+    flex-direction: row !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    height: auto !important;
+    min-width: 0 !important;
+    margin: 0 auto !important;
+  }
+
+  .nav-hide-block .language a {
+    text-decoration: none !important;
+    box-shadow: none !important;
+  }
+
+  .nav-hide-block .language a.active-lang {
+    background-color: #b2e0f9 !important;
+    color: #2d5ca6 !important;
+    font-weight: bold !important;
+  }
+
+  /* Mobile menu toggle X icon transformation */
+  .tab-link-menu .tlm-ico.mob-menu-item.active {
+    display: none !important;
+  }
+
+  .tab-link-menu .tlm-ico.mob-menu-exit.active {
+    opacity: 1 !important;
+    display: block !important;
+  }
+
+  .tab-link-menu .tlm-bg.mob-menu.active {
+    background-color: #b2e0f9 !important;
+  }
 }
 
 @media (max-width: 991px) {

@@ -1,17 +1,20 @@
-import { postgresAdapter } from '@payloadcms/db-postgres'
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
-import { buildConfig } from 'payload'
-import path from 'path'
-import { fileURLToPath } from 'url'
+import { postgresAdapter } from "@payloadcms/db-postgres";
+import { lexicalEditor } from "@payloadcms/richtext-lexical";
+import { buildConfig } from "payload";
+import path from "path";
+import { fileURLToPath } from "url";
 
-const filename = fileURLToPath(import.meta.url)
-const dirname = path.dirname(filename)
+const filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(filename);
 
-console.log('PAYLOAD_CONFIG: Initializing with DATABASE_URI:', process.env.DATABASE_URI ? 'PRESENT' : 'MISSING')
+console.log(
+  "PAYLOAD_CONFIG: Initializing with DATABASE_URI:",
+  process.env.DATABASE_URI ? "PRESENT" : "MISSING",
+);
 
 export default buildConfig({
   admin: {
-    user: 'users',
+    user: "users",
     importMap: {
       baseDir: path.resolve(dirname),
     },
@@ -20,20 +23,20 @@ export default buildConfig({
   localization: {
     locales: [
       {
-        label: 'Українська',
-        code: 'uk',
+        label: "Українська",
+        code: "uk",
       },
       {
-        label: 'English',
-        code: 'en',
+        label: "English",
+        code: "en",
       },
     ],
-    defaultLocale: 'uk',
+    defaultLocale: "uk",
     fallback: true,
   },
   collections: [
     {
-      slug: 'users',
+      slug: "users",
       auth: true,
       access: {
         create: () => true,
@@ -43,9 +46,9 @@ export default buildConfig({
               id: {
                 equals: user.id,
               },
-            }
+            };
           }
-          return false
+          return false;
         },
         update: ({ req: { user } }) => {
           if (user) {
@@ -53,124 +56,124 @@ export default buildConfig({
               id: {
                 equals: user.id,
               },
-            }
+            };
           }
-          return false
+          return false;
         },
         delete: ({ req: { user } }) => {
-          if (user?.role === 'admin') return true
-          return false
+          if (user?.role === "admin") return true;
+          return false;
         },
       },
       fields: [
         {
-          name: 'name',
-          type: 'text',
+          name: "name",
+          type: "text",
         },
         {
-          name: 'role',
-          type: 'select',
-          defaultValue: 'user',
+          name: "role",
+          type: "select",
+          defaultValue: "user",
           options: [
-            { label: 'Admin', value: 'admin' },
-            { label: 'User', value: 'user' },
+            { label: "Admin", value: "admin" },
+            { label: "User", value: "user" },
           ],
           access: {
-            update: ({ req: { user } }) => user?.role === 'admin',
+            update: ({ req: { user } }) => user?.role === "admin",
           },
         },
       ],
     },
     {
-      slug: 'blogs',
+      slug: "blogs",
       admin: {
-        useAsTitle: 'name',
+        useAsTitle: "name",
       },
       fields: [
-        { name: 'name', type: 'text', required: true, localized: true },
-        { name: 'slug', type: 'text', required: true, unique: true },
-        { name: 'date', type: 'date' },
-        { name: 'author', type: 'text' },
-        { name: 'img', type: 'upload', relationTo: 'media' },
-        { name: 'anounce', type: 'textarea', localized: true },
-        { name: 'rich', type: 'richText', localized: true },
-        { name: 'is_popular', type: 'checkbox' },
-        { name: 'webflow_item_id', type: 'text', admin: { readOnly: true } },
+        { name: "name", type: "text", required: true, localized: true },
+        { name: "slug", type: "text", required: true, unique: true },
+        { name: "date", type: "date" },
+        { name: "author", type: "text" },
+        { name: "img", type: "upload", relationTo: "media" },
+        { name: "anounce", type: "textarea", localized: true },
+        { name: "rich", type: "richText", localized: true },
+        { name: "is_popular", type: "checkbox" },
+        { name: "webflow_item_id", type: "text", admin: { readOnly: true } },
       ],
     },
     {
-      slug: 'departments',
-      admin: { useAsTitle: 'name' },
+      slug: "departments",
+      admin: { useAsTitle: "name" },
       fields: [
-        { name: 'name', type: 'text', required: true, localized: true },
-        { name: 'slug', type: 'text', required: true },
-        { name: 'description', type: 'textarea', localized: true },
-        { name: 'parent', type: 'relationship', relationTo: 'departments' },
-        { name: 'index', type: 'number' },
+        { name: "name", type: "text", required: true, localized: true },
+        { name: "slug", type: "text", required: true },
+        { name: "description", type: "textarea", localized: true },
+        { name: "parent", type: "relationship", relationTo: "departments" },
+        { name: "index", type: "number" },
       ],
     },
     {
-      slug: 'orders',
-      admin: { useAsTitle: 'name' },
+      slug: "orders",
+      admin: { useAsTitle: "name" },
       fields: [
-        { name: 'name', type: 'text', required: true, localized: true },
-        { name: 'slug', type: 'text', required: true },
-        { name: 'number', type: 'text' },
-        { name: 'date', type: 'date' },
-        { name: 'link', type: 'text' },
-        { name: 'url', type: 'text' },
-        { name: 'logo', type: 'upload', relationTo: 'media' },
+        { name: "name", type: "text", required: true, localized: true },
+        { name: "slug", type: "text", required: true },
+        { name: "number", type: "text" },
+        { name: "date", type: "date" },
+        { name: "link", type: "text" },
+        { name: "url", type: "text" },
+        { name: "logo", type: "upload", relationTo: "media" },
       ],
     },
     {
-      slug: 'vacancies',
-      admin: { useAsTitle: 'name' },
+      slug: "vacancies",
+      admin: { useAsTitle: "name" },
       fields: [
-        { name: 'name', type: 'text', required: true, localized: true },
-        { name: 'slug', type: 'text', required: true },
-        { name: 'link', type: 'text' },
+        { name: "name", type: "text", required: true, localized: true },
+        { name: "slug", type: "text", required: true },
+        { name: "link", type: "text" },
       ],
     },
     {
-      slug: 'team',
+      slug: "team",
       admin: {
-        useAsTitle: 'name',
+        useAsTitle: "name",
       },
       fields: [
-        { name: 'name', type: 'text', required: true },
-        { name: 'surname', type: 'text', required: true },
-        { name: 'position', type: 'text', required: true, localized: true },
-        { name: 'email', type: 'text' },
-        { name: 'phone', type: 'text' },
-        { name: 'facebook', type: 'text' },
-        { name: 'image', type: 'upload', relationTo: 'media' },
-        { name: 'bio_link', type: 'text' },
-        { name: 'bio_rich', type: 'richText', localized: true },
-        { name: 'index', type: 'number' },
+        { name: "name", type: "text", required: true },
+        { name: "surname", type: "text", required: true },
+        { name: "position", type: "text", required: true, localized: true },
+        { name: "email", type: "text" },
+        { name: "phone", type: "text" },
+        { name: "facebook", type: "text" },
+        { name: "image", type: "upload", relationTo: "media" },
+        { name: "bio_link", type: "text" },
+        { name: "bio_rich", type: "richText", localized: true },
+        { name: "index", type: "number" },
       ],
     },
     {
-      slug: 'media',
+      slug: "media",
       upload: true,
       fields: [
         {
-          name: 'alt',
-          type: 'text',
+          name: "alt",
+          type: "text",
           required: true,
         },
       ],
     },
   ],
   editor: lexicalEditor({}),
-  secret: process.env.PAYLOAD_SECRET || 'YOUR_SECRET_KEY_HERE',
+  secret: process.env.PAYLOAD_SECRET || "f3f3e2e2-1234-4567-8901-abcdef123456",
   typescript: {
-    outputFile: path.resolve(dirname, 'payload-types.ts'),
+    outputFile: path.resolve(dirname, "payload-types.ts"),
   },
   db: postgresAdapter({
     pool: {
-      connectionString: process.env.DATABASE_URI || '',
+      connectionString: process.env.DATABASE_URI || "",
     },
-    idType: 'uuid',
-    migrationDir: path.resolve(dirname, 'migrations'),
+    idType: "uuid",
+    migrationDir: path.resolve(dirname, "migrations"),
   }),
-})
+});

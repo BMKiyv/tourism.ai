@@ -94,7 +94,7 @@ export interface Config {
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
   };
   db: {
-    defaultIDType: string;
+    defaultIDType: number;
   };
   fallbackLocale: ('false' | 'none' | 'null') | false | null | ('uk' | 'en') | ('uk' | 'en')[];
   globals: {};
@@ -132,7 +132,7 @@ export interface UserAuthOperations {
  * via the `definition` "users".
  */
 export interface User {
-  id: string;
+  id: number;
   name?: string | null;
   role?: ('admin' | 'user') | null;
   updatedAt: string;
@@ -159,12 +159,12 @@ export interface User {
  * via the `definition` "blogs".
  */
 export interface Blog {
-  id: string;
+  id: number;
   name: string;
   slug: string;
   date?: string | null;
   author?: string | null;
-  img?: (string | null) | Media;
+  img?: (number | null) | Media;
   anounce?: string | null;
   rich?: {
     root: {
@@ -191,7 +191,7 @@ export interface Blog {
  * via the `definition` "media".
  */
 export interface Media {
-  id: string;
+  id: number;
   alt: string;
   updatedAt: string;
   createdAt: string;
@@ -210,11 +210,11 @@ export interface Media {
  * via the `definition` "departments".
  */
 export interface Department {
-  id: string;
+  id: number;
   name: string;
   slug: string;
   description?: string | null;
-  parent?: (string | null) | Department;
+  parent?: (number | null) | Department;
   index?: number | null;
   updatedAt: string;
   createdAt: string;
@@ -224,14 +224,14 @@ export interface Department {
  * via the `definition` "orders".
  */
 export interface Order {
-  id: string;
+  id: number;
   name: string;
   slug: string;
   number?: string | null;
   date?: string | null;
   link?: string | null;
   url?: string | null;
-  logo?: (string | null) | Media;
+  logo?: (number | null) | Media;
   updatedAt: string;
   createdAt: string;
 }
@@ -240,7 +240,7 @@ export interface Order {
  * via the `definition` "vacancies".
  */
 export interface Vacancy {
-  id: string;
+  id: number;
   name: string;
   slug: string;
   link?: string | null;
@@ -252,14 +252,14 @@ export interface Vacancy {
  * via the `definition` "team".
  */
 export interface Team {
-  id: string;
+  id: number;
   name: string;
   surname: string;
   position: string;
   email?: string | null;
   phone?: string | null;
   facebook?: string | null;
-  image?: (string | null) | Media;
+  image?: (number | null) | Media;
   bio_link?: string | null;
   bio_rich?: {
     root: {
@@ -285,7 +285,7 @@ export interface Team {
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
-  id: string;
+  id: number;
   key: string;
   data:
     | {
@@ -302,40 +302,40 @@ export interface PayloadKv {
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
-  id: string;
+  id: number;
   document?:
     | ({
         relationTo: 'users';
-        value: string | User;
+        value: number | User;
       } | null)
     | ({
         relationTo: 'blogs';
-        value: string | Blog;
+        value: number | Blog;
       } | null)
     | ({
         relationTo: 'departments';
-        value: string | Department;
+        value: number | Department;
       } | null)
     | ({
         relationTo: 'orders';
-        value: string | Order;
+        value: number | Order;
       } | null)
     | ({
         relationTo: 'vacancies';
-        value: string | Vacancy;
+        value: number | Vacancy;
       } | null)
     | ({
         relationTo: 'team';
-        value: string | Team;
+        value: number | Team;
       } | null)
     | ({
         relationTo: 'media';
-        value: string | Media;
+        value: number | Media;
       } | null);
   globalSlug?: string | null;
   user: {
     relationTo: 'users';
-    value: string | User;
+    value: number | User;
   };
   updatedAt: string;
   createdAt: string;
@@ -345,10 +345,10 @@ export interface PayloadLockedDocument {
  * via the `definition` "payload-preferences".
  */
 export interface PayloadPreference {
-  id: string;
+  id: number;
   user: {
     relationTo: 'users';
-    value: string | User;
+    value: number | User;
   };
   key?: string | null;
   value?:
@@ -368,7 +368,7 @@ export interface PayloadPreference {
  * via the `definition` "payload-migrations".
  */
 export interface PayloadMigration {
-  id: string;
+  id: number;
   name?: string | null;
   batch?: number | null;
   updatedAt: string;

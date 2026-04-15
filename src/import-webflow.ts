@@ -4,7 +4,7 @@ import fs from 'fs'
 import path from 'path'
 import { parse } from 'csv-parse/sync'
 
-const WEBFLOW_PATH = path.resolve('../webflow')
+const WEBFLOW_PATH = path.resolve('./webflow')
 
 async function importOrders() {
   const payload = await getPayload({ config })

@@ -3,6 +3,8 @@ import config from './payload.config'
 import fs from 'fs'
 import path from 'path'
 import { parse } from 'csv-parse/sync'
+import { getOrCreateMediaFromUrl, getOrCreateMediaFromLocalPath } from './lib/media-utils'
+import { JSDOM } from 'jsdom'
 
 const WEBFLOW_PATH = path.resolve('./webflow')
 
@@ -28,6 +30,13 @@ async function importOrders() {
 
   for (const record of records) {
     try {
+      const logoUrl = record['logo of order']
+      let logoId = null
+      
+      if (logoUrl) {
+        logoId = await getOrCreateMediaFromUrl(payload, logoUrl, `Logo for ${record['Name of order'] || record['Name']}`)
+      }
+
       await payload.create({
         collection: 'orders',
         data: {
@@ -37,6 +46,7 @@ async function importOrders() {
           date: record['Date of order'] ? new Date(record['Date of order']).toISOString() : null,
           link: record['link'],
           url: record['url'],
+          logo: logoId,
         },
       })
     } catch (e: any) {
@@ -48,7 +58,7 @@ async function importOrders() {
 async function importBlogs() {
   const payload = await getPayload({ config })
   const files = fs.readdirSync(WEBFLOW_PATH)
-  const blogFile = files.find(f => f.includes('Blogs'))
+  const blogFile = files.find(f => f.includes('Blogs') && !f.includes('Eng'))
   
   if (!blogFile) return
 
@@ -63,15 +73,23 @@ async function importBlogs() {
         where: { slug: { equals: record['Slug'] } }
       })
 
-      const blogData = {
+      const imageUrl = record['img']
+      let imageId = null
+
+      if (imageUrl) {
+        imageId = await getOrCreateMediaFromUrl(payload, imageUrl, record['Name'])
+      }
+
+      const blogData: any = {
         name: record['Name'],
         slug: record['Slug'],
         date: record['Date'] ? new Date(record['Date']).toISOString() : new Date(record['Created On']).toISOString(),
         author: record['Author'],
         anounce: record['anounce'],
-        rich: record['rich'], // Додаємо контент!
+        rich: record['rich'],
         is_popular: record['is_popular'] === 'true',
         webflow_item_id: record['Item ID'],
+        img: imageId,
       }
 
       if (existing.docs.length > 0) {
@@ -147,12 +165,66 @@ async function importVacancies() {
   }
 }
 
+async function importTeamFromHtml() {
+  const payload = await getPayload({ config })
+  const htmlPath = path.join(WEBFLOW_PATH, 'our-team.html')
+  
+  if (!fs.existsSync(htmlPath)) {
+    console.error('our-team.html not found')
+    return
+  }
+
+  const html = fs.readFileSync(htmlPath, 'utf-8')
+  const dom = new JSDOM(html)
+  const doc = dom.window.document
+  const teamItems = doc.querySelectorAll('.team-item')
+
+  console.log(`Importing ${teamItems.length} team members from HTML...`)
+
+  let index = 0
+  for (const item of Array.from(teamItems)) {
+    try {
+      const surname = item.querySelector('.team-surname')?.textContent?.trim() || ''
+      const name = item.querySelector('.team-name')?.textContent?.trim() || ''
+      const position = item.querySelector('.team-text')?.textContent?.trim() || ''
+      const email = item.querySelector('a[href^="mailto:"]')?.getAttribute('href')?.replace('mailto:', '') || null
+      const phone = item.querySelector('a[href^="tel:"]')?.getAttribute('href')?.replace('tel:', '') || null
+      const facebook = item.querySelector('a[href*="facebook.com"]')?.getAttribute('href') || null
+      const imageSrc = item.querySelector('.team-img img')?.getAttribute('src') || ''
+      
+      let imageId = null
+      if (imageSrc) {
+        // Resolve relative path to webflow directory
+        const absoluteImagePath = path.join(WEBFLOW_PATH, imageSrc)
+        imageId = await getOrCreateMediaFromLocalPath(payload, absoluteImagePath, `${name} ${surname}`)
+      }
+
+      await payload.create({
+        collection: 'team',
+        data: {
+          name,
+          surname,
+          position,
+          email,
+          phone,
+          facebook,
+          image: imageId,
+          index: index++,
+        },
+      })
+    } catch (e: any) {
+      console.error(`Failed to import team member: ${e.message}`)
+    }
+  }
+}
+
 async function run() {
   console.log('--- Starting Webflow Import ---')
   await importOrders()
   await importBlogs()
   await importDepartments()
   await importVacancies()
+  await importTeamFromHtml()
   console.log('--- Import Complete ---')
   process.exit(0)
 }

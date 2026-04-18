@@ -5,20 +5,36 @@ import Image from "next/image";
 import VideoSlider from "@/components/VideoSlider";
 import PartnersSlider from "@/components/PartnersSlider";
 
+export const dynamic = "force-dynamic";
+
 export default async function HomePage() {
   const payload = await getPayload({ config });
 
-  const { docs: blogs } = await payload.find({
+  const { docs: blogsRaw } = await payload.find({
     collection: "blogs",
     limit: 4,
     sort: "-date",
   });
 
-  // const { docs: orders } = await payload.find({
-  //   collection: "orders",
-  //   limit: 5,
-  //   sort: "-date",
-  // });
+  // Очищаємо дані від службових полів Payload для уникнення помилок серіалізації
+  const blogs = blogsRaw.map((blog) => {
+    const imgData =
+      blog.img && typeof blog.img === "object" ? (blog.img as any) : null;
+
+    // Ігноруємо blogImage.url і беремо тільки filename
+    const filename = imgData?.filename;
+    const imageUrl = filename
+      ? `/media/${filename}`
+      : "/webflow/images/hero_1.webp";
+
+    return {
+      id: blog.id,
+      slug: blog.slug,
+      name: blog.name,
+      imageUrl: imageUrl, // ТУТ ТЕПЕР ТОЧНО /media/...
+      imageAlt: imgData?.alt || blog.name,
+    };
+  });
 
   return (
     <>
@@ -218,12 +234,11 @@ export default async function HomePage() {
                       className="o-layout-nws u-anim news-item-wrap w-inline-block"
                     >
                       <div className="o-layout-nws-overflow news-img-wrap">
-                        {/* Placeholder or dynamic image if available */}
                         <Image
-                          src="/webflow/images/hero_1.webp"
+                          src={blog.imageUrl}
                           width={400}
                           height={250}
-                          alt={blog.name}
+                          alt={blog.imageAlt}
                           className="o-layout-img"
                           style={{ objectFit: "cover" }}
                         />
@@ -234,18 +249,6 @@ export default async function HomePage() {
                 ))}
               </div>
             </div>
-            {/* <div className="alt-all-news-wrap">
-              <Link href="/news" className="alt-all-news-link w-inline-block">
-                <div className="text-block-14">Всі новини</div>
-                 <Image
-                  src="/webflow/images/blue-arrow-next.svg"
-                  width={20}
-                  height={20}
-                  alt=""
-                  className="image-10"
-                /> 
-              </Link>
-            </div> */}
           </div>
         </section>
       </div>

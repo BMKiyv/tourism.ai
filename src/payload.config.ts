@@ -1,5 +1,8 @@
 import { postgresAdapter } from "@payloadcms/db-postgres";
-import { lexicalEditor } from "@payloadcms/richtext-lexical";
+import {
+  HTMLConverterFeature,
+  lexicalEditor,
+} from "@payloadcms/richtext-lexical";
 import { buildConfig } from "payload";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -154,7 +157,9 @@ export default buildConfig({
     },
     {
       slug: "media",
-      upload: true,
+      upload: {
+        staticDir: path.resolve(process.cwd(), "public/media"),
+      },
       fields: [
         {
           name: "alt",
@@ -164,7 +169,12 @@ export default buildConfig({
       ],
     },
   ],
-  editor: lexicalEditor({}),
+  editor: lexicalEditor({
+    features: ({ defaultFeatures }) => [
+      ...defaultFeatures,
+      HTMLConverterFeature({}),
+    ],
+  }),
   secret: process.env.PAYLOAD_SECRET || "f3f3e2e2-1234-4567-8901-abcdef123456",
   typescript: {
     outputFile: path.resolve(dirname, "payload-types.ts"),

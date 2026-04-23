@@ -27,7 +27,7 @@ export default async function NewsDetailPage({ params }: PageProps) {
   return (
     <article className="container mx-auto px-4 py-12 max-w-4xl min-h-screen">
       <nav className="mb-12 flex items-center text-sm text-gray-500 gap-2">
-        <Link href="/" className="hover:text-[#2d5ca6]">Головна</Link>
+        <Link href="/news" className="hover:text-[#2d5ca6]">Новини</Link>
         <span>/</span>
         <span className="text-gray-900 truncate">{blog.name}</span>
       </nav>
@@ -59,7 +59,7 @@ export default async function NewsDetailPage({ params }: PageProps) {
             <span className="text-gray-400 text-sm block mb-1 font-bold uppercase tracking-widest">Автор публікації</span>
             <span className="text-xl font-bold text-gray-900">{blog.author || 'Прес-служба ДАРТ'}</span>
           </div>
-          <Link href="/" className="bg-[#2d5ca6] text-white px-8 py-3 rounded-2xl font-bold hover:bg-black transition-all shadow-lg shadow-blue-100">
+          <Link href="/news" className="bg-[#2d5ca6] text-white px-8 py-3 rounded-2xl font-bold hover:bg-black transition-all shadow-lg shadow-blue-100">
             Всі новини
           </Link>
         </div>

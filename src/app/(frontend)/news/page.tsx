@@ -20,6 +20,30 @@ const formatDate = (date?: string | null) => {
   return new Date(date).toLocaleDateString('uk-UA')
 }
 
+const formatAnounceDate = (dateStr?: string | null) => {
+  if (!dateStr) return { date: '', time: '' }
+  const d = new Date(dateStr)
+  if (isNaN(d.getTime())) return { date: '', time: '' }
+
+  const months = [
+    'січня', 'лютого', 'березня', 'квітня', 'травня', 'червня',
+    'липня', 'серпня', 'вересня', 'жовтня', 'листопада', 'грудня'
+  ]
+
+  const day = d.getDate()
+  const month = months[d.getMonth()]
+  const year = d.getFullYear()
+  const hours = d.getHours()
+  const minutes = d.getMinutes()
+
+  const date = `${day} ${month} ${year}`
+  const time = (hours !== 0 || minutes !== 0) 
+    ? `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`
+    : ''
+
+  return { date, time }
+}
+
 export default async function NewsPage({
   searchParams,
 }: {
@@ -74,6 +98,7 @@ export default async function NewsPage({
 
   const latestNews = latest[0]
   const announcement = announcements[0]
+  const anounceTimeInfo = announcement ? formatAnounceDate(announcement.date) : { date: '', time: '' }
 
   return (
     <div className="main header-trigger">
@@ -95,7 +120,7 @@ export default async function NewsPage({
                             className="popular_img"
                           />
                         </div>
-                        <div className="text-block-16">{newsItem.name}</div>
+                        <div className="text-block-16">{newsItem.name || ''}</div>
                       </Link>
                     </div>
                   ))}
@@ -125,10 +150,18 @@ export default async function NewsPage({
                           className="anounce-pict"
                         />
                       </div>
-                      <div className="anounce-data">
-                        <div className="news-date">{formatDate(announcement.date)}</div>
-                      </div>
-                      <h4 className="anounce-content second">{announcement.anounce || announcement.name}</h4>
+                      {announcement.date && (
+                        <div className="anounce-data">
+                          <div className="news-date">
+                            {anounceTimeInfo.date} {anounceTimeInfo.time}
+                          </div>
+                        </div>
+                      )}
+                      <h4 className="anounce-content second">
+                        {announcement.name && announcement.name !== 'false' 
+                          ? announcement.name 
+                          : (announcement.anounce && announcement.anounce !== 'false' ? announcement.anounce : '')}
+                      </h4>
                     </Link>
                   </div>
                 </div>
@@ -142,7 +175,7 @@ export default async function NewsPage({
         </div>
       </div>
 
-      <div className="o-container news-container">
+      <div className="o-container news-container w-container">
         <div className="last-news-wrapper">
           <div id="w-node-ec6636f1-4e87-b127-35bc-c47f201bb5ee-2d6d9ec8" className="last-news w-dyn-list">
             {latestNews ? (

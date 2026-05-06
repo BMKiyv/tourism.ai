@@ -32,7 +32,7 @@ export default async function NewsPage({
   const [{ docs: popular }, { docs: latest }, { docs: announcements }, allNews] = await Promise.all([
     payload.find({
       collection: 'blogs',
-      limit: 1,
+      limit: 3,
       sort: '-date',
       where: {
         is_popular: {
@@ -72,7 +72,6 @@ export default async function NewsPage({
     }),
   ])
 
-  const popularNews = popular[0]
   const latestNews = latest[0]
   const announcement = announcements[0]
 
@@ -80,24 +79,26 @@ export default async function NewsPage({
     <div className="main header-trigger">
       <div className="popular-news-anoncement">
         <div className="w-layout-blockcontainer o-container news-anoncement w-container">
-          <div className="popular_news_wrap">
+          <div id="w-node-f42fc77b-eceb-3f67-2074-0c6bed511a3c-2d6d9ec8" className="popular_news_wrap">
             <h2 className="popular_news-header anounce-header">Актуальні новини</h2>
             <div className="w-dyn-list">
-              {popularNews ? (
+              {popular.length > 0 ? (
                 <div role="list" className="collection-list-3 w-dyn-items">
-                  <div role="listitem" className="collection-item-4 w-dyn-item">
-                    <Link href={`/news/${popularNews.slug}`} className="popular_nwes_link w-inline-block">
-                      <div className="popular-nwes-img">
-                        <img
-                          alt={popularNews.name || 'Популярна новина'}
-                          loading="lazy"
-                          src={getImageUrl(popularNews.img)}
-                          className="popular_img"
-                        />
-                      </div>
-                      <div className="text-block-16">{popularNews.name}</div>
-                    </Link>
-                  </div>
+                  {popular.map((newsItem) => (
+                    <div key={newsItem.id} role="listitem" className="collection-item-4 w-dyn-item">
+                      <Link href={`/news/${newsItem.slug}`} className="popular_nwes_link w-inline-block">
+                        <div className="popular-nwes-img">
+                          <img
+                            alt={newsItem.name || 'Популярна новина'}
+                            loading="lazy"
+                            src={getImageUrl(newsItem.img)}
+                            className="popular_img"
+                          />
+                        </div>
+                        <div className="text-block-16">{newsItem.name}</div>
+                      </Link>
+                    </div>
+                  ))}
                 </div>
               ) : (
                 <div className="w-dyn-empty">
@@ -107,9 +108,9 @@ export default async function NewsPage({
             </div>
           </div>
 
-          <div className="verical-line"></div>
+          <div id="w-node-d47d9f54-18fe-8c18-87d7-a19e51754442-2d6d9ec8" className="verical-line"></div>
 
-          <div className="anounce-wrap w-dyn-list">
+          <div id="w-node-cb45c9fb-5b5b-4b47-ebfb-bf458ef944df-2d6d9ec8" className="anounce-wrap w-dyn-list">
             {announcement ? (
               <div role="list" className="alt-news-wrap w-dyn-items">
                 <div role="listitem" className="collection-item-3 anounce-item w-dyn-item">
@@ -143,7 +144,7 @@ export default async function NewsPage({
 
       <div className="o-container news-container">
         <div className="last-news-wrapper">
-          <div className="last-news w-dyn-list">
+          <div id="w-node-ec6636f1-4e87-b127-35bc-c47f201bb5ee-2d6d9ec8" className="last-news w-dyn-list">
             {latestNews ? (
               <div role="list" className="alt-news-wrap w-dyn-items">
                 <div role="listitem" className="collection-item-3 w-dyn-item">

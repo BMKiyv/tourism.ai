@@ -19,7 +19,9 @@ export default async function HomePage() {
   // Очищаємо дані від службових полів Payload для уникнення помилок серіалізації
   const blogs = blogsRaw.map((blog) => {
     const imgData =
-      blog.img && typeof blog.img === "object" ? (blog.img as any) : null;
+      blog.img && typeof blog.img === "object"
+        ? (blog.img as { filename: string; alt: string })
+        : null;
 
     // Ігноруємо blogImage.url і беремо тільки filename
     const filename = imgData?.filename;

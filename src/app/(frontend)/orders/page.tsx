@@ -1,8 +1,8 @@
-import React from 'react'
 import { getPayload } from 'payload'
 import config from '@/payload.config'
+import Link from 'next/link'
+import type { Order } from '@/payload-types'
 import { DocListItem } from '@/components/DocListItem'
-import { DocumentLink } from '@/components/DocumentLink'
 
 export default async function OrdersPage({
   searchParams,
@@ -12,13 +12,15 @@ export default async function OrdersPage({
   const { page } = await searchParams
   const payload = await getPayload({ config })
   
-  const { docs: orders, totalPages, page: currentPage } = await payload.find({
+  const { docs: orders, totalPages, page: pageNumber } = await payload.find({
     collection: 'orders',
     depth: 1,
-    limit: 10,
+    limit: 20,
     page: page ? parseInt(page) : 1,
     sort: '-date',
   })
+
+  const currentPage = pageNumber || 1
 
   return (
     <div className="c-section finances-wrap header-trigger">
@@ -41,19 +43,32 @@ export default async function OrdersPage({
           <div className="orders-wrapper w-dyn-list">
             {orders.length > 0 ? (
               <div role="list" className="orders-list w-dyn-items">
-                {orders.map((order: any) => (
-                  <div key={order.id} role="listitem" className="orders-list-item w-dyn-item">
-                    <DocumentLink href={order.file?.url || '#'} className="laws-list-link w-inline-block">
-                      <div className="orders-title">Наказ від</div>
-                      <div className="orders-title">{new Date(order.date).toLocaleDateString('uk-UA')}</div>
-                      <div className="orders-title">№</div>
-                      <div className="orders-title">{order.number}</div>
-                      <div className="orders-title">&quot;</div>
-                      <div className="orders-title">{order.title}</div>
-                      <div className="orders-title">&quot;</div>
-                    </DocumentLink>
-                  </div>
-                ))}
+                {orders.map((order: Order) => {
+                  const date = order.date ? new Date(order.date).toLocaleDateString('uk-UA') : ''
+
+                  return (
+                    <div key={order.id} role="listitem" className="orders-list-item w-dyn-item">
+                      <Link href={`/orders/${order.slug}`} className="laws-list-link w-inline-block">
+                        <div className="orders-title">Наказ</div>
+                        {date && (
+                          <>
+                            <div className="orders-title">від</div>
+                            <div className="orders-title">{date}</div>
+                          </>
+                        )}
+                        {order.number && (
+                          <>
+                            <div className="orders-title">№</div>
+                            <div className="orders-title">{order.number}</div>
+                          </>
+                        )}
+                        <div className="orders-title">&quot;</div>
+                        <div className="orders-title">{order.name}</div>
+                        <div className="orders-title">&quot;</div>
+                      </Link>
+                    </div>
+                  )
+                })}
               </div>
             ) : (
               <div className="w-dyn-empty">

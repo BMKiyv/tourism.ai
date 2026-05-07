@@ -1,6 +1,7 @@
 import { getPayload } from 'payload'
 import config from '@/payload.config'
 import Link from 'next/link'
+import type { Blog, Order } from '@/payload-types'
 
 interface PageProps {
   searchParams: Promise<{ q?: string }>
@@ -10,8 +11,8 @@ export default async function SearchPage({ searchParams }: PageProps) {
   const { q: query } = await searchParams
   const payload = await getPayload({ config })
   
-  let blogs: any[] = []
-  let orders: any[] = []
+  let blogs: Blog[] = []
+  let orders: Order[] = []
 
   if (query) {
     const blogRes = await payload.find({
@@ -64,7 +65,7 @@ export default async function SearchPage({ searchParams }: PageProps) {
           <div className="space-y-6">
             {blogs.map(blog => (
               <Link key={blog.id} href={`/news/${blog.slug}`} className="block group">
-                <time className="text-xs text-gray-400 font-bold uppercase">{new Date(blog.date).toLocaleDateString('uk-UA')}</time>
+                <time className="text-xs text-gray-400 font-bold uppercase">{blog.date ? new Date(blog.date).toLocaleDateString('uk-UA') : ''}</time>
                 <h3 className="text-lg font-bold group-hover:text-[#2d5ca6] transition-colors">{blog.name}</h3>
               </Link>
             ))}
@@ -75,10 +76,10 @@ export default async function SearchPage({ searchParams }: PageProps) {
           <h2 className="text-2xl font-oswald uppercase font-bold mb-6 border-b pb-2">Результати в наказах ({orders.length})</h2>
           <div className="space-y-6">
             {orders.map(order => (
-              <a key={order.id} href={order.url || '#'} className="block group">
+              <Link key={order.id} href={`/orders/${order.slug}`} className="block group">
                 <span className="text-xs text-[#2d5ca6] font-mono font-bold">№ {order.number}</span>
                 <h3 className="text-lg font-bold group-hover:text-[#2d5ca6] transition-colors">{order.name}</h3>
-              </a>
+              </Link>
             ))}
           </div>
         </section>

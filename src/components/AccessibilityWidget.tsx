@@ -1,35 +1,38 @@
 'use client'
 
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback, useRef } from 'react'
 import { usePathname } from 'next/navigation'
 
 export const AccessibilityWidget = () => {
   const [isOpen, setIsOpen] = useState(false)
   const pathname = usePathname()
   const isEn = pathname.startsWith('/en')
+  const menuRef = useRef<HTMLDivElement>(null)
 
-  const toggleMenu = () => setIsOpen(!isOpen)
+  const toggleMenu = () => setIsOpen((prev) => !prev)
 
-  const getStored = useCallback((key: string, defaultValue: any) => {
+  const getStored = useCallback((key: string, defaultValue: string) => {
     if (typeof window === 'undefined') return defaultValue
     const val = localStorage.getItem(key)
     if (val === null) return defaultValue
     return val
   }, [])
 
-  const setStored = useCallback((key: string, value: any) => {
+  const setStored = useCallback((key: string, value: string | number | boolean) => {
     if (typeof window !== 'undefined') {
-      localStorage.setItem(key, value.toString())
+      localStorage.setItem(key, String(value))
     }
   }, [])
 
-  const adjustFontSize = useCallback((multiply: number = 0) => {
+  const adjustFontSize = useCallback((multiply: number = 0, isInit: boolean = false) => {
     const storedPercentage = parseFloat(getStored('fontPercentage', '1'))
     let newPercentage = storedPercentage
     if (multiply !== 0) {
       newPercentage = storedPercentage + multiply
       setStored('fontPercentage', newPercentage)
     }
+
+    if (isInit && newPercentage === 1) return;
 
     document.querySelectorAll('*').forEach((el) => {
       const element = el as HTMLElement
@@ -44,12 +47,14 @@ export const AccessibilityWidget = () => {
     })
   }, [getStored, setStored])
 
-  const adjustLetterSpacing = useCallback((toggle: boolean = false) => {
+  const adjustLetterSpacing = useCallback((toggle: boolean = false, isInit: boolean = false) => {
     let isEnabled = getStored('isLetterSpacingEnabled', '0') === '1'
     if (toggle) {
       isEnabled = !isEnabled
       setStored('isLetterSpacingEnabled', isEnabled ? '1' : '0')
     }
+
+    if (isInit && !isEnabled) return;
 
     document.querySelectorAll('*').forEach((el) => {
       const element = el as HTMLElement
@@ -73,12 +78,14 @@ export const AccessibilityWidget = () => {
     })
   }, [getStored, setStored])
 
-  const enableDyslexicFont = useCallback((toggle: boolean = false) => {
+  const enableDyslexicFont = useCallback((toggle: boolean = false, isInit: boolean = false) => {
     let isEnabled = getStored('isDyslexicFontEnabled', '0') === '1'
     if (toggle) {
       isEnabled = !isEnabled
       setStored('isDyslexicFontEnabled', isEnabled ? '1' : '0')
     }
+
+    if (isInit && !isEnabled) return;
 
     document.querySelectorAll('*').forEach((el) => {
       const element = el as HTMLElement
@@ -100,12 +107,14 @@ export const AccessibilityWidget = () => {
     })
   }, [getStored, setStored])
 
-  const enableBigCursor = useCallback((toggle: boolean = false) => {
+  const enableBigCursor = useCallback((toggle: boolean = false, isInit: boolean = false) => {
     let isEnabled = getStored('isBigCursorEnabled', '0') === '1'
     if (toggle) {
       isEnabled = !isEnabled
       setStored('isBigCursorEnabled', isEnabled ? '1' : '0')
     }
+
+    if (isInit && !isEnabled) return;
 
     const cursorStyle = isEnabled 
       ? `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 512 512'%3E%3Cpath d='M429.742 319.31L82.49 0l-.231 471.744 105.375-100.826 61.89 141.083 96.559-42.358-61.89-141.083 145.549-9.25zM306.563 454.222l-41.62 18.259-67.066-152.879-85.589 81.894.164-333.193 245.264 225.529-118.219 7.512 67.066 152.878z' xmlns='http://www.w3.org/2000/svg'/%3E%3C/svg%3E"), default`
@@ -116,12 +125,14 @@ export const AccessibilityWidget = () => {
     })
   }, [getStored, setStored])
 
-  const enableHighlightLinks = useCallback((toggle: boolean = false) => {
+  const enableHighlightLinks = useCallback((toggle: boolean = false, isInit: boolean = false) => {
     let isEnabled = getStored('isHighlightLinks', '0') === '1'
     if (toggle) {
       isEnabled = !isEnabled
       setStored('isHighlightLinks', isEnabled ? '1' : '0')
     }
+
+    if (isInit && !isEnabled) return;
 
     document.querySelectorAll('a, button').forEach((el) => {
       const element = el as HTMLElement
@@ -148,12 +159,14 @@ export const AccessibilityWidget = () => {
     })
   }, [getStored, setStored])
 
-  const enableHighlightHeadings = useCallback((toggle: boolean = false) => {
+  const enableHighlightHeadings = useCallback((toggle: boolean = false, isInit: boolean = false) => {
     let isEnabled = getStored('isHighlightHeadings', '0') === '1'
     if (toggle) {
       isEnabled = !isEnabled
       setStored('isHighlightHeadings', isEnabled ? '1' : '0')
     }
+
+    if (isInit && !isEnabled) return;
 
     document.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((el) => {
       const element = el as HTMLElement
@@ -176,12 +189,14 @@ export const AccessibilityWidget = () => {
     })
   }, [getStored, setStored])
 
-  const adjustLineHeight = useCallback((toggle: boolean = false) => {
+  const adjustLineHeight = useCallback((toggle: boolean = false, isInit: boolean = false) => {
     let isEnabled = getStored('isLineHeightEnabled', '0') === '1'
     if (toggle) {
       isEnabled = !isEnabled
       setStored('isLineHeightEnabled', isEnabled ? '1' : '0')
     }
+
+    if (isInit && !isEnabled) return;
 
     document.querySelectorAll('*').forEach((el) => {
       const element = el as HTMLElement
@@ -204,12 +219,14 @@ export const AccessibilityWidget = () => {
     })
   }, [getStored, setStored])
 
-  const adjustFontWeight = useCallback((toggle: boolean = false) => {
+  const adjustFontWeight = useCallback((toggle: boolean = false, isInit: boolean = false) => {
     let isEnabled = getStored('isFontWeightEnabled', '0') === '1'
     if (toggle) {
       isEnabled = !isEnabled
       setStored('isFontWeightEnabled', isEnabled ? '1' : '0')
     }
+
+    if (isInit && !isEnabled) return;
 
     document.querySelectorAll('*').forEach((el) => {
       const element = el as HTMLElement
@@ -230,12 +247,14 @@ export const AccessibilityWidget = () => {
     })
   }, [getStored, setStored])
 
-  const adjustContrast = useCallback((toggle: boolean = false) => {
+  const adjustContrast = useCallback((toggle: boolean = false, isInit: boolean = false) => {
     let isEnabled = getStored('isContrastEnabled', '0') === '1'
     if (toggle) {
       isEnabled = !isEnabled
       setStored('isContrastEnabled', isEnabled ? '1' : '0')
     }
+
+    if (isInit && !isEnabled) return;
 
     document.querySelectorAll('*').forEach((el) => {
       const element = el as HTMLElement
@@ -260,23 +279,68 @@ export const AccessibilityWidget = () => {
 
   const reset = useCallback(() => {
     if (typeof window !== 'undefined') {
-      localStorage.clear()
+      const keys = [
+        'fontPercentage', 'isLetterSpacingEnabled', 'isDyslexicFontEnabled', 
+        'isBigCursorEnabled', 'isHighlightLinks', 'isHighlightHeadings', 
+        'isLineHeightEnabled', 'isFontWeightEnabled', 'isContrastEnabled'
+      ]
+      keys.forEach(key => localStorage.removeItem(key))
       window.location.reload()
     }
   }, [])
 
   useEffect(() => {
-    // Initial load
-    adjustFontSize()
-    adjustLetterSpacing()
-    enableDyslexicFont()
-    enableBigCursor()
-    enableHighlightLinks()
-    enableHighlightHeadings()
-    adjustLineHeight()
-    adjustFontWeight()
-    adjustContrast()
+    // Initial load with isInit = true to optimize DOM traversal
+    adjustFontSize(0, true)
+    adjustLetterSpacing(false, true)
+    enableDyslexicFont(false, true)
+    enableBigCursor(false, true)
+    enableHighlightLinks(false, true)
+    enableHighlightHeadings(false, true)
+    adjustLineHeight(false, true)
+    adjustFontWeight(false, true)
+    adjustContrast(false, true)
   }, [adjustFontSize, adjustLetterSpacing, enableDyslexicFont, enableBigCursor, enableHighlightLinks, enableHighlightHeadings, adjustLineHeight, adjustFontWeight, adjustContrast])
+
+  // Focus trap for accessibility
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!isOpen || !menuRef.current) return
+      
+      if (e.key === 'Escape') {
+        setIsOpen(false)
+        return
+      }
+      
+      if (e.key === 'Tab') {
+        const focusableElements = menuRef.current.querySelectorAll(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        )
+        const firstElement = focusableElements[0] as HTMLElement
+        const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement
+
+        if (e.shiftKey) {
+          if (document.activeElement === firstElement) {
+            lastElement.focus()
+            e.preventDefault()
+          }
+        } else {
+          if (document.activeElement === lastElement) {
+            firstElement.focus()
+            e.preventDefault()
+          }
+        }
+      }
+    }
+
+    if (isOpen) {
+      document.addEventListener('keydown', handleKeyDown)
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [isOpen])
 
   const labels = {
     title: isEn ? "Accessibility Menu" : "Меню доступності",
@@ -297,7 +361,8 @@ export const AccessibilityWidget = () => {
   return (
     <div className="availability-box">
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons&amp;text=ads_click,text_rotation_none,text_fields,format_size,blind,restart_alt,close,link,local_parking,contrast,spellcheck,local_library,format_bold,format_line_spacing" rel="stylesheet" />
-      <style dangerouslySetInnerHTML={{ __html: `
+      {/* CSS moved to a standard style block without dangerouslySetInnerHTML for better security */}
+      <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap');
         .asw-menu {
             font-family: 'Inter', sans-serif;
@@ -414,10 +479,10 @@ export const AccessibilityWidget = () => {
         @media only screen and (max-width: 420px) {
             .asw-items { grid-template-columns: repeat(2, minmax(0, 1fr)); }
         }
-      ` }} />
+      `}</style>
 
       {isOpen && (
-        <div className="asw-menu" id="aswMenu" role="dialog" aria-modal="true">
+        <div className="asw-menu" id="aswMenu" role="dialog" aria-modal="true" ref={menuRef}>
           <div className="asw-menu-header">
             <div className="asw-translate">{labels.title}</div>
             <div>
@@ -432,43 +497,43 @@ export const AccessibilityWidget = () => {
           <div className="asw-menu-content">
             <div className="asw-card">
               <div className="asw-items content">
-                <button className="asw-btn" type="button" onClick={() => adjustFontSize(0.1)}>
+                <button className="asw-btn" type="button" onClick={() => adjustFontSize(0.1, false)}>
                   <span className="material-icons">format_size</span>
                   <span className="asw-translate">{labels.increaseFont}</span>
                 </button>
-                <button className="asw-btn" type="button" onClick={() => adjustFontSize(-0.1)}>
+                <button className="asw-btn" type="button" onClick={() => adjustFontSize(-0.1, false)}>
                   <span className="material-icons">text_fields</span>
                   <span className="asw-translate">{labels.decreaseFont}</span>
                 </button>
-                <button className="asw-btn" type="button" onClick={() => adjustLineHeight(true)}>
+                <button className="asw-btn" type="button" onClick={() => adjustLineHeight(true, false)}>
                   <span className="material-icons">format_line_spacing</span>
                   <span className="asw-translate">{labels.lineSpacing}</span>
                 </button>
-                <button className="asw-btn" type="button" onClick={() => adjustLetterSpacing(true)}>
+                <button className="asw-btn" type="button" onClick={() => adjustLetterSpacing(true, false)}>
                   <span className="material-icons">text_rotation_none</span>
                   <span className="asw-translate">{labels.letterSpacing}</span>
                 </button>
-                <button className="asw-btn" type="button" onClick={() => enableDyslexicFont(true)}>
+                <button className="asw-btn" type="button" onClick={() => enableDyslexicFont(true, false)}>
                   <span className="material-icons">spellcheck</span>
                   <span className="asw-translate">{labels.dyslexicFont}</span>
                 </button>
-                <button className="asw-btn" type="button" onClick={() => enableHighlightHeadings(true)}>
+                <button className="asw-btn" type="button" onClick={() => enableHighlightHeadings(true, false)}>
                   <span className="material-icons">local_parking</span>
                   <span className="asw-translate">{labels.highlightHeadings}</span>
                 </button>
-                <button className="asw-btn" type="button" onClick={() => enableHighlightLinks(true)}>
+                <button className="asw-btn" type="button" onClick={() => enableHighlightLinks(true, false)}>
                   <span className="material-icons">link</span>
                   <span className="asw-translate">{labels.highlightLinks}</span>
                 </button>
-                <button className="asw-btn" type="button" onClick={() => adjustFontWeight(true)}>
+                <button className="asw-btn" type="button" onClick={() => adjustFontWeight(true, false)}>
                   <span className="material-icons">format_bold</span>
                   <span className="asw-translate">{labels.fontWeight}</span>
                 </button>
-                <button className="asw-btn" type="button" onClick={() => enableBigCursor(true)}>
+                <button className="asw-btn" type="button" onClick={() => enableBigCursor(true, false)}>
                   <span className="material-icons">ads_click</span>
                   <span className="asw-translate">{labels.biggerCursor}</span>
                 </button>
-                <button className="asw-btn" type="button" onClick={() => adjustContrast(true)}>
+                <button className="asw-btn" type="button" onClick={() => adjustContrast(true, false)}>
                   <span className="material-icons">contrast</span>
                   <span className="asw-translate">{labels.contrast}</span>
                 </button>
@@ -479,7 +544,13 @@ export const AccessibilityWidget = () => {
       )}
 
       <div className="asw-widget">
-        <button className="asw-menu-btn" title={labels.title} onClick={toggleMenu}>
+        <button 
+          className="asw-menu-btn" 
+          title={labels.title} 
+          onClick={toggleMenu}
+          aria-expanded={isOpen}
+          aria-controls="aswMenu"
+        >
           <span className="material-icons md-36 white" style={{ fontSize: '25px', color: '#f9f9f9' }}>blind</span>
         </button>
       </div>

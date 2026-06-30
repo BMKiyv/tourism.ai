@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 
 const socialLinks = {
@@ -107,7 +108,7 @@ export const Footer = () => {
       <div className="w-layout-blockcontainer o-container w-container">
         <div className="div-block-20 footer-grid">
           <Link href={footer.homeHref} id={footer.logoId} className="link-block-11 w-inline-block">
-            <img src={footer.logo} loading="lazy" width="140" alt="" className="image-8" />
+            <Image src={footer.logo} width={140} height={40} alt={isEn ? "State Agency for Tourism Development logo" : "Логотип Державного агентства розвитку туризму"} className="image-8" />
           </Link>
 
           <div id={footer.contactsId} className="footer-contacts">
@@ -123,19 +124,19 @@ export const Footer = () => {
             <h4 className="icons-header">{footer.usefulLinksTitle}</h4>
             <div className="icons-block">
               <a href="https://mindev.gov.ua/" target="_blank" rel="noopener noreferrer" className="link-block-5 w-inline-block">
-                <img src="/webflow/images/logo-dark-miu-ukr.svg" loading="lazy" title="Міністерство розвитку громад та територій" height="35" alt="" className="image-9" />
+                <Image src="/webflow/images/logo-dark-miu-ukr.svg" width={140} height={35} title="Міністерство розвитку громад та територій" alt="Міністерство розвитку громад та територій" className="image-9" />
               </a>
               <a href="https://dpsu.gov.ua/ua/" target="_blank" rel="noopener noreferrer" className="link-block-10 w-inline-block">
-                <img src="/webflow/images/bordersguard.webp" loading="lazy" width="34" height="34" alt="" title="Державна прикордонна служба України" className="border" />
+                <Image src="/webflow/images/bordersguard.webp" width={34} height={34} alt="Державна прикордонна служба України" title="Державна прикордонна служба України" className="border" />
               </a>
               <a href="https://www.president.gov.ua/" target="_blank" rel="noopener noreferrer" className="link-block-8 w-inline-block">
-                <img src="/webflow/images/president.webp" loading="lazy" title="Президент України" height="35" alt="" />
+                <Image src="/webflow/images/president.webp" width={35} height={35} title="Президент України" alt="Президент України" />
               </a>
               <a href="https://www.rada.gov.ua/" target="_blank" rel="noopener noreferrer" className="link-block-6 w-inline-block">
-                <img src="/webflow/images/parlaiment.webp" loading="lazy" width="46" height="35" alt="" title="Верховна Рада України" className="parliament" />
+                <Image src="/webflow/images/parlaiment.webp" width={46} height={35} alt="Верховна Рада України" title="Верховна Рада України" className="parliament" />
               </a>
               <a href="https://www.kmu.gov.ua/" target="_blank" rel="noopener noreferrer" className="link-block-9 w-inline-block">
-                <img src="/webflow/images/cabinet_ministry_1.webp" height="33" alt="" sizes="100vw" title="Кабінет Міністрів України" loading="lazy" />
+                <Image src="/webflow/images/cabinet_ministry_1.webp" width={100} height={33} alt="Кабінет Міністрів України" title="Кабінет Міністрів України" />
               </a>
             </div>
           </div>
@@ -153,7 +154,7 @@ export const Footer = () => {
                   className="footer-icon-wrap w-inline-block"
                 >
                   <div className="social-icon">
-                    <img src={social.icon} loading="lazy" title={social.title} alt="" className="footer-img" />
+                    <Image src={social.icon} width={24} height={24} title={social.title} alt={social.title} className="footer-img" />
                   </div>
                 </a>
               ))}

@@ -7,6 +7,14 @@ import { buildConfig } from "payload";
 import path from "path";
 import { fileURLToPath } from "url";
 
+import { Users } from "./collections/Users";
+import { Blogs } from "./collections/Blogs";
+import { Departments } from "./collections/Departments";
+import { Orders } from "./collections/Orders";
+import { Vacancies } from "./collections/Vacancies";
+import { Team } from "./collections/Team";
+import { Media } from "./collections/Media";
+
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
@@ -22,7 +30,6 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  globals: [],
   localization: {
     locales: [
       {
@@ -37,138 +44,7 @@ export default buildConfig({
     defaultLocale: "uk",
     fallback: true,
   },
-  collections: [
-    {
-      slug: "users",
-      auth: true,
-      access: {
-        create: () => true,
-        read: ({ req: { user } }) => {
-          if (user) {
-            return {
-              id: {
-                equals: user.id,
-              },
-            };
-          }
-          return false;
-        },
-        update: ({ req: { user } }) => {
-          if (user) {
-            return {
-              id: {
-                equals: user.id,
-              },
-            };
-          }
-          return false;
-        },
-        delete: ({ req: { user } }) => {
-          if (user?.role === "admin") return true;
-          return false;
-        },
-      },
-      fields: [
-        {
-          name: "name",
-          type: "text",
-        },
-        {
-          name: "role",
-          type: "select",
-          defaultValue: "user",
-          options: [
-            { label: "Admin", value: "admin" },
-            { label: "User", value: "user" },
-          ],
-          access: {
-            update: ({ req: { user } }) => user?.role === "admin",
-          },
-        },
-      ],
-    },
-    {
-      slug: "blogs",
-      admin: {
-        useAsTitle: "name",
-      },
-      fields: [
-        { name: "name", type: "text", required: true, localized: true },
-        { name: "slug", type: "text", required: true, unique: true },
-        { name: "date", type: "date" },
-        { name: "author", type: "text" },
-        { name: "img", type: "upload", relationTo: "media" },
-        { name: "anounce", type: "textarea", localized: true },
-        { name: "rich", type: "richText", localized: true },
-        { name: "is_popular", type: "checkbox" },
-        { name: "webflow_item_id", type: "text", admin: { readOnly: true } },
-      ],
-    },
-    {
-      slug: "departments",
-      admin: { useAsTitle: "name" },
-      fields: [
-        { name: "name", type: "text", required: true, localized: true },
-        { name: "slug", type: "text", required: true },
-        { name: "description", type: "textarea", localized: true },
-        { name: "parent", type: "relationship", relationTo: "departments" },
-        { name: "index", type: "number" },
-      ],
-    },
-    {
-      slug: "orders",
-      admin: { useAsTitle: "name" },
-      fields: [
-        { name: "name", type: "text", required: true, localized: true },
-        { name: "slug", type: "text", required: true },
-        { name: "number", type: "text" },
-        { name: "date", type: "date" },
-        { name: "link", type: "text" },
-        { name: "url", type: "text" },
-        { name: "logo", type: "upload", relationTo: "media" },
-      ],
-    },
-    {
-      slug: "vacancies",
-      admin: { useAsTitle: "name" },
-      fields: [
-        { name: "name", type: "text", required: true, localized: true },
-        { name: "slug", type: "text", required: true },
-        { name: "link", type: "text" },
-      ],
-    },
-    {
-      slug: "team",
-      admin: {
-        useAsTitle: "name",
-      },
-      fields: [
-        { name: "name", type: "text", required: true },
-        { name: "surname", type: "text", required: true },
-        { name: "position", type: "text", required: true, localized: true },
-        { name: "email", type: "text" },
-        { name: "phone", type: "text" },
-        { name: "facebook", type: "text" },
-        { name: "image", type: "upload", relationTo: "media" },
-        { name: "bio_link", type: "text" },
-        { name: "bio_rich", type: "richText", localized: true },
-        { name: "index", type: "number" },
-      ],
-    },
-    {
-      slug: "media",
-      upload: {
-        staticDir: path.resolve(process.cwd(), "public/media"),
-      },
-      fields: [
-        {
-          name: "alt",
-          type: "text",
-          required: true,
-        },
-      ],
-    },
-  ],
+  collections: [Users, Blogs, Departments, Orders, Vacancies, Team, Media],
   editor: lexicalEditor({
     features: ({ defaultFeatures }) => [
       ...defaultFeatures,
